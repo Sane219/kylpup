@@ -1,0 +1,10 @@
+JPMorgan Chase & Co. — Form 10-K (Fiscal Year 2023) — Selected Excerpts
+
+Item 1. Business
+JPMorgan Chase is a leading financial services firm and one of the largest banking institutions in the United States, with operations worldwide. The Firm's activities are organized into four major reportable business segments: Consumer & Community Banking, Corporate & Investment Bank, Commercial Banking, and Asset & Wealth Management.
+
+Item 1A. Risk Factors
+The Firm's results are subject to significant credit risk across its consumer and wholesale lending portfolios, and a deterioration in economic conditions could increase credit losses. The Firm is exposed to interest rate risk, and changes in interest rates can affect net interest income and the value of its assets and liabilities. The Firm operates in a highly regulated industry, and changes in regulation or heightened capital and liquidity requirements could constrain its activities. Liquidity risk and funding risk could affect the Firm's ability to meet its obligations.
+
+Item 7. Management's Discussion and Analysis
+The Firm reported record net income for the year, supported by higher net interest income that benefited from elevated interest rates and balance sheet growth. The common equity tier 1 capital ratio remained well above regulatory minimums, reflecting a strong capital position. Total deposits remained robust, and the Firm maintained substantial liquidity resources. The provision for credit losses increased, reflecting net reserve builds and a normalization of charge-offs from historically low levels.

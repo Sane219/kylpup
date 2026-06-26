@@ -1,0 +1,10 @@
+Tesla, Inc. — Form 10-K (Fiscal Year 2023) — Selected Excerpts
+
+Item 1. Business
+We design, develop, manufacture, lease and sell high-performance fully electric vehicles and energy generation and storage systems, and offer services related to our products. Our automotive segment includes the Model 3, Model Y, Model S and Model X, as well as the Cybertruck. Our energy generation and storage segment includes solar and battery storage products such as Powerwall and Megapack.
+
+Item 1A. Risk Factors
+We may be unable to grow our global product sales, delivery and installation capabilities and our servicing and vehicle charging networks, or to manage our growth effectively. Increasing competition in the automotive industry, particularly in the market for electric vehicles, may make it difficult to maintain our market share. We are dependent on the availability and pricing of raw materials, including lithium, nickel and cobalt, and any supply chain disruption could materially affect our business. We may experience delays, disruptions or quality control problems in our manufacturing operations.
+
+Item 7. Management's Discussion and Analysis
+Total revenues grew 19 percent in 2023 compared to the prior year, driven by growth in vehicle deliveries despite a lower average selling price as a result of pricing adjustments. Automotive gross margin declined year over year primarily due to those price reductions and increased costs associated with the ramp of new products. Operating income decreased compared to 2022, reflecting lower vehicle margins, partially offset by growth in the energy generation and storage and services businesses. We delivered over 1.8 million vehicles during the year.

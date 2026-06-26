@@ -12,6 +12,10 @@ Filled in over the build; seeded here so choices are captured as they're made.
 - **Security review (STRIDE, Phase 1):** tenant boundary checks pass — server-controlled role (no privilege spoofing), audit_logs for repudiation, secret scan clean, RLS as defense-in-depth. **Forward rule for Phase 4 (IDOR):** every single-resource read/update/delete must filter by BOTH `org_id` AND `id`, never `id` alone.
 - **5-day trade-offs / 2-more-weeks / hardest part:** TBD.
 
+- **Data tools (Phase 2):** market=`yfinance` (no key), news=`duckduckgo-search` (avoids NewsAPI cloud-IP blocks) with lexicon sentiment (upgrade path: VADER/LLM noted in code), filings=pgvector via Gemini `text-embedding-004` (768-dim). Chunking = 1000-char windows w/ 150 overlap on paragraph boundaries. Every tool return carries a `source`/`source_ref` field. TTL cache (5–10 min) on market/news for rate-limit + cost relief. One bad ticker never sinks a batch.
+- **KB is shared reference data**, not tenant-scoped — same sample filings for all orgs (4 companies: AAPL, TSLA, NVDA, JPM), so `filing_chunks` has no `org_id`.
+
 ## TODO (deferred, not blockers)
+- Run `migrations/002_filings.sql` then `python scripts/ingest.py` (needs `GEMINI_API_KEY` + Supabase creds) to populate the vector store. Filing search returns [] gracefully until then.
 - Live Supabase project + keys needed to run Phase 1 end-to-end (signup/login). Code is complete; set `SUPABASE_*` in `backend/.env` and run `migrations/001_init.sql` in the Supabase SQL editor.
 - Email confirmation disabled (`email_confirm: True` on admin create) for demo simplicity — re-enable for production.

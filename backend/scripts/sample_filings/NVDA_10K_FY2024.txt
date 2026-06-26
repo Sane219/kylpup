@@ -1,0 +1,10 @@
+NVIDIA Corporation — Form 10-K (Fiscal Year 2024) — Selected Excerpts
+
+Item 1. Business
+NVIDIA is a full-stack computing infrastructure company. Our two reportable segments are Compute & Networking and Graphics. The Compute & Networking segment includes our Data Center accelerated computing platforms, networking, and automotive platforms. Demand for our Data Center products, driven by generative AI and large language model training and inference, increased significantly during the year.
+
+Item 1A. Risk Factors
+We are dependent on third parties to manufacture, assemble, package and test our products, and a significant portion of our manufacturing is concentrated with a limited number of foundry partners. Our results can be affected by export controls and trade restrictions, including restrictions on the sale of certain advanced products to customers in specific regions. Demand for our products is volatile and difficult to forecast, and we may be unable to match supply with demand. Competition in the markets for our products is intense and may increase.
+
+Item 7. Management's Discussion and Analysis
+Revenue more than doubled, increasing 126 percent year over year, driven by exceptional growth in our Data Center segment as enterprises and cloud service providers invested heavily in accelerated computing and generative AI infrastructure. Data Center revenue grew to a record level and represented the majority of total revenue. Gross margin expanded substantially, reflecting a favorable product mix weighted toward higher-margin Data Center platforms. Major cloud customers and consumer internet companies represented a significant share of Data Center revenue.
