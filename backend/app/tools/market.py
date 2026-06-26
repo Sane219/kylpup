@@ -1,7 +1,5 @@
 """Market data tool — yfinance. Free, no key, no cloud-IP blocks.
 Returns JSON-serializable dicts; every record carries source='yfinance'."""
-import yfinance as yf
-
 from app.core.cache import ttl_cache
 
 SOURCE = "yfinance"
@@ -10,6 +8,7 @@ SOURCE = "yfinance"
 @ttl_cache(seconds=300)
 def get_quote(ticker: str) -> dict:
     """Key metrics + recent close for one ticker."""
+    import yfinance as yf  # lazy: heavy import off the cold/test path
     t = yf.Ticker(ticker)
     info = t.info or {}
     hist = t.history(period="3mo")

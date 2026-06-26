@@ -1,7 +1,5 @@
 """Gemini text embeddings (text-embedding-004, 768-dim) for the filing store.
 Used by both the ingestion script and query-time search so vectors match."""
-from google import genai
-
 from app.core.config import settings
 
 MODEL = "text-embedding-004"
@@ -13,6 +11,7 @@ _client = None
 def _c():
     global _client
     if _client is None:
+        from google import genai
         _client = genai.Client(api_key=settings.GEMINI_API_KEY)
     return _client
 

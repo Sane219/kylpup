@@ -3,8 +3,6 @@ like NewsAPI). Lexicon sentiment keeps it dependency-light.
 ponytail: swap _sentiment for VADER or an LLM pass if accuracy matters."""
 from datetime import datetime, timezone
 
-from duckduckgo_search import DDGS
-
 from app.core.cache import ttl_cache
 
 SOURCE = "duckduckgo-news"
@@ -28,6 +26,7 @@ def _sentiment(text: str) -> tuple[str, float]:
 def get_news(ticker: str, max_results: int = 6) -> list[dict]:
     """Recent articles for a ticker/company, newest first, with sentiment."""
     try:
+        from duckduckgo_search import DDGS  # lazy import
         rows = DDGS().news(f"{ticker} stock", max_results=max_results) or []
     except Exception:
         return []
