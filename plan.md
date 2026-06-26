@@ -2,6 +2,8 @@
 
 **Goal:** Full-stack app where an analyst types a NL research query and gets a structured, source-attributed, AI-orchestrated analysis. Multi-tenant, deployed live, $0 cost.
 
+> **MANDATORY for every phase:** before writing any code for a phase, invoke the Skill(s) named in that phase's `> **Skill — MUST invoke…**` line via the Skill tool. This is not optional and is not overridden by laziness/minimal-diff preferences. If a phase names a skill, the Skill tool call must happen first.
+
 ## Stack (all free tier)
 | Layer | Choice | Notes |
 |---|---|---|
@@ -22,6 +24,7 @@ FastAPI talking to Supabase with the **service key bypasses RLS**. So tenant iso
 ---
 
 ## Phase 0 — Setup (½ day)
+> **Skill — MUST invoke before starting:** `senior-fullstack` (project scaffolding / structure). _Done._
 - Init git repo, frequent commits from here on (graded).
 - `.gitignore` (no node_modules/.env/build), `.env.example` in both apps.
 - Repo layout: `/frontend`, `/backend`, `/docs`, `docker-compose.yml`, root `README.md`.
@@ -30,6 +33,7 @@ FastAPI talking to Supabase with the **service key bypasses RLS**. So tenant iso
 - Backend skeleton: FastAPI, `services/`, `routes/`, `models/`, `tools/`, `core/` (config, auth, logging).
 
 ## Phase 1 — Auth + Multi-Tenancy (Day 1) [covers 3.1 auth, 3.3]
+> **Skill — MUST invoke before writing code:** `senior-backend` (auth flows, schema, tenant middleware). Then `senior-security` for the isolation/RBAC review before the checkpoint.
 - Schema (Supabase SQL migration, checked into `/backend/migrations`):
   - `organizations(id, name, invite_code, created_at)`
   - `users(id, org_id FK, email, role['admin'|'analyst'], created_at)`
@@ -44,6 +48,7 @@ FastAPI talking to Supabase with the **service key bypasses RLS**. So tenant iso
 - ✅ Checkpoint: two orgs, data never crosses.
 
 ## Phase 2 — Data Tools (Day 2) [covers Required Data Integrations 1–3]
+> **Skill — MUST invoke before writing code:** `senior-backend` (tool/service design). For the vector store + ingestion pipeline, also invoke `senior-ml-engineer` (chunking, embeddings, RAG retrieval).
 Each tool = a plain Python function with a JSON-serializable return **including a `source` field**.
 - `tools/market.py` — `yfinance`: price, volume, P/E, market cap, revenue, EPS, historical series. Multi-ticker.
 - `tools/news.py` — `duckduckgo-search`/RSS: recent articles (last 7–30d), per-article sentiment (LLM or VADER), pos/neg/neutral label.
@@ -53,6 +58,7 @@ Each tool = a plain Python function with a JSON-serializable return **including 
 - Caching: `@lru_cache`/TTL dict on market+news fetches (bonus: rate-limit/caching).
 
 ## Phase 3 — AI Orchestration (Day 2–3) [covers AI Agent section, 3.2]
+> **Skill — MUST invoke before writing code:** `senior-prompt-engineer` (router/synthesizer prompt design, structured-output contracts, agent/tool validation). For provider/model details, also load the `claude-api` reference if using Claude; otherwise consult the chosen provider's docs.
 Two-call agentic flow (not hardcoded):
 1. **Router** (LLM call 1): NL query → JSON plan `{tickers, fetch_market, fetch_news, search_filings}`. Tools are chosen by the model — if user asks only news, only news runs.
 2. **Execute**: FastAPI runs selected tools concurrently (`asyncio.gather`). Skip un-requested tools.
@@ -61,6 +67,7 @@ Two-call agentic flow (not hardcoded):
 - Bonus: stream progress via SSE ("planning → fetching → synthesizing").
 
 ## Phase 4 — API Layer (Day 3) [covers 3.1 API, Integration #4]
+> **Skill — MUST invoke before writing code:** `senior-backend` (REST design, validation, error envelopes, status codes).
 Clean REST, consistent envelope `{data, error, meta}`, proper status codes, pydantic validation.
 - `POST /auth/signup`, `/auth/login`, `/auth/logout`
 - `POST /orgs/invite` (admin), `POST /orgs/join`
@@ -71,6 +78,7 @@ Clean REST, consistent envelope `{data, error, meta}`, proper status codes, pyda
 - All protected routes tenant-scoped via dependency. No LLM calls from browser.
 
 ## Phase 5 — Frontend (Day 3–4) [covers 3.1 frontend, 3.2 structured output]
+> **Skill — MUST invoke before writing components:** `senior-frontend` (React/Vite/Tailwind components, state, accessibility). For visual polish / dashboard UX, also invoke `design-taste`.
 - Auth pages (signup/login), protected routing, logout.
 - **Dashboard home:** recent queries, saved reports, watchlist, quick actions (New Research / Compare).
 - **Research interface:** NL textarea → calls `/research` → renders structured components by mapping the JSON:
@@ -82,12 +90,14 @@ Clean REST, consistent envelope `{data, error, meta}`, proper status codes, pyda
 - **Loading / error / empty states** on every async surface. Desktop-first, responsive.
 
 ## Phase 6 — Deploy + Docker (Day 4) [covers bonus deploy + docker]
+> **Skill — MUST invoke before writing infra:** `senior-devops` (Docker, deploy pipeline, env config, health checks).
 - `docker-compose.yml`: frontend + backend (+ optional local postgres) → `docker-compose up` runs whole app.
 - Deploy: Supabase (already live) → Render web service (backend, env vars `GEMINI_API_KEY`, `GROQ_API_KEY`, `SUPABASE_URL`, `SUPABASE_KEY`) → Vercel (frontend, `VITE_API_URL`).
 - Note Render cold-start in DECISIONS.md.
 - Seed script: creates 2 demo orgs, users of each role, sample reports + watchlist — evaluator sees data immediately.
 
 ## Phase 7 — Docs, Tests, Polish (Day 5) [covers Deliverables §4, bonus tests/CI]
+> **Skills — MUST invoke:** `documentation-architect` for README + `ARCHITECTURE.md` Mermaid diagrams; `senior-qa` (or `tdd-guide`) for tests; `senior-architect` for the architecture diagrams/ADR framing in `DECISIONS.md`. Run `adversarial-reviewer` or `/code-review` over the diff before final submission.
 - **README.md:** option chosen + why, stack rationale, *tested* setup instructions (Docker + manual), 4–6 screenshots, known limitations.
 - **ARCHITECTURE.md** (Mermaid diagrams):
   - system architecture, data-flow (UI→API→auth/tenant→AI→tools→DB→render), ER diagram, AI orchestration flow, multi-tenant isolation flow, API endpoint table.

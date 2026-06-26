@@ -4,6 +4,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
+from app.core.responses import install_error_handlers
+from app.routes import auth, orgs
 
 logging.basicConfig(level=logging.INFO)
 
@@ -16,11 +18,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+install_error_handlers(app)
+app.include_router(auth.router)
+app.include_router(orgs.router)
+# research + watchlist routers wired in Phase 4
+
 
 @app.get("/health")
 def health():
     return {"status": "ok"}
-
-# routes wired in later phases:
-# from app.routes import auth, research, watchlist, orgs
-# app.include_router(auth.router); ...
