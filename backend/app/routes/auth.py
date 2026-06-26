@@ -32,12 +32,18 @@ def signup(body: SignupIn):
             raise HTTPException(404, "invalid invite code")
         org, role = found[0], "analyst"
 
-    # 2) create the auth user
-    res = sb.auth.admin.create_user(
-        {"email": body.email, "password": body.password, "email_confirm": True,
-         "app_metadata": {"org_id": org["id"], "role": role}}
-    )
-    uid = res.user.id
+    # 2) create the auth user. If this fails (e.g. duplicate email) and we just
+    # created a fresh org, roll it back so we don't leave an orphan org.
+    try:
+        res = sb.auth.admin.create_user(
+            {"email": body.email, "password": body.password, "email_confirm": True,
+             "app_metadata": {"org_id": org["id"], "role": role}}
+        )
+        uid = res.user.id
+    except Exception as e:
+        if body.org_name:
+            sb.table("organizations").delete().eq("id", org["id"]).execute()
+        raise HTTPException(409, f"could not create user: {e}")
 
     # 3) mirror into our users table (org-scoped queries read from here)
     sb.table("users").insert(
