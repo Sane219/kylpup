@@ -18,4 +18,23 @@ _TBD — router LLM call → parallel tools → synthesizer LLM call → structu
 _TBD — JWT → org_id resolution → org-scoped queries; RLS as defense-in-depth._
 
 ## API Design
-_TBD — endpoint table (method, path, auth, role, req/resp)._
+
+All responses use a consistent envelope — success: `{data, meta}`, error: `{error:{code,message,details}, meta}`. Protected routes require `Authorization: Bearer <jwt>` and resolve `org_id`/`role` from the token; every query is org-scoped.
+
+| Method | Path | Auth | Role | Body / Notes |
+|---|---|---|---|---|
+| GET | `/health` | none | — | liveness |
+| POST | `/auth/signup` | none | — | `{email,password, org_name | invite_code}` → creates org (admin) or joins (analyst) |
+| POST | `/auth/login` | none | — | `{email,password}` → `{access_token,...}` |
+| POST | `/auth/logout` | yes | any | audit + client drops token |
+| GET | `/auth/me` | yes | any | current user/org/role |
+| GET | `/orgs/invite` | yes | **admin** | org invite code |
+| GET | `/orgs/members` | yes | any | org member list |
+| POST | `/research` | yes | any | `{query}` → runs agent, saves + returns structured report |
+| GET | `/research?q=&tag=` | yes | any | list (search + tag filter), org-scoped |
+| GET | `/research/{id}` | yes | any | single report (org_id+id) |
+| PATCH | `/research/{id}` | yes | any | `{tags?,query?}` rename/retag |
+| DELETE | `/research/{id}` | yes | any | 204 |
+| GET | `/watchlist` | yes | any | user's tickers |
+| POST | `/watchlist` | yes | any | `{ticker}` upsert |
+| DELETE | `/watchlist/{ticker}` | yes | any | 204 |
