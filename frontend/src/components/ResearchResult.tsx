@@ -1,5 +1,5 @@
-import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { Badge, Card, Cite, Empty } from "./ui";
+import { Area, AreaChart, ResponsiveContainer, Tooltip, YAxis } from "recharts";
+import { Badge, Panel, SectionLabel, Cite, Empty, Delta, Num, Skeleton } from "./ui";
 
 // The agent's structured UI state (see backend SYNTH_SYSTEM schema).
 export type ResearchData = {
@@ -10,123 +10,183 @@ export type ResearchData = {
   filing_insights?: any[];
   risks?: any[];
   sources_used?: string[];
-  _plan?: any;
+  _plan?: { tickers?: string[]; fetch_market?: boolean; fetch_news?: boolean; search_filings?: boolean };
 };
 
-const fmt = (n: any) =>
-  n == null ? "—" : typeof n === "number" ? n.toLocaleString() : String(n);
+const fmt = (n: any) => (n == null ? "—" : typeof n === "number" ? n.toLocaleString() : String(n));
+
+// Prefer an explicit change; else derive from price history first→last close.
+const changePct = (c: any): number | null => {
+  if (typeof c.change_pct === "number") return c.change_pct;
+  const h = c.history;
+  if (h?.length >= 2 && h[0].close && h[h.length - 1].close)
+    return ((h[h.length - 1].close - h[0].close) / h[0].close) * 100;
+  return null;
+};
+
+export function ResultSkeleton() {
+  return (
+    <div className="space-y-5">
+      <Skeleton className="h-20 w-full" />
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {[0, 1, 2].map((i) => <Skeleton key={i} className="h-44 w-full" />)}
+      </div>
+      <Skeleton className="h-40 w-full" />
+    </div>
+  );
+}
 
 export default function ResearchResult({ data }: { data: ResearchData }) {
   if (!data || Object.keys(data).length === 0)
     return <Empty title="No analysis yet" hint="Run a research query to see results." />;
 
   return (
-    <div className="space-y-6">
+    <div className="animate-in space-y-5">
+      {data._plan && (
+        <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
+          <span>Tools used</span>
+          {data._plan.fetch_market && <Badge tone="accent">market</Badge>}
+          {data._plan.fetch_news && <Badge tone="accent">news</Badge>}
+          {data._plan.search_filings && <Badge tone="accent">filings</Badge>}
+        </div>
+      )}
+
       {data.summary && (
-        <Card>
-          <h3 className="mb-1 text-sm font-semibold uppercase tracking-wide text-slate-400">Summary</h3>
-          <p className="text-slate-700">{data.summary}</p>
-        </Card>
+        <Panel className="p-5">
+          <SectionLabel>Summary</SectionLabel>
+          <p className="mt-2 leading-relaxed text-text-2 text-pretty">{data.summary}</p>
+        </Panel>
       )}
 
       {!!data.company_cards?.length && (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.company_cards.map((c, i) => (
-            <Card key={i}>
-              <div className="flex items-baseline justify-between">
-                <span className="font-semibold">{c.ticker}</span>
-                <span className="text-lg">{c.price != null ? `$${fmt(c.price)}` : "—"}</span>
+            <Panel key={i} className="flex flex-col p-4">
+              <div className="flex items-start justify-between">
+                <div>
+                  <div className="tnum text-base font-semibold tracking-tight">{c.ticker}</div>
+                  <div className="truncate text-xs text-muted">{c.name}</div>
+                </div>
+                <div className="text-right">
+                  <div className="tnum text-lg font-semibold">{c.price != null ? `$${fmt(c.price)}` : "—"}</div>
+                  <Delta value={changePct(c)} />
+                </div>
               </div>
-              <p className="text-sm text-slate-500">{c.name}</p>
-              <dl className="mt-3 space-y-1 text-sm">
-                <Row k="Market Cap" v={fmt(c.market_cap)} />
-                <Row k="P/E" v={fmt(c.pe_ratio)} />
-                <Row k="EPS" v={fmt(c.eps)} />
-                <Row k="Revenue" v={fmt(c.revenue)} />
-              </dl>
-              {c.highlight && <p className="mt-2 text-sm text-slate-600">{c.highlight}</p>}
-              <div className="mt-2"><Cite source={c.citation} /></div>
+
               {!!c.history?.length && (
-                <ResponsiveContainer width="100%" height={80}>
-                  <LineChart data={c.history}>
-                    <XAxis dataKey="date" hide /><YAxis hide domain={["auto", "auto"]} />
-                    <Tooltip />
-                    <Line type="monotone" dataKey="close" stroke="#2563eb" dot={false} strokeWidth={2} />
-                  </LineChart>
-                </ResponsiveContainer>
+                <div className="-mx-1 mt-3 h-12">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={c.history} margin={{ top: 2, right: 4, bottom: 0, left: 4 }}>
+                      <defs>
+                        <linearGradient id={`spark${i}`} x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="var(--accent)" stopOpacity={0.3} />
+                          <stop offset="100%" stopColor="var(--accent)" stopOpacity={0} />
+                        </linearGradient>
+                      </defs>
+                      <YAxis hide domain={["dataMin", "dataMax"]} />
+                      <Tooltip contentStyle={{ background: "var(--surface-2)", border: "1px solid var(--border)", borderRadius: 6, fontSize: 12, color: "var(--text)" }} labelStyle={{ color: "var(--muted)" }} />
+                      <Area type="monotone" dataKey="close" stroke="var(--accent)" strokeWidth={1.75} fill={`url(#spark${i})`} dot={false} />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
               )}
-            </Card>
+
+              <dl className="mt-3 grid grid-cols-2 gap-x-4 gap-y-1.5 border-t border-border pt-3 text-sm">
+                <Stat k="Mkt Cap" v={fmt(c.market_cap)} />
+                <Stat k="P/E" v={fmt(c.pe_ratio)} />
+                <Stat k="EPS" v={fmt(c.eps)} />
+                <Stat k="Revenue" v={fmt(c.revenue)} />
+              </dl>
+
+              {c.highlight && <p className="mt-3 text-sm text-text-2">{c.highlight}</p>}
+              <div className="mt-auto pt-3"><Cite source={c.citation} /></div>
+            </Panel>
           ))}
         </div>
       )}
 
       {!!data.comparison_table?.rows?.length && (
-        <Card>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-400">Comparison</h3>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b text-left text-slate-500">
-                  {data.comparison_table.columns.map((c, i) => <th key={i} className="py-2 pr-4">{c}</th>)}
+        <Panel className="p-5">
+          <SectionLabel>Comparison</SectionLabel>
+          <div className="mt-3 overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+              <thead className="sticky top-0">
+                <tr className="text-left text-muted">
+                  {data.comparison_table.columns.map((c, i) => (
+                    <th key={i} className={`border-b border-border py-2 pr-4 font-medium ${i > 0 ? "tnum text-right" : ""}`}>{c}</th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
                 {data.comparison_table.rows.map((r, i) => (
-                  <tr key={i} className="border-b last:border-0">
-                    {r.map((cell, j) => <td key={j} className="py-2 pr-4">{cell}</td>)}
+                  <tr key={i} className="border-b border-border/60 last:border-0 hover:bg-surface-2">
+                    {r.map((cell, j) => (
+                      <td key={j} className={`py-2 pr-4 ${j === 0 ? "font-medium text-text" : "tnum text-right text-text-2"}`}>{cell}</td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-        </Card>
+        </Panel>
       )}
 
       {!!data.news_sentiment?.length && (
-        <Card>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-400">News & Sentiment</h3>
-          <ul className="space-y-2">
+        <Panel className="p-5">
+          <SectionLabel>News &amp; sentiment</SectionLabel>
+          <ul className="mt-3 divide-y divide-border">
             {data.news_sentiment.map((n, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm">
+              <li key={i} className="flex items-start gap-3 py-2.5 text-sm first:pt-0">
                 <Badge tone={n.sentiment}>{n.sentiment}</Badge>
                 <span className="flex-1">
-                  <a href={n.url} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline">{n.title}</a>
-                  {n.ticker && <span className="text-slate-400"> · {n.ticker}</span>}
+                  <a href={n.url} target="_blank" rel="noreferrer" className="text-text transition hover:text-accent">{n.title}</a>
+                  {n.ticker && <span className="tnum text-muted"> · {n.ticker}</span>}
                   <Cite source={n.citation} />
                 </span>
               </li>
             ))}
           </ul>
-        </Card>
+        </Panel>
       )}
 
       {!!data.filing_insights?.length && (
-        <Card>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-400">From SEC Filings</h3>
-          <ul className="space-y-2 text-sm">
+        <Panel className="p-5">
+          <SectionLabel>From SEC filings</SectionLabel>
+          <ul className="mt-3 space-y-2.5 text-sm text-text-2">
             {data.filing_insights.map((f, i) => (
-              <li key={i}>{f.ticker && <b>{f.ticker}: </b>}{f.insight}<Cite source={f.citation} /></li>
+              <li key={i} className="border-l-2 border-border pl-3">
+                {f.ticker && <Num className="font-semibold text-text">{f.ticker}: </Num>}{f.insight}
+                <Cite source={f.citation || f.source_ref} />
+              </li>
             ))}
           </ul>
-        </Card>
+        </Panel>
       )}
 
       {!!data.risks?.length && (
-        <Card>
-          <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-slate-400">Risk Assessment</h3>
-          <ul className="list-disc space-y-1 pl-5 text-sm text-slate-700">
-            {data.risks.map((r, i) => <li key={i}>{r.ticker && <b>{r.ticker}: </b>}{r.risk}<Cite source={r.citation} /></li>)}
+        <Panel className="p-5">
+          <SectionLabel>Risk assessment</SectionLabel>
+          <ul className="mt-3 space-y-2 text-sm text-text-2">
+            {data.risks.map((r, i) => (
+              <li key={i} className="flex gap-2">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--neg)" }} />
+                <span>{r.ticker && <Num className="font-semibold text-text">{r.ticker}: </Num>}{r.risk}<Cite source={r.citation} /></span>
+              </li>
+            ))}
           </ul>
-        </Card>
+        </Panel>
       )}
 
       {!!data.sources_used?.length && (
-        <p className="text-xs text-slate-400">Sources: {data.sources_used.join(", ")}</p>
+        <p className="tnum text-xs text-muted">Sources: {data.sources_used.join(" · ")}</p>
       )}
     </div>
   );
 }
 
-const Row = ({ k, v }: { k: string; v: string }) => (
-  <div className="flex justify-between"><dt className="text-slate-500">{k}</dt><dd>{v}</dd></div>
+const Stat = ({ k, v }: { k: string; v: string }) => (
+  <div className="flex items-baseline justify-between gap-2">
+    <dt className="text-muted">{k}</dt>
+    <dd className="tnum text-text-2">{v}</dd>
+  </div>
 );

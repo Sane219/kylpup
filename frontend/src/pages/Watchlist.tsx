@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { api } from "../lib/api";
-import { Card, Empty, ErrorBanner, Spinner, Badge } from "../components/ui";
+import { Panel, Empty, ErrorBanner, Spinner, Num, Icon } from "../components/ui";
 
 export default function Watchlist() {
   const [rows, setRows] = useState<any[] | null>(null);
@@ -19,26 +19,36 @@ export default function Watchlist() {
   };
 
   const remove = async (t: string) => {
-    await api(`/watchlist/${t}`, { method: "DELETE" });
     setRows((r) => r?.filter((x) => x.ticker !== t) ?? null);
+    api(`/watchlist/${t}`, { method: "DELETE" }).catch(() => api<any[]>("/watchlist").then(setRows));
   };
 
   if (err) return <ErrorBanner message={err} />;
-  if (!rows) return <Spinner />;
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-5">
+      <div>
+        <h1 className="text-xl font-semibold tracking-tight">Watchlist</h1>
+        <p className="mt-1 text-sm text-muted">Tickers you are tracking.</p>
+      </div>
+
       <form onSubmit={add} className="flex gap-2">
-        <input className="input max-w-[200px]" placeholder="Ticker (e.g. AAPL)" value={ticker} onChange={(e) => setTicker(e.target.value)} />
-        <button className="btn">Add</button>
+        <input className="input tnum max-w-[200px] uppercase" placeholder="AAPL" value={ticker} onChange={(e) => setTicker(e.target.value)} />
+        <button className="btn" disabled={!ticker.trim()}><Icon name="plus" size={14} /> Add</button>
       </form>
-      {rows.length === 0 ? <Empty title="Watchlist empty" hint="Add a ticker to track it." /> : (
-        <div className="flex flex-wrap gap-2">
+
+      {!rows ? <Spinner /> : rows.length === 0 ? (
+        <Empty title="Watchlist empty" hint="Add a ticker to start tracking it." />
+      ) : (
+        <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {rows.map((r) => (
-            <Card key={r.id} className="flex items-center gap-3 !p-3">
-              <Badge>{r.ticker}</Badge>
-              <button onClick={() => remove(r.ticker)} className="text-xs text-red-500 hover:underline">remove</button>
-            </Card>
+            <Panel key={r.id} className="flex items-center justify-between p-3">
+              <Num className="text-base font-semibold">{r.ticker}</Num>
+              <button onClick={() => remove(r.ticker)} aria-label={`Remove ${r.ticker}`}
+                className="grid h-8 w-8 place-items-center rounded-md text-muted transition ease-terminal hover:bg-surface-2 hover:text-neg">
+                <Icon name="x" size={14} />
+              </button>
+            </Panel>
           ))}
         </div>
       )}
