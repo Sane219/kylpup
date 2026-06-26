@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../LOGO.png" alt="Klypup" width="240">
+</p>
+
 # Architecture
 
 Klypup is an AI-powered investment research dashboard: an analyst types a natural-language query, an agentic LLM flow orchestrates data tools (market data, news+sentiment, SEC-filing vector search), and the result renders as structured, source-attributed UI. Multi-tenant with RBAC.

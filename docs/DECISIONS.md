@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../LOGO.png" alt="Klypup" width="240">
+</p>
+
 # Decisions
 
 Concise ADRs for the Klypup Applied-AI assessment. Challenge chosen: **Investment Research Dashboard**.
