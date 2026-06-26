@@ -1,0 +1,4 @@
+# Lint config. Defaults (pyflakes F + pycodestyle E4/E7/E9) catch real bugs —
+# unused imports, undefined names. E702 is off: terse one-liners are intentional.
+target-version = "py312"
+lint.ignore = ["E702"]
