@@ -1,0 +1,19 @@
+# deps / build
+node_modules/
+dist/
+build/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# env / secrets
+.env
+.env.local
+*.env
+!.env.example
+
+# misc
+.DS_Store
+.vercel/
+.pytest_cache/

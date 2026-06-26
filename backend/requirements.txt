@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+pydantic
+pydantic-settings
+python-dotenv
+supabase
+pyjwt
+httpx
+yfinance
+duckduckgo-search
+google-genai
+groq
