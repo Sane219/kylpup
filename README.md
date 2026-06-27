@@ -1,136 +1,108 @@
-<p align="center">
-  <img src="LOGO.png" alt="Klypup" width="320">
-</p>
+# Klypup
 
-<p align="center">
-  <strong>AI-Powered Investment Research Dashboard</strong><br>
-  Natural-language queries → agentic AI → structured, source-attributed analysis.
-</p>
+**Investment research, structured into a terminal.**
 
-<p align="center">
-  <a href="#"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
-  <a href="#"><img src="https://img.shields.io/badge/version-0.1.0--phase0-black" alt="Version"></a>
-  <a href="https://react.dev"><img src="https://img.shields.io/badge/frontend-React%2018-61DAFB?logo=react" alt="React"></a>
-  <a href="https://fastapi.tiangolo.com"><img src="https://img.shields.io/badge/backend-FastAPI-009688?logo=fastapi" alt="FastAPI"></a>
-  <a href="https://supabase.com"><img src="https://img.shields.io/badge/database-Supabase-3ECF8E?logo=supabase" alt="Supabase"></a>
-  <a href="https://python.org"><img src="https://img.shields.io/badge/python-3.11+-3776AB?logo=python" alt="Python"></a>
-  <a href="https://www.typescriptlang.org"><img src="https://img.shields.io/badge/typescript-5-3178C6?logo=typescript" alt="TypeScript"></a>
-  <a href="https://tailwindcss.com"><img src="https://img.shields.io/badge/css-Tailwind-06B6D4?logo=tailwindcss" alt="Tailwind"></a>
-</p>
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build](https://img.shields.io/github/actions/workflow/status/Sane219/kylpup/ci.yml?branch=main)](https://github.com/Sane219/kylpup/actions)
+[![Python](https://img.shields.io/badge/python-3.12+-blue.svg)](backend/requirements.txt)
+[![TypeScript](https://img.shields.io/badge/typescript-5.5+-blue.svg)](frontend/package.json)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115-green.svg)](backend/requirements.txt)
+[![React](https://img.shields.io/badge/react-19-blue.svg)](frontend/package.json)
 
 ---
 
-An analyst types a natural-language research query, and Klypup orchestrates an agentic AI flow: a router LLM decides which data tools to invoke, runs them concurrently (market data, news+sentiment, SEC filing vector search), and a synthesizer LLM structures the results into cards, comparison tables, stock charts, sentiment badges, and risk assessments — all with source attribution on every data point.
+Klypup is a multi-tenant investment research dashboard. An analyst types a natural-language query — an agentic LLM flow orchestrates market data, news sentiment analysis, and SEC filing vector search — and the results render as structured UI with cited sources, comparison tables, and charts.
 
-Multi-tenant with RBAC (admin/analyst). Built for the Klypup Applied AI Intern assessment.
+Built as a three-tier architecture: **React/Vite SPA** (Vercel) → **FastAPI backend** (Render) → **Supabase Postgres + pgvector** (DB, auth, vector store).
+
+---
 
 ## Features
 
-- **Natural-Language Research** — Describe what you want to analyze; the AI selects and orchestrates the right data tools dynamically
-- **Multi-Source Data** — Real-time market data (yfinance), recent news with sentiment analysis (DuckDuckGo), and SEC filing vector search (pgvector)
-- **Structured Results** — Company overview cards, financial comparison tables, price history charts (Recharts), sentiment indicators, risk summaries — not a wall of text
-- **Source Attribution** — Every data point, claim, and insight shows its origin (API, article, filing snippet)
-- **Multi-Tenant Isolation** — Organizations are fully isolated at the database query level; admin/analyst role-based access
-- **Research History** — Full CRUD on saved reports with tag-based organization and full-text search
-- **Company Watchlist** — Bookmark tickers for quick reference and recurring analysis
-- **Team Management** — Org admins can invite new members via invite codes
+- **Natural-language research** — Ask "Compare NVDA and AMD: revenue, valuation, and risks" and get a structured, sourced desk note
+- **Agentic AI flow** — Router LLM picks which tools to run (market, news, filings); synthesizer LLM writes the analysis; editor LLM self-critiques
+- **Live market tape** — Scrolling ticker with real yfinance data, cosmetic price jitter, and flash animations on tick direction changes
+- **SEC filing vector search** — pgvector similarity search over 10-K/10-Q passages with Gemini embeddings and source citations
+- **News sentiment** — DuckDuckGo news with lexicon-based positive/negative/neutral scoring
+- **Multi-tenant with RBAC** — Org-scoped data isolation enforced in app code; admin/analyst roles
+- **Dark/light themes** — OKLCH design tokens, terminal aesthetic, reduced-motion support
+- **⌘K command palette** — Quick navigation, theme toggle, and direct research queries
 
-## Stack
-
-| Layer | Technology | Deployment |
-|-------|-----------|------------|
-| Frontend | React 18, TypeScript 5, Vite 5, Tailwind CSS 3, Recharts | Vercel |
-| Backend | Python FastAPI, Uvicorn | Render |
-| Database | Supabase (PostgreSQL + pgvector + Auth) | Supabase Cloud |
-| LLM | Gemini 2.0 Flash (primary), Groq Llama-3 (fallback) | Cloud APIs |
-| Market Data | yfinance (Yahoo Finance) | No key needed |
-| News | duckduckgo-search | No key needed |
-| Embeddings | Gemini text-embedding-004 (768-dim) | Cloud API |
-| Container | Docker Compose | Local dev |
+---
 
 ## Quick Start
 
-### Prerequisites
-
-- Node.js 18+, npm 9+
-- Python 3.11+, pip
-- Docker + Docker Compose (optional)
-- A [Supabase](https://supabase.com) project (free tier)
-- A [Gemini API key](https://aistudio.google.com) (free)
-- A [Groq API key](https://console.groq.com) (optional fallback)
-
-### 1. Clone
-
-```bash
-git clone https://github.com/your-org/klypup
-cd klypup
-```
-
-### 2. Configure
-
-```bash
-cp backend/.env.example backend/.env
-cp frontend/.env.example frontend/.env
-```
-
-Fill in `backend/.env` with your Supabase credentials, Gemini/Groq keys. Fill in `frontend/.env` with your Supabase anon key and project URL.
-
-### 3. Run migrations
-
-In your Supabase SQL Editor, run:
-1. `backend/migrations/001_init.sql` — core schema + RLS
-2. `backend/migrations/002_filings.sql` — pgvector + filing_chunks
-
-### 4. Start
+### Docker (one command)
 
 ```bash
 docker-compose up
 ```
 
-Frontend → `http://localhost:5173` · Backend → `http://localhost:8000`
+Frontend at `http://localhost:5173`, backend at `http://localhost:8000`.
 
-### 5. Seed data
+### Manual setup
 
 ```bash
-cd backend
-python scripts/seed.py       # 2 orgs, users, sample reports
-python scripts/ingest.py     # chunk + embed SEC filings into pgvector
+# Frontend
+cd frontend && npm install && npm run dev
+
+# Backend (separate terminal)
+cd backend && python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt && uvicorn app.main:app --reload
 ```
 
-Login as `admin@acme.test` / `demo1234`.
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full setup guide (database migrations, seeding, env vars).
 
-## Screenshots
+### Demo credentials
 
-| Research Query | Structured Results |
-|---|---|
-| *NL input with example queries* | *Company cards, charts, sentiment badges* |
-
-## Documentation Hub
-
-| Document | Description |
-|---|---|
-| [Architecture](docs/ARCHITECTURE.md) | System diagrams, data flow, ER diagram, AI orchestration, multi-tenant isolation, API design |
-| [API Reference](docs/api-reference.md) | Complete endpoint documentation with request/response examples and error codes |
-| [Decisions](docs/DECISIONS.md) | Technology choices, trade-offs, and architectural decision records |
-| [Build Plan](plan.md) | Phased development plan with requirement coverage map |
-| [Contributing](CONTRIBUTING.md) | Developer onboarding, conventions, testing, and PR workflow |
-| [Code of Conduct](CODE_OF_CONDUCT.md) | Community guidelines |
-
-## Community
-
-| Resource | Description |
-|---|---|
-| [PR Template](.github/PULL_REQUEST_TEMPLATE.md) | Pull request checklist covering testing, tenant isolation, and source attribution |
-| [Bug Reports](.github/ISSUE_TEMPLATE/bug_report.md) | Report a bug with environment and reproduction steps |
-| [Feature Requests](.github/ISSUE_TEMPLATE/feature_request.md) | Suggest improvements with impact areas |
-| [Security Policy](.github/SECURITY.md) | Vulnerability reporting and security properties |
-
-## License
-
-MIT
+```
+Email:    admin@acme.test
+Password: demo1234
+```
 
 ---
 
-<p align="center">
-  Built for the Klypup Applied AI Intern Assessment.
-</p>
+## Documentation
+
+| Guide | Description |
+|-------|-------------|
+| [Architecture Guide](docs/architecture.md) | System diagrams, data flow, AI orchestration, embedding pipeline, tenant isolation |
+| [API Reference](docs/api-reference.md) | All endpoints, request/response schemas, error codes |
+| [Decision Log](docs/DECISIONS.md) | Architecture Decision Records and trade-off rationale |
+| [Contributing Guide](CONTRIBUTING.md) | Setup, workflow, conventions, CI/CD |
+
+---
+
+## Architecture at a Glance
+
+```
+User query → Router LLM → parallel tools → Synthesizer LLM → structured UI
+                │              │
+           picks tools      yfinance, DDG news,
+           & tickers        pgvector filings
+```
+
+The backend runs two LLM calls. The **router** turns a natural-language query into a JSON execution plan. The backend runs only the selected tools concurrently (`asyncio.gather`). The **synthesizer** produces a strict JSON UI state with every data point carrying a source citation. A third **editor** LLM self-critiques the draft and triggers a refine pass if gaps are found.
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React 19, TypeScript, Vite 5, Tailwind CSS, Recharts |
+| Backend | Python 3.12+, FastAPI, Uvicorn |
+| Database | Supabase Postgres + pgvector |
+| Auth | Supabase Auth (ES256 JWTs) |
+| LLM | Google Gemini 2.5 Flash (primary), Groq Llama 3.3 70B (fallback) |
+| Market data | yfinance |
+| News | DuckDuckGo News |
+| Embeddings | Gemini text-embedding-001 (3072-dim) |
+| Vector search | pgvector IVFFlat, cosine distance |
+| CI/CD | GitHub Actions (ruff, pytest, vitest, tsc, gitleaks) |
+
+---
+
+## Project Status
+
+Klypup is a 5-day take-home assessment. All phases are substantially built. The frontend has undergone a visual redesign (Bloomberg-modern terminal aesthetic). See [`plan.md`](plan.md) for the original build plan and [`docs/DECISIONS.md`](docs/DECISIONS.md) for trade-off rationale.

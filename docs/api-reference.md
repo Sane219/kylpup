@@ -1,65 +1,49 @@
-<p align="center">
-  <img src="../LOGO.png" alt="Klypup" width="240">
-</p>
-
 # API Reference
 
-Base URL: `http://localhost:8000` (local) or your Render deployment URL.
-
-All protected routes require `Authorization: Bearer <jwt>` where the JWT is obtained from `POST /auth/login`.
-
-## Response Envelope
-
-Every response follows a consistent envelope:
+All endpoints live under `https://your-backend.com` and return the standard envelope:
 
 ```json
-{
-  "data": { ... },
-  "meta": { ... }
-}
+// Success
+{ "data": <response>, "meta": {} }
+
+// Error
+{ "error": { "code": "...", "message": "...", "details": null },
+  "meta": { "request_id": "<uuid>" } }
 ```
 
-Errors:
+Authentication is via `Authorization: Bearer <JWT>` header for protected endpoints.
 
-```json
-{
-  "error": {
-    "code": "not_found",
-    "message": "report not found",
-    "details": {}
-  },
-  "meta": {}
-}
-```
+---
 
 ## Auth
 
 ### `POST /auth/signup`
 
-Create a new account. Provide exactly one of `org_name` (creates a new org — caller becomes **admin**) or `invite_code` (joins existing org — caller becomes **analyst**).
+Create a new organization (admin) or join an existing one (analyst).
 
 **Request:**
 ```json
 {
-  "email": "user@example.com",
-  "password": "securepassword123",
-  "org_name": "Acme Corp"
+  "email": "user@firm.com",
+  "password": "securepass123",
+  "org_name": "Acme Capital"        // OR invite_code
+  // "invite_code": "abc123def"
 }
 ```
 
 **Response (201):**
 ```json
 {
-  "data": {
-    "user_id": "uuid",
-    "org_id": "uuid",
-    "role": "admin",
-    "invite_code": "abc123xyz"
-  }
+  "user_id": "uuid",
+  "org_id": "uuid",
+  "role": "admin",
+  "invite_code": "abc123def"       // only for admins
 }
 ```
 
-Errors: `400` (missing org_name/invite_code), `404` (invalid invite_code), `409` (duplicate email).
+**Errors:** `400` (missing org_name/invite_code), `409` (duplicate email), `404` (invalid invite_code)
+
+---
 
 ### `POST /auth/login`
 
@@ -68,295 +52,373 @@ Authenticate and receive a JWT.
 **Request:**
 ```json
 {
-  "email": "user@example.com",
-  "password": "securepassword123"
+  "email": "user@firm.com",
+  "password": "securepass123"
 }
 ```
 
 **Response (200):**
 ```json
 {
-  "data": {
-    "access_token": "eyJ...",
-    "refresh_token": "eyJ...",
-    "token_type": "bearer"
-  }
+  "access_token": "eyJhbGciOiJFUzI1NiIs...",
+  "refresh_token": "abc...",
+  "token_type": "bearer"
 }
 ```
 
-Errors: `401` (invalid credentials).
+**Errors:** `401` (invalid credentials)
+
+---
 
 ### `POST /auth/logout`
 
-Protected. Invalidates the session on the client side and records an audit log entry.
+Record a logout audit entry. Requires auth.
 
 **Response (200):**
 ```json
-{ "data": { "ok": true } }
+{ "ok": true }
 ```
+
+---
 
 ### `GET /auth/me`
 
-Protected. Returns the authenticated user's identity and role.
+Return the current user's tenant information. Requires auth.
 
 **Response (200):**
 ```json
 {
-  "data": {
-    "user_id": "uuid",
-    "org_id": "uuid",
-    "role": "admin"
-  }
+  "user_id": "uuid",
+  "org_id": "uuid",
+  "role": "admin"
 }
 ```
 
-## Orgs
+---
+
+## Market
+
+### `GET /market/snapshot`
+
+Fetch compact quotes for one or more ticker symbols. Requires auth.
+
+**Query parameters:**
+| Param | Type | Description |
+|-------|------|-------------|
+| `symbols` | string | Comma-separated tickers, e.g. `AAPL,MSFT,SPX` (max 60) |
+
+**Response (200):**
+```json
+[
+  {
+    "symbol": "AAPL",
+    "price": 226.80,
+    "prevClose": 225.10,
+    "change": 1.70,
+    "changePct": 0.76,
+    "history": [310.85, 312.51, 306.31],
+    "currency": "USD",
+    "source": "yfinance"
+  },
+  {
+    "symbol": "SPX",
+    "price": 7354.02,
+    "prevClose": 7357.49,
+    "change": -3.47,
+    "changePct": -0.05,
+    "history": [7410.2, 7380.1, 7354.0],
+    "currency": null,
+    "source": "yfinance"
+  }
+]
+```
+
+**Index ticker mapping:**
+
+| Symbol | yfinance |
+|--------|----------|
+| SPX | ^GSPC |
+| NDX | ^NDX |
+| DJI | ^DJI |
+| VIX | ^VIX |
+| BTC | BTC-USD |
+| US10Y | ^TNX |
+
+---
+
+## Organizations
 
 ### `GET /orgs/invite`
 
-Protected. **Admin only.** Returns the organization's invite code and name.
+Get the organization's invite code and name. Admin only.
 
 **Response (200):**
 ```json
 {
-  "data": {
-    "invite_code": "abc123xyz",
-    "org_name": "Acme Corp"
-  }
+  "invite_code": "abc123def",
+  "org_name": "Acme Capital"
 }
 ```
+
+**Errors:** `403` (not admin)
+
+---
 
 ### `GET /orgs/members`
 
-Protected. Lists all members of the current organization.
+List all members of the organization.
 
 **Response (200):**
 ```json
-{
-  "data": [
-    {
-      "id": "uuid",
-      "email": "admin@acme.test",
-      "role": "admin",
-      "created_at": "2025-01-01T00:00:00Z"
-    }
-  ]
-}
+[
+  { "id": "uuid", "email": "admin@firm.com", "role": "admin", "created_at": "..." },
+  { "id": "uuid", "email": "analyst@firm.com", "role": "analyst", "created_at": "..." }
+]
 ```
+
+---
 
 ## Research
 
 ### `POST /research`
 
-Protected. Runs the AI agent against the natural-language query, saves the result as a report, and returns the structured analysis.
-
-The agent flow:
-1. **Router LLM** analyzes the query and selects data tools
-2. Selected tools run concurrently (market data, news, filings)
-3. **Synthesizer LLM** produces structured JSON with citations
+Run the full AI research agent and save the report. Requires auth.
 
 **Request:**
 ```json
 {
-  "query": "Compare Tesla and Ford — stock performance, recent news, and key risks"
+  "query": "Compare NVDA and AMD on revenue growth, valuation, and key risks"
 }
 ```
 
 **Response (201):**
 ```json
 {
-  "data": {
-    "id": "uuid",
-    "org_id": "uuid",
-    "user_id": "uuid",
-    "query": "Compare Tesla and Ford...",
-    "result_json": {
-      "summary": "Tesla shows strong...",
-      "company_cards": [
-        {
-          "ticker": "TSLA",
-          "name": "Tesla, Inc.",
-          "price": 245.67,
-          "market_cap": 780000000000,
-          "pe_ratio": 68.5,
-          "eps": 3.59,
-          "revenue": 96800000000,
-          "highlight": "Revenue grew 18% YoY",
-          "citation": "yfinance"
-        }
-      ],
-      "comparison_table": {
-        "columns": ["Metric", "TSLA", "F"],
-        "rows": [
-          ["P/E", "68.5", "7.2"],
-          ["Market Cap", "780B", "45B"]
-        ]
-      },
-      "news_sentiment": [
-        {
-          "ticker": "TSLA",
-          "title": "Tesla Q3 deliveries beat estimates",
-          "sentiment": "positive",
-          "url": "https://...",
-          "citation": "Reuters"
-        }
-      ],
-      "filing_insights": [],
-      "risks": [
-        {
-          "ticker": "TSLA",
-          "risk": "Valuation premium vs peers",
-          "citation": "yfinance"
-        }
-      ],
-      "sources_used": ["yfinance", "duckduckgo-news"],
-      "_plan": {
-        "companies": ["TSLA", "F"],
-        "fetch_market": true,
-        "fetch_news": true,
-        "search_filings": false,
-        "filing_query": ""
-      }
-    },
-    "tags": [],
-    "created_at": "2025-01-01T00:00:00Z"
-  }
+  "id": "uuid",
+  "org_id": "uuid",
+  "user_id": "uuid",
+  "query": "Compare NVDA and AMD...",
+  "result_json": { ... },
+  "tags": [],
+  "created_at": "2024-...",
+  "updated_at": "2024-..."
 }
 ```
 
-Errors: `503` (research engine unavailable / tool failure).
+The `result_json` contains the full `ResearchData` object (see below).
+
+**Errors:** `503` (research engine unavailable)
+
+---
+
+### `POST /research/stream`
+
+Same as `POST /research` but returns a newline-delimited JSON stream (SSE) of the agent's progress. The final event is a `saved` event with the persisted report.
+
+**Event types:**
+
+```
+{"type":"status","stage":"routing"}
+{"type":"thinking","stage":"routing","delta":"..."}        // streaming thought
+{"type":"plan","plan":{"companies":["NVDA","AMD"],...}}    // router output
+{"type":"tool","tool":"market","status":"running"}
+{"type":"tool","tool":"market","status":"done","summary":"2 quotes","preview":[...]}
+{"type":"thinking","stage":"synth","delta":"..."}
+{"type":"synth","status":"done"}
+{"type":"review","status":"done","summary":"1 gap found","detail":["..."]}
+{"type":"refine","status":"done","summary":"draft revised"}
+{"type":"result","result":{...}}                           // final ResearchData
+{"type":"saved","report":{"id":"uuid",...}}                // persisted report
+{"type":"error","message":"..."}                           // on failure
+```
+
+---
 
 ### `GET /research`
 
-Protected. List saved research reports for the current org. Supports search and tag filtering.
+List saved research reports for the user's organization.
 
-**Query params:**
+**Query parameters:**
 | Param | Type | Description |
 |-------|------|-------------|
-| `q` | string | Search in query text (case-insensitive `ILIKE`) |
-| `tag` | string | Filter reports containing this tag |
+| `q` | string | Search in query text (optional) |
+| `tag` | string | Filter by tag (optional) |
+
+**Response (200):**
+```json
+[
+  {
+    "id": "uuid",
+    "query": "Compare NVDA and AMD...",
+    "tags": ["semiconductors", "comparison"],
+    "created_at": "2024-..."
+  }
+]
+```
+
+---
+
+### `GET /research/{id}`
+
+Get a single saved report.
 
 **Response (200):**
 ```json
 {
-  "data": [
-    {
-      "id": "uuid",
-      "query": "Compare Tesla and Ford...",
-      "tags": ["earnings", "comparison"],
-      "created_at": "2025-01-01T00:00:00Z"
-    }
-  ]
+  "id": "uuid",
+  "org_id": "uuid",
+  "user_id": "uuid",
+  "query": "...",
+  "result_json": { ... },
+  "tags": ["...", "..."],
+  "created_at": "..."
 }
 ```
 
-### `GET /research/{id}`
+**Errors:** `404` (not found)
 
-Protected. Get a single report by ID (scoped to current org — IDOR guard enforced).
-
-**Response (200):** Full report object with `result_json`.
-
-Errors: `404` (not found).
+---
 
 ### `PATCH /research/{id}`
 
-Protected. Update tags or rename a report.
+Update a report's tags or query text.
 
 **Request:**
 ```json
 {
-  "tags": ["earnings", "q3-2025"],
-  "query": "Updated display title"
+  "tags": ["semiconductors", "valuation"],
+  "query": "New title for the report"
 }
 ```
 
-**Response (200):** Updated report.
+Both fields are optional (at least one required).
 
-Errors: `400` (nothing to update), `404` (not found).
+**Response (200):** Updated report object.
+
+**Errors:** `400` (no fields to update), `404` (not found)
+
+---
 
 ### `DELETE /research/{id}`
 
-Protected. Remove a report.
+Delete a research report.
 
-**Response:** `204 No Content`.
+**Response:** `204 No Content`
 
-Errors: `404` (not found).
+---
 
 ## Watchlist
 
 ### `GET /watchlist`
 
-Protected. List the current user's watched tickers (org-scoped).
+List the current user's tracked tickers.
 
 **Response (200):**
 ```json
-{
-  "data": [
-    { "id": "uuid", "ticker": "AAPL", "created_at": "2025-01-01T00:00:00Z" }
-  ]
-}
+[
+  { "id": "uuid", "ticker": "NVDA", "created_at": "..." },
+  { "id": "uuid", "ticker": "AMD", "created_at": "..." }
+]
 ```
+
+---
 
 ### `POST /watchlist`
 
-Protected. Add a ticker to the watchlist (upsert per `org_id + user_id + ticker`).
+Add a ticker to the user's watchlist.
 
 **Request:**
 ```json
-{ "ticker": "AAPL" }
+{ "ticker": "NVDA" }
 ```
 
-**Response (201):** Created watchlist entry.
+**Response (201/200):** The created watchlist entry.
+
+---
 
 ### `DELETE /watchlist/{ticker}`
 
-Protected. Remove a ticker from the watchlist.
+Remove a ticker from the watchlist.
 
-**Response:** `204 No Content`.
+**Response:** `204 No Content`
+
+---
 
 ## Health
 
 ### `GET /health`
-
-Unauthenticated. Liveness check.
 
 **Response (200):**
 ```json
 { "status": "ok" }
 ```
 
-## Status Codes
+---
 
-| Code | Meaning |
-|------|---------|
-| 200 | Success |
-| 201 | Created |
-| 204 | Deleted (no body) |
-| 400 | Bad request / validation error |
-| 401 | Missing or invalid JWT |
-| 403 | Insufficient role or no organization |
-| 404 | Resource not found |
-| 409 | Conflict (duplicate email) |
-| 503 | Research engine (AI/tool) unavailable |
+## ResearchData Type (result_json structure)
 
-## Authentication Flow
+The `result_json` field in research reports contains this schema:
 
+```typescript
+{
+  /** 4-6 sentence executive summary */
+  summary?: string;
+
+  /** 3-6 quantified insights */
+  key_takeaways?: string[];
+
+  /** One per company researched */
+  company_cards?: Array<{
+    ticker: string;
+    name: string;
+    price: number | null;
+    market_cap: number | null;
+    pe_ratio: number | null;
+    eps: number | null;
+    revenue: number | null;
+    highlight: string;             // punchy one-liner
+    thesis: string;                // 2-3 sentence position/valuation
+    history?: Array<{date: string, close: number}>;  // sparkline data
+    change_pct?: number;
+    citation: string;              // data source
+  }>;
+
+  /** Side-by-side comparison */
+  comparison_table?: {
+    columns: string[];             // ["Metric", "AAPL", "MSFT", ...]
+    rows: string[][];             // [["P/E", "30", "35"], ...]
+  };
+
+  /** News with sentiment */
+  news_sentiment?: Array<{
+    ticker?: string;
+    title: string;
+    sentiment: "positive" | "negative" | "neutral";
+    takeaway?: string;
+    url: string;
+    citation: string;
+  }>;
+
+  /** SEC filing passages */
+  filing_insights?: Array<{
+    ticker?: string;
+    insight: string;
+    citation: string;
+  }>;
+
+  opportunities?: Array<{ticker?: string; opportunity: string; citation: string}>;
+  risks?: Array<{ticker?: string; risk: string; citation: string}>;
+
+  /** Forward synthesis */
+  outlook?: string;
+
+  /** Which tools contributed data */
+  sources_used?: string[];         // e.g. ["yfinance", "duckduckgo-news", "sec-filing-kb"]
+
+  // Internal fields (not displayed in UI):
+  _plan?: {...};                   // the router's execution plan
+  _review?: {issues?: string[]; revised?: boolean};  // critique results
+}
 ```
-Signup/Login
-  └─ POST /auth/signup or /auth/login
-  └─ Returns {"access_token": "eyJ..."}
-  └─ Store token (localStorage / memory)
-  └─ Attach to every subsequent request:
-       Authorization: Bearer eyJ...
 
-Protected Route (server side):
-  └─ Extract Bearer token
-  └─ Verify JWT (HS256, audience=authenticated)
-  └─ Decode app_metadata → {org_id, role}
-  └─ If no org_id → 403
-  └─ If role insufficient for endpoint → 403
-  └─ Attach Tenant(user_id, org_id, role) to request
-  └─ Every query filters .eq("org_id", tenant.org_id)
-```
-
-All protected routes enforce tenant isolation at the query level. Single-resource lookups (`GET /research/{id}`) filter by **both** `org_id` and `id` to prevent IDOR attacks.
+Every figure or claim must carry a `citation` field. The `Cite` component in the frontend renders it, and the UI flags items missing a source.

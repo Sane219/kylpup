@@ -1,37 +1,27 @@
-<p align="center">
-  <img src="LOGO.png" alt="Klypup" width="240">
-</p>
-
 # Contributing
-
-Thanks for your interest in Klypup. This document covers how to set up the project locally, the codebase conventions, and the development workflow.
 
 ## Prerequisites
 
-- **Node.js** 18+ and **npm** 9+
-- **Python** 3.11+ and **pip**
-- **Docker** + **Docker Compose** (optional, for containerized dev)
-- A **Supabase** project (free tier) — [supabase.com](https://supabase.com)
-- A **Gemini API key** — [aistudio.google.com](https://aistudio.google.com) (free tier)
-- A **Groq API key** (optional, fallback) — [console.groq.com](https://console.groq.com)
+- Node.js 20+
+- Python 3.12+
+- Docker (optional, for one-command setup)
+- A Supabase project (free tier works)
+- API keys: Gemini (`GEMINI_API_KEY`) and/or Groq (`GROQ_API_KEY`)
 
-## Getting Started
+## Local Setup
 
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/your-org/klypup
-cd klypup
-
-# Backend
-cd backend
-pip install -r requirements.txt
-cd ..
+git clone https://github.com/your-org/kylpup.git
+cd kylpup
 
 # Frontend
-cd frontend
-npm install
-cd ..
+cd frontend && npm install && cd ..
+
+# Backend
+cd backend && python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt && cd ..
 ```
 
 ### 2. Configure environment
@@ -41,115 +31,86 @@ cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env
 ```
 
-Edit `backend/.env` with your Supabase project URL, service role key, JWT secret, and LLM API keys. Edit `frontend/.env` with your Supabase anon key and project URL.
+Fill in `backend/.env` with your Supabase credentials and LLM API keys.
+Fill in `frontend/.env` — at minimum `VITE_API_URL=http://localhost:8000`.
 
 ### 3. Run database migrations
 
-Open your Supabase project's SQL Editor and run:
+```bash
+# Apply migrations to your Supabase project via the SQL editor:
+# Run backend/migrations/001_init.sql
+# Run backend/migrations/002_filings.sql
+```
 
-1. `backend/migrations/001_init.sql` — core schema (orgs, users, reports, watchlist, audit_logs) + RLS
-2. `backend/migrations/002_filings.sql` — pgvector extension, filing_chunks table, similarity search RPC
+### 4. Seed demo data (optional)
 
-### 4. Start the app
+```bash
+cd backend && source .venv/bin/activate
+python scripts/seed.py
+python scripts/ingest.py
+```
 
-**With Docker (recommended):**
+### 5. Start the dev servers
+
+**Option A — Docker (one command):**
 ```bash
 docker-compose up
 ```
-
 Frontend at `http://localhost:5173`, backend at `http://localhost:8000`.
 
-**Without Docker:**
-```bash
-# Terminal 1 — backend
-cd backend && uvicorn app.main:app --reload
+**Option B — Separate terminals:**
 
-# Terminal 2 — frontend
+```bash
+# Terminal 1: backend
+cd backend && source .venv/bin/activate
+uvicorn app.main:app --reload
+
+# Terminal 2: frontend
 cd frontend && npm run dev
 ```
 
-### 5. Seed demo data
+### 6. Login
 
-```bash
-cd backend
-python scripts/seed.py       # 2 orgs, admin+analyst each, sample reports
-python scripts/ingest.py     # chunk + embed SEC filings into pgvector
-```
+Use the seeded demo credentials: `admin@acme.test` / `demo1234`
 
-Log in as `admin@acme.test` / `demo1234` (admin) or `analyst@acme.test` / `demo1234` (analyst).
+## Project Structure
 
-## Project Layout
+See [`docs/architecture.md`](docs/architecture.md) for the full directory tree and component diagram.
 
-```
-backend/
-  app/
-    core/          config, auth (JWT/tenant), cache, error handling
-    models/        Pydantic schemas
-    routes/        auth, orgs, research, watchlist
-    services/      agent orchestrator, DB client, LLM abstraction, embeddings
-    tools/         market data (yfinance), news (DuckDuckGo), filings (pgvector)
-  migrations/      SQL schema + indexes + RLS
-  scripts/         seed data + filing ingestion
-  tests/           pytest suite
-frontend/
-  src/
-    components/    Layout, ResearchResult, UI primitives
-    lib/           API client, auth context
-    pages/         Dashboard, Research, Reports, ReportDetail, Watchlist, Login, Members
-```
+## Development Workflow
 
-## Development Conventions
+1. **Backend:** Edit Python files in `backend/app/`. FastAPI auto-reloads.
+2. **Frontend:** Edit TypeScript/React files in `frontend/src/`. Vite HMR updates instantly.
+3. **Tests (backend):** `cd backend && source .venv/bin/activate && python -m pytest`
+4. **Tests (frontend):** `cd frontend && npm test`
+5. **Lint (backend):** `cd backend && source .venv/bin/activate && ruff check .`
+6. **Typecheck + build (frontend):** `cd frontend && npm run build`
 
-### Backend
+## Code Conventions
 
-- **Python 3.11+** with FastAPI. Use `async def` for routes that call the agent; sync for simple CRUD.
-- **Pydantic v2** for all request/response models in `models/schemas.py`.
-- **Every query must filter by `org_id`** — tenant isolation is enforced in app code because the backend uses the Supabase service key (bypasses RLS).
-- **One file per tool** in `tools/`. Each tool returns JSON-serializable data with a `source` field.
-- **LLM access** goes through `services/llm.py` only — swapping Gemini↔Groq is the `LLM_PROVIDER` env var.
-- **Imports**: lazy import heavy modules (yfinance, duckduckgo_search, google.genai) inside function bodies, not at module top level.
-- Formatting: `ruff` with the project's `ruff.toml`.
+- Python: ruff (FastAPI style), no `print()` in production code
+- TypeScript: strict mode, no `any` where types exist
+- All API responses use the `{data, meta}` / `{error, meta}` envelope
+- Every database query that reads tenant data must filter by `org_id`
+- Tool outputs must carry a `source` field for citation attribution
+- Mark deliberate simplifications with `# ponytail: <reason>` comments
 
-### Frontend
+## CI/CD
 
-- **React 18** with **TypeScript strict mode**. No `any` types.
-- **Tailwind CSS** for styling. Custom CSS in `index.css` only for global resets and a few utility classes.
-- **Component per page** in `pages/`. Reusable UI in `components/`.
-- **API calls** go through `lib/api.ts` which handles auth token injection and the response envelope.
-- **Build**: `npm run build` runs `tsc -b && vite build` — both type-checking and bundling.
+The project runs GitHub Actions on every push:
+- Backend: ruff linting, tenant scoping guard, pytest
+- Frontend: TypeScript check, vitest, Vite build
+- Secrets: gitleaks scan
 
-## Code Quality
+## Deployment
 
-Run these before committing:
+- **Frontend:** Auto-deploys to Vercel from the `main` branch
+- **Backend:** Auto-deploys to Render from the `main` branch
+- See [`docs/architecture.md`](docs/architecture.md) for env var requirements
 
-```bash
-# Backend
-cd backend && ruff check app/ tests/
+## Security Notes
 
-# Frontend
-cd frontend && npm run build
-```
-
-### Testing
-
-```bash
-cd backend && pytest -v
-```
-
-Key tests:
-- `test_agent.py` — full router→tools→synthesizer flow with mock LLM
-- `test_tenant_scoping.py` — static guard that fails if any route queries a tenant table without `org_id` filter
-- `test_chunker.py` — document chunking logic
-- `test_sentiment.py` — lexicon-based sentiment analyzer
-
-## Pull Request Process
-
-1. Create a feature branch from `main`.
-2. Make changes with meaningful commits.
-3. Run lint + tests — they must pass.
-4. Open a PR using the [pull request template](.github/PULL_REQUEST_TEMPLATE.md) — fill in the description, testing steps, and checklist.
-5. Use [bug report](.github/ISSUE_TEMPLATE/bug_report.md) or [feature request](.github/ISSUE_TEMPLATE/feature_request.md) templates for issues.
-
-## Architecture Decisions
-
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the system architecture, data flow, ER diagram, AI orchestration flow, multi-tenant isolation flow, and API design. Major decisions are recorded in [docs/DECISIONS.md](docs/DECISIONS.md).
+- The backend uses Supabase's **service-role key** which bypasses RLS
+- Tenant isolation is enforced in app code: every route depends on `get_current_tenant()` and filters queries by `org_id`
+- If you add a route that reads tenant data without scoping by `org_id`, you've created a data leak
+- Single-resource endpoints must filter by BOTH `org_id` AND `id` (IDOR guard)
