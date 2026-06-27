@@ -18,6 +18,7 @@ export default {
         "on-accent": "var(--on-accent)",
         pos: "var(--pos)",
         neg: "var(--neg)",
+        amber: "var(--amber)",
       },
       borderRadius: { sm: "4px", DEFAULT: "6px", md: "6px", lg: "8px", xl: "8px" },
       boxShadow: { card: "var(--shadow)" },

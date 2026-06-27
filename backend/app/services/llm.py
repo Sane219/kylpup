@@ -9,7 +9,8 @@ from app.core.config import settings
 
 log = logging.getLogger("klypup")
 
-GEMINI_MODEL = "gemini-2.0-flash"
+# gemini-2.0-flash has 0 free-tier quota on current keys; 2.5-flash works.
+GEMINI_MODEL = "gemini-2.5-flash"
 GROQ_MODEL = "llama-3.3-70b-versatile"
 
 
@@ -27,6 +28,70 @@ def _gemini(system: str, user: str) -> str:
         ),
     )
     return res.text
+
+
+def _gemini_thinking(system: str, user: str, budget: int) -> tuple[str, str]:
+    """Gemini 2.5 with thought summaries. Returns (json_answer, thoughts_text).
+    Thought parts are plain prose; only the non-thought parts form the JSON."""
+    from google import genai
+    from google.genai import types
+    client = genai.Client(api_key=settings.GEMINI_API_KEY)
+    res = client.models.generate_content(
+        model=GEMINI_MODEL,
+        contents=user,
+        config=types.GenerateContentConfig(
+            system_instruction=system,
+            response_mime_type="application/json",
+            temperature=0.2,
+            thinking_config=types.ThinkingConfig(include_thoughts=True, thinking_budget=budget),
+        ),
+    )
+    answer, thoughts = [], []
+    for p in res.candidates[0].content.parts:
+        if not p.text:
+            continue
+        (thoughts if getattr(p, "thought", False) else answer).append(p.text)
+    return "".join(answer), "".join(thoughts)
+
+
+def stream_thinking(system: str, user: str, budget: int):
+    """Sync generator over a Gemini call, yielding ('thought', chunk) as the model
+    reasons and ('answer', chunk) as it writes the JSON. Caller concatenates the
+    'answer' chunks and json.loads them. Gemini-only; raises on failure so the
+    caller can fall back to chat_json_thinking."""
+    from google import genai
+    from google.genai import types
+    client = genai.Client(api_key=settings.GEMINI_API_KEY)
+    stream = client.models.generate_content_stream(
+        model=GEMINI_MODEL,
+        contents=user,
+        config=types.GenerateContentConfig(
+            system_instruction=system,
+            response_mime_type="application/json",
+            temperature=0.2,
+            thinking_config=types.ThinkingConfig(include_thoughts=True, thinking_budget=budget),
+        ),
+    )
+    for chunk in stream:
+        if not chunk.candidates:
+            continue
+        for p in chunk.candidates[0].content.parts:
+            if not p.text:
+                continue
+            yield ("thought" if getattr(p, "thought", False) else "answer", p.text)
+
+
+def chat_json_thinking(system: str, user: str, budget: int = 1024) -> tuple[dict, str]:
+    """Like chat_json but also returns the model's thought summary. Gemini-only;
+    on any failure (or a non-Gemini provider) falls back to chat_json with no
+    thoughts, so the run never depends on thinking being available."""
+    if (settings.LLM_PROVIDER if settings.LLM_PROVIDER in _PROVIDERS else "gemini") == "gemini":
+        try:
+            txt, thoughts = _gemini_thinking(system, user, budget)
+            return json.loads(txt), thoughts
+        except Exception as e:
+            log.warning("gemini thinking failed, falling back: %s", e)
+    return chat_json(system, user), ""
 
 
 def _groq(system: str, user: str) -> str:

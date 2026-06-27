@@ -18,13 +18,17 @@
   --text:         oklch(0.965 0.005 235);
   --text-2:       oklch(0.800 0.012 235);
   --text-muted:   oklch(0.660 0.014 235);
-  --accent:       oklch(0.800 0.135 205);
-  --accent-2:     oklch(0.700 0.130 205);
+  --accent:       oklch(0.745 0.150 288);
+  --accent-2:     oklch(0.680 0.165 288);
   --on-accent:    oklch(0.165 0.012 235);
   --pos:          oklch(0.800 0.155 158);
   --neg:          oklch(0.700 0.185 25);
-  --ring:         oklch(0.800 0.135 205 / 0.55);
+  /* amber = terminal non-semantic signal (LIVE, session, function codes). */
+  --amber:        oklch(0.820 0.150 78);
+  --amber-dim:    oklch(0.820 0.150 78 / 0.14);
+  --ring:         oklch(0.730 0.155 288 / 0.55);
   --shadow:       0 1px 2px oklch(0 0 0 / 0.4), 0 4px 16px oklch(0 0 0 / 0.28);
+  --grid-line:    oklch(0.305 0.016 235 / 0.5);
 }
 
 [data-theme="light"] {
@@ -36,13 +40,16 @@
   --text:         oklch(0.235 0.015 235);
   --text-2:       oklch(0.410 0.016 235);
   --text-muted:   oklch(0.520 0.016 235);
-  --accent:       oklch(0.560 0.135 220);
-  --accent-2:     oklch(0.500 0.140 220);
+  --accent:       oklch(0.520 0.200 288);
+  --accent-2:     oklch(0.470 0.205 288);
   --on-accent:    oklch(0.995 0 0);
   --pos:          oklch(0.520 0.150 158);
   --neg:          oklch(0.545 0.205 27);
-  --ring:         oklch(0.560 0.135 220 / 0.45);
+  --amber:        oklch(0.560 0.130 70);
+  --amber-dim:    oklch(0.560 0.130 70 / 0.12);
+  --ring:         oklch(0.520 0.200 288 / 0.45);
   --shadow:       0 1px 2px oklch(0.5 0.02 235 / 0.10), 0 4px 14px oklch(0.5 0.02 235 / 0.08);
+  --grid-line:    oklch(0.905 0.008 235 / 0.7);
 }
 
 @layer base {
@@ -104,13 +111,92 @@
   .btn-ghost:active { transform: scale(0.97); }
 }
 
+@layer components {
+  /* Terminal dot-grid backdrop — quiet texture for shells and brand panels. */
+  .term-grid {
+    background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+    background-size: 22px 22px;
+    background-position: -1px -1px;
+  }
+  /* Function-code tag: the amber monospace label that titles a terminal panel. */
+  .func-tag {
+    @apply tnum rounded-sm px-1.5 py-0.5 text-[10px] font-semibold uppercase leading-none tracking-wider;
+    background: var(--amber-dim);
+    color: var(--amber);
+  }
+  /* Dense data table: uppercase muted head, tabular numerics, tight hover rows. */
+  .term-table { @apply w-full border-collapse text-sm; }
+  .term-table thead th {
+    @apply border-b border-border px-3 py-2 text-left text-[11px] font-medium uppercase tracking-wide;
+    color: var(--text-muted);
+  }
+  .term-table tbody td { @apply border-b px-3 py-2 align-middle; border-color: color-mix(in oklch, var(--border) 60%, transparent); }
+  .term-table tbody tr:last-child td { border-bottom: 0; }
+  .term-table tbody tr { transition: background-color 0.12s cubic-bezier(0.23, 1, 0.32, 1); }
+  .term-table tbody tr:hover { background: var(--surface-2); }
+  .term-table .col-num { @apply tnum text-right; }
+  .term-table th.col-num { text-align: right; }
+  /* Sortable header affordance. */
+  .term-table th.sortable { @apply cursor-pointer select-none; }
+  .term-table th.sortable:hover { color: var(--text-2); }
+}
+
 /* Functional motion only (MOTION_INTENSITY 2): data arrival + overlays. */
 @keyframes fade-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @keyframes pop-in  { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
 .animate-in { animation: fade-in 0.26s cubic-bezier(0.23, 1, 0.32, 1) both; }
 .animate-pop { animation: pop-in 0.18s cubic-bezier(0.23, 1, 0.32, 1) both; }
 
+/* View transition: a quick opacity-only crossfade when the route changes. */
+@keyframes route-fade { from { opacity: 0; } to { opacity: 1; } }
+.route-fade { animation: route-fade 0.16s ease-out both; }
+
+/* "Deal-in": staggered terminal-style entrance for hero data tiles.
+   Delay driven by --i so a grid reveals like a tape printing. */
+@keyframes deal-in { from { opacity: 0; transform: translateY(9px) scale(0.985); } to { opacity: 1; transform: none; } }
+.deal-in { animation: deal-in 0.42s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: calc(var(--i, 0) * 45ms); }
+
+/* ---- Live tape: price flash on tick (color fades back to neutral) ---- */
+@keyframes flash-up   { 0% { background: oklch(0.800 0.155 158 / 0.30); } 100% { background: transparent; } }
+@keyframes flash-down { 0% { background: oklch(0.700 0.185 25 / 0.30);  } 100% { background: transparent; } }
+.flash-up   { animation: flash-up 0.7s ease-out; }
+.flash-down { animation: flash-down 0.7s ease-out; }
+
+/* ---- Ticker tape marquee ---- */
+@keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.ticker-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: ticker 60s linear infinite;
+  will-change: transform;
+}
+.ticker-tape:hover .ticker-track { animation-play-state: paused; }
+
+/* ---- "LIVE" pulse dot ---- */
+@keyframes live-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+.live-dot { animation: live-pulse 1.6s ease-in-out infinite; }
+
+/* ---- blinking command-line caret (login cockpit) ---- */
+@keyframes caret-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+.caret-blink { animation: caret-blink 1.05s step-end infinite; }
+
+/* ---- accent glow, used sparingly on the brand mark / active rail ---- */
+.glow-accent { box-shadow: 0 0 22px -6px var(--accent); }
+
+/* Brand wordmark (dark-slate asset): knock to white on the dark terminal,
+   keep full color on light. */
+.brand-logo { filter: brightness(0) invert(1); }
+[data-theme="light"] .brand-logo { filter: none; }
+
+/* ---- agent-run timeline: pulsing ring around the active step node ---- */
+@keyframes node-pulse { 0%, 100% { box-shadow: 0 0 0 0 var(--ring); } 50% { box-shadow: 0 0 0 4px transparent; } }
+.agent-node { animation: node-pulse 1.6s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
   .animate-in, .animate-pop { animation: none; }
+  .ticker-track { animation: none; transform: none; }
+  .flash-up, .flash-down, .live-dot, .agent-node, .caret-blink,
+  .route-fade, .deal-in { animation: none; }
+  .caret-blink { opacity: 1; }
 }

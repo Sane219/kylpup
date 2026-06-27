@@ -1,16 +1,21 @@
+import { Link } from "react-router-dom";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, YAxis } from "recharts";
 import { Badge, Panel, SectionLabel, Cite, Empty, Delta, Num, Skeleton } from "./ui";
 
 // The agent's structured UI state (see backend SYNTH_SYSTEM schema).
 export type ResearchData = {
   summary?: string;
+  key_takeaways?: string[];
   company_cards?: any[];
   comparison_table?: { columns: string[]; rows: string[][] };
   news_sentiment?: any[];
   filing_insights?: any[];
+  opportunities?: any[];
   risks?: any[];
+  outlook?: string;
   sources_used?: string[];
   _plan?: { tickers?: string[]; fetch_market?: boolean; fetch_news?: boolean; search_filings?: boolean };
+  _review?: { issues?: string[]; revised?: boolean };
 };
 
 const fmt = (n: any) => (n == null ? "—" : typeof n === "number" ? n.toLocaleString() : String(n));
@@ -48,13 +53,28 @@ export default function ResearchResult({ data }: { data: ResearchData }) {
           {data._plan.fetch_market && <Badge tone="accent">market</Badge>}
           {data._plan.fetch_news && <Badge tone="accent">news</Badge>}
           {data._plan.search_filings && <Badge tone="accent">filings</Badge>}
+          {data._review?.revised && (
+            <span className="ml-1 inline-flex items-center gap-1 text-muted">
+              <span aria-hidden="true">✦</span> revised after editor review{data._review.issues?.length ? ` · ${data._review.issues.length} gap${data._review.issues.length !== 1 ? "s" : ""} addressed` : ""}
+            </span>
+          )}
         </div>
       )}
 
-      {data.summary && (
+      {(data.summary || data.key_takeaways?.length) && (
         <Panel className="p-5">
-          <SectionLabel>Summary</SectionLabel>
-          <p className="mt-2 leading-relaxed text-text-2 text-pretty">{data.summary}</p>
+          <SectionLabel>Executive summary</SectionLabel>
+          {data.summary && <p className="mt-2 max-w-[72ch] leading-relaxed text-text-2 text-pretty">{data.summary}</p>}
+          {!!data.key_takeaways?.length && (
+            <ul className="mt-4 grid gap-2 border-t border-border pt-4 sm:grid-cols-2">
+              {data.key_takeaways.map((k, i) => (
+                <li key={i} className="flex gap-2.5 text-sm leading-relaxed text-text-2">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0" aria-hidden="true"><path d="M5 13l4 4L19 7" /></svg>
+                  <span>{k}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </Panel>
       )}
 
@@ -64,11 +84,11 @@ export default function ResearchResult({ data }: { data: ResearchData }) {
             <Panel key={i} className="flex flex-col p-4">
               <div className="flex items-start justify-between">
                 <div>
-                  <div className="tnum text-base font-semibold tracking-tight">{c.ticker}</div>
+                  <Link to={`/stock/${c.ticker}`} className="tnum text-base font-semibold tracking-tight transition hover:text-accent">{c.ticker}</Link>
                   <div className="truncate text-xs text-muted">{c.name}</div>
                 </div>
                 <div className="text-right">
-                  <div className="tnum text-lg font-semibold">{c.price != null ? `$${fmt(c.price)}` : "—"}</div>
+                  <div className="tnum text-2xl font-semibold leading-none tracking-[-0.01em]">{c.price != null ? `$${fmt(c.price)}` : "—"}</div>
                   <Delta value={changePct(c)} />
                 </div>
               </div>
@@ -98,7 +118,8 @@ export default function ResearchResult({ data }: { data: ResearchData }) {
                 <Stat k="Revenue" v={fmt(c.revenue)} />
               </dl>
 
-              {c.highlight && <p className="mt-3 text-sm text-text-2">{c.highlight}</p>}
+              {c.highlight && <p className="mt-3 text-sm font-medium text-text">{c.highlight}</p>}
+              {c.thesis && <p className="mt-1.5 text-sm leading-relaxed text-text-2 text-pretty">{c.thesis}</p>}
               <div className="mt-auto pt-3"><Cite source={c.citation} /></div>
             </Panel>
           ))}
@@ -141,6 +162,7 @@ export default function ResearchResult({ data }: { data: ResearchData }) {
                 <span className="flex-1">
                   <a href={n.url} target="_blank" rel="noreferrer" className="text-text transition hover:text-accent">{n.title}</a>
                   {n.ticker && <span className="tnum text-muted"> · {n.ticker}</span>}
+                  {n.takeaway && <span className="mt-0.5 block text-xs leading-relaxed text-muted">{n.takeaway}</span>}
                   <Cite source={n.citation} />
                 </span>
               </li>
@@ -154,26 +176,50 @@ export default function ResearchResult({ data }: { data: ResearchData }) {
           <SectionLabel>From SEC filings</SectionLabel>
           <ul className="mt-3 space-y-2.5 text-sm text-text-2">
             {data.filing_insights.map((f, i) => (
-              <li key={i} className="border-l-2 border-border pl-3">
-                {f.ticker && <Num className="font-semibold text-text">{f.ticker}: </Num>}{f.insight}
-                <Cite source={f.citation || f.source_ref} />
+              <li key={i} className="flex gap-2 leading-relaxed">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--accent)" }} />
+                <span>{f.ticker && <Num className="font-semibold text-text">{f.ticker}: </Num>}{f.insight}<Cite source={f.citation || f.source_ref} /></span>
               </li>
             ))}
           </ul>
         </Panel>
       )}
 
-      {!!data.risks?.length && (
+      {(!!data.opportunities?.length || !!data.risks?.length) && (
+        <div className="grid gap-5 lg:grid-cols-2">
+          {!!data.opportunities?.length && (
+            <Panel className="p-5">
+              <SectionLabel>Opportunities</SectionLabel>
+              <ul className="mt-3 space-y-2.5 text-sm text-text-2">
+                {data.opportunities.map((o, i) => (
+                  <li key={i} className="flex gap-2 leading-relaxed">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--pos)" }} />
+                    <span>{o.ticker && <Num className="font-semibold text-text">{o.ticker}: </Num>}{o.opportunity}<Cite source={o.citation} /></span>
+                  </li>
+                ))}
+              </ul>
+            </Panel>
+          )}
+          {!!data.risks?.length && (
+            <Panel className="p-5">
+              <SectionLabel>Risks</SectionLabel>
+              <ul className="mt-3 space-y-2.5 text-sm text-text-2">
+                {data.risks.map((r, i) => (
+                  <li key={i} className="flex gap-2 leading-relaxed">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--neg)" }} />
+                    <span>{r.ticker && <Num className="font-semibold text-text">{r.ticker}: </Num>}{r.risk}<Cite source={r.citation} /></span>
+                  </li>
+                ))}
+              </ul>
+            </Panel>
+          )}
+        </div>
+      )}
+
+      {data.outlook && (
         <Panel className="p-5">
-          <SectionLabel>Risk assessment</SectionLabel>
-          <ul className="mt-3 space-y-2 text-sm text-text-2">
-            {data.risks.map((r, i) => (
-              <li key={i} className="flex gap-2">
-                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--neg)" }} />
-                <span>{r.ticker && <Num className="font-semibold text-text">{r.ticker}: </Num>}{r.risk}<Cite source={r.citation} /></span>
-              </li>
-            ))}
-          </ul>
+          <SectionLabel>Outlook</SectionLabel>
+          <p className="mt-2 max-w-[72ch] leading-relaxed text-text-2 text-pretty">{data.outlook}</p>
         </Panel>
       )}
 

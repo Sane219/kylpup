@@ -1,12 +1,15 @@
 """Research CRUD + the AI research run. Every query is scoped by org_id
 (tenant isolation) and single-resource ops filter by BOTH org_id AND id
 (IDOR guard, per the Phase 1 security review)."""
+import json
+
 from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi.responses import StreamingResponse
 
 from app.core.auth import Tenant, get_current_tenant
 from app.core.responses import ok
 from app.models.schemas import ReportPatch, ResearchIn
-from app.services.agent import run_research
+from app.services.agent import run_research, stream_research
 from app.services.db import db
 
 router = APIRouter(prefix="/research", tags=["research"])
@@ -27,6 +30,33 @@ async def create_research(body: ResearchIn, t: Tenant = Depends(get_current_tena
         {"org_id": t.org_id, "user_id": t.user_id, "action": "research.create",
          "meta": {"report_id": row["id"]}}).execute()
     return ok(row)
+
+
+@router.post("/stream")
+async def stream_research_run(body: ResearchIn, t: Tenant = Depends(get_current_tenant)):
+    """Newline-delimited JSON stream of the agent run (plan, tool calls, synth),
+    then persists the report and emits a final 'saved' event. Same org scoping
+    as the non-streaming create."""
+    async def gen():
+        result = None
+        try:
+            async for ev in stream_research(body.query):
+                if ev.get("type") == "result":
+                    result = ev["result"]
+                yield json.dumps(ev) + "\n"
+            if result is not None:
+                row = db().table("research_reports").insert({
+                    "org_id": t.org_id, "user_id": t.user_id,
+                    "query": body.query, "result_json": result,
+                }).execute().data[0]
+                db().table("audit_logs").insert(
+                    {"org_id": t.org_id, "user_id": t.user_id,
+                     "action": "research.create", "meta": {"report_id": row["id"]}}).execute()
+                yield json.dumps({"type": "saved", "report": row}) + "\n"
+        except Exception as e:
+            yield json.dumps({"type": "error", "message": str(e)}) + "\n"
+
+    return StreamingResponse(gen(), media_type="application/x-ndjson")
 
 
 @router.get("")

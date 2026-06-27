@@ -1,9 +1,13 @@
 import { createContext, useContext, useState, useCallback, ReactNode, InputHTMLAttributes, TextareaHTMLAttributes, useId } from "react";
 
 /* ---------- icons (curated, single stroke weight 1.75) ---------- */
-type IconName = "search" | "chart" | "list" | "star" | "users" | "home" | "sun" | "moon" | "logout" | "x" | "plus" | "command" | "arrow";
+type IconName = "search" | "chart" | "list" | "star" | "users" | "home" | "sun" | "moon" | "logout" | "x" | "plus" | "command" | "arrow" | "grid" | "settings" | "copy" | "check";
 const PATHS: Record<IconName, ReactNode> = {
   search: <><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></>,
+  grid: <><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></>,
+  settings: <><circle cx="12" cy="12" r="3" /><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" /></>,
+  copy: <><rect x="9" y="9" width="11" height="11" rx="2" /><path d="M5 15V5a2 2 0 0 1 2-2h10" /></>,
+  check: <path d="M5 13l4 4L19 7" />,
   chart: <><path d="M3 3v18h18" /><path d="m7 14 3-4 3 3 4-6" /></>,
   list: <><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01" /></>,
   star: <path d="m12 3 2.6 5.3 5.9.9-4.3 4.2 1 5.8L12 16.8 6.8 19.4l1-5.8L3.5 9.2l5.9-.9L12 3Z" />,
@@ -31,6 +35,17 @@ export const Panel = ({ children, className = "" }: { children: ReactNode; class
 
 export const SectionLabel = ({ children }: { children: ReactNode }) => (
   <h3 className="text-xs font-semibold uppercase tracking-[0.08em] text-muted">{children}</h3>
+);
+
+/** Terminal panel header bar: amber function-code tag + title + optional right slot. */
+export const PanelHeader = ({ code, title, right }: { code?: string; title: ReactNode; right?: ReactNode }) => (
+  <div className="flex items-center justify-between gap-3 border-b border-border px-4 py-2.5">
+    <div className="flex min-w-0 items-center gap-2">
+      {code && <span className="func-tag shrink-0">{code}</span>}
+      <h3 className="truncate text-xs font-semibold uppercase tracking-[0.08em] text-text-2">{title}</h3>
+    </div>
+    {right && <div className="flex shrink-0 items-center gap-2">{right}</div>}
+  </div>
 );
 
 /* ---------- numerics ---------- */

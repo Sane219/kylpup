@@ -8,7 +8,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from app.core.auth import Tenant, get_current_tenant
 from app.core.responses import ok
 from app.models.schemas import LoginIn, SignupIn
-from app.services.db import db
+from app.services.db import auth_client, db
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
@@ -60,7 +60,9 @@ def signup(body: SignupIn):
 @router.post("/login")
 def login(body: LoginIn):
     try:
-        res = db().auth.sign_in_with_password(
+        # fresh client: signing in mutates the client's auth session, so we must
+        # NOT do it on the shared service-role client (see db() / auth_client()).
+        res = auth_client().auth.sign_in_with_password(
             {"email": body.email, "password": body.password})
     except Exception:
         raise HTTPException(401, "invalid credentials")

@@ -31,9 +31,11 @@ export default function CommandPalette() {
   const go = (fn: () => void) => () => { setOpen(false); fn(); };
   const cmds: Cmd[] = [
     { label: "Dashboard", icon: "home", run: go(() => nav("/")) },
+    { label: "Markets", icon: "grid", run: go(() => nav("/markets")) },
     { label: "New research", icon: "search", run: go(() => nav("/research")) },
     { label: "Reports", icon: "list", run: go(() => nav("/reports")) },
     { label: "Watchlist", icon: "star", run: go(() => nav("/watchlist")) },
+    { label: "Settings", icon: "settings", run: go(() => nav("/settings")) },
     ...(user?.role === "admin" ? [{ label: "Team", icon: "users" as const, run: go(() => nav("/members")) }] : []),
     { label: `Switch to ${theme === "dark" ? "light" : "dark"} theme`, icon: theme === "dark" ? "sun" : "moon", run: go(toggle) },
     { label: "Log out", icon: "logout", run: go(logout) },

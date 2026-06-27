@@ -43,7 +43,52 @@ def get_quotes(tickers: list[str]) -> list[dict]:
     return out
 
 
+# Friendly tape symbols -> yfinance tickers (indices / rates / crypto).
+INDEX_MAP = {
+    "SPX": "^GSPC", "NDX": "^NDX", "DJI": "^DJI",
+    "VIX": "^VIX", "BTC": "BTC-USD", "US10Y": "^TNX",
+}
+
+
+@ttl_cache(seconds=120)
+def quote_compact(yf_ticker: str) -> dict:
+    """Light quote for the live tape: last price, prev close, short history.
+    Uses fast_info (no slow .info scrape) so a paginated board stays snappy."""
+    import yfinance as yf
+    t = yf.Ticker(yf_ticker)
+    fi = t.fast_info
+    price = float(fi.last_price)
+    prev = float(fi.previous_close)
+    hist = t.history(period="1mo")
+    closes = [round(float(c), 4) for c in hist["Close"]] if not hist.empty else []
+    return {"price": round(price, 4), "prevClose": round(prev, 4),
+            "history": closes[-40:], "currency": getattr(fi, "currency", None)}
+
+
+def snapshot(symbols: list[str]) -> list[dict]:
+    """Compact quotes for the dashboard tape / markets board. Names come from
+    the frontend's universe; this returns price + change + sparkline only.
+    One bad symbol returns an {error} entry instead of sinking the batch."""
+    out = []
+    for s in symbols:
+        sym = s.upper()
+        try:
+            q = quote_compact(INDEX_MAP.get(sym, sym))
+            price, prev = q["price"], q["prevClose"] or q["price"]
+            out.append({
+                "symbol": sym, "price": price, "prevClose": prev,
+                "change": round(price - prev, 4),
+                "changePct": round((price - prev) / prev * 100, 4) if prev else 0,
+                "history": q["history"], "currency": q["currency"], "source": SOURCE,
+            })
+        except Exception as e:
+            out.append({"symbol": sym, "error": str(e), "source": SOURCE})
+    return out
+
+
 if __name__ == "__main__":  # ponytail: smoke check, needs network
     q = get_quote("AAPL")
     assert q["ticker"] == "AAPL" and q["source"] == "yfinance"
-    print("ok", q["price"])
+    snap = snapshot(["AAPL", "SPX"])
+    assert snap[0]["symbol"] == "AAPL" and "price" in snap[0]
+    print("ok", q["price"], snap[1])

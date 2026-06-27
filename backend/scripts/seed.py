@@ -61,7 +61,7 @@ def main():
                 {"org_id": org_row["id"], "user_id": first_uid,
                  "query": "Quick overview of Tesla — performance, news, risks",
                  "result_json": SAMPLE_REPORT, "tags": ["Q3 Earnings"]}).execute()
-            for tk in ("TSLA", "NVDA"):
+            for tk in ("AAPL", "MSFT", "NVDA", "TSLA", "AMZN", "GOOGL", "META", "AMD"):
                 sb.table("watchlist").insert(
                     {"org_id": org_row["id"], "user_id": first_uid, "ticker": tk}).execute()
     print("\nseed complete — log in with any email above, password 'demo1234'")
