@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../LOGO.png" alt="Klypup" width="240">
+</p>
+
 # API Reference
 
 All endpoints live under `https://your-backend.com` and return the standard envelope:

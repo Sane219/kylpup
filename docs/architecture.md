@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="../LOGO.png" alt="Klypup" width="240">
+</p>
+
 # Architecture Guide
 
 ## System Overview
