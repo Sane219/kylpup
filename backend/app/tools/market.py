@@ -1,5 +1,7 @@
 """Market data tool — yfinance. Free, no key, no cloud-IP blocks.
 Returns JSON-serializable dicts; every record carries source='yfinance'."""
+import math
+
 from app.core.cache import ttl_cache
 
 SOURCE = "yfinance"
@@ -14,7 +16,7 @@ def get_quote(ticker: str) -> dict:
     hist = t.history(period="3mo")
     prices = [
         {"date": d.strftime("%Y-%m-%d"), "close": round(float(c), 2)}
-        for d, c in hist["Close"].items()
+        for d, c in hist["Close"].items() if not math.isnan(float(c))
     ] if not hist.empty else []
     return {
         "ticker": ticker.upper(),
@@ -50,6 +52,17 @@ INDEX_MAP = {
 }
 
 
+def _safe_float(v):
+    try:
+        f = float(v)
+        return None if math.isnan(f) or math.isinf(f) else f
+    except (TypeError, ValueError):
+        return None
+
+def _safe_round(v, dp):
+    f = _safe_float(v)
+    return round(f, dp) if f is not None else None
+
 @ttl_cache(seconds=120)
 def quote_compact(yf_ticker: str) -> dict:
     """Light quote for the live tape: last price, prev close, short history.
@@ -57,11 +70,12 @@ def quote_compact(yf_ticker: str) -> dict:
     import yfinance as yf
     t = yf.Ticker(yf_ticker)
     fi = t.fast_info
-    price = float(fi.last_price)
-    prev = float(fi.previous_close)
+    price = _safe_float(fi.last_price)
+    prev = _safe_float(fi.previous_close)
     hist = t.history(period="1mo")
-    closes = [round(float(c), 4) for c in hist["Close"]] if not hist.empty else []
-    return {"price": round(price, 4), "prevClose": round(prev, 4),
+    closes = [_safe_round(c, 4) for c in hist["Close"]] if not hist.empty else []
+    closes = [c for c in closes if c is not None]
+    return {"price": price, "prevClose": prev,
             "history": closes[-40:], "currency": getattr(fi, "currency", None)}
 
 
@@ -74,9 +88,12 @@ def snapshot(symbols: list[str]) -> list[dict]:
         sym = s.upper()
         try:
             q = quote_compact(INDEX_MAP.get(sym, sym))
-            price, prev = q["price"], q["prevClose"] or q["price"]
+            price = q["price"] or q["prevClose"]
+            prev = q["prevClose"] or price
+            if price is None or prev is None:
+                raise ValueError("no price data")
             out.append({
-                "symbol": sym, "price": price, "prevClose": prev,
+                "symbol": sym, "price": round(price, 4), "prevClose": round(prev, 4),
                 "change": round(price - prev, 4),
                 "changePct": round((price - prev) / prev * 100, 4) if prev else 0,
                 "history": q["history"], "currency": q["currency"], "source": SOURCE,
