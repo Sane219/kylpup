@@ -1,13 +1,22 @@
 """JWT verification + tenant resolution. This is THE isolation boundary:
 service-key Supabase access bypasses RLS, so every protected route depends on
 get_current_tenant() and queries must filter by the returned org_id."""
+from functools import lru_cache
+
+import httpx
 import jwt
 from fastapi import Depends, HTTPException
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from jwt import PyJWKClient
 
 from app.core.config import settings
 
 bearer = HTTPBearer()
+JWKS_URL = f"{settings.SUPABASE_URL}/auth/v1/.well-known/jwks.json"
+
+@lru_cache(maxsize=1)
+def _jwks_client():
+    return PyJWKClient(JWKS_URL)
 
 
 class Tenant:
@@ -17,14 +26,13 @@ class Tenant:
 
 def get_current_tenant(cred: HTTPAuthorizationCredentials = Depends(bearer)) -> Tenant:
     try:
+        signing_key = _jwks_client().get_signing_key_from_jwt(cred.credentials)
         payload = jwt.decode(
-            cred.credentials, settings.SUPABASE_JWT_SECRET,
-            algorithms=["HS256"], audience="authenticated",
+            cred.credentials, signing_key.key,
+            algorithms=["ES256"], audience="authenticated",
         )
     except jwt.PyJWTError:
         raise HTTPException(401, "invalid token")
-    # org_id + role are stored in app_metadata at signup. ponytail: trust the
-    # signed claim; if it's absent the user never finished org setup.
     meta = payload.get("app_metadata", {})
     org_id, role = meta.get("org_id"), meta.get("role")
     if not org_id:

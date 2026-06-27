@@ -10,3 +10,4 @@ yfinance
 duckduckgo-search
 google-genai
 groq
+email-validator

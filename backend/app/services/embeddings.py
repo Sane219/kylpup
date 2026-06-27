@@ -2,8 +2,8 @@
 Used by both the ingestion script and query-time search so vectors match."""
 from app.core.config import settings
 
-MODEL = "text-embedding-004"
-DIM = 768
+MODEL = "gemini-embedding-001"
+DIM = 3072
 
 _client = None
 

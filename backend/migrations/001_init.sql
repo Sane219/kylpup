@@ -2,7 +2,7 @@
 -- Backend uses the service key (bypasses RLS); isolation is ALSO enforced in
 -- app code via org_id scoping. RLS here guards any anon/auth-key access path.
 
-create extension if not exists vector;        -- pgvector, used by Phase 2 filings
+create extension if not exists vector;       
 
 create table if not exists organizations (
   id          uuid primary key default gen_random_uuid(),

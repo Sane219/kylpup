@@ -1,8 +1,10 @@
 import { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../lib/auth";
 import { Field, ErrorBanner, Icon } from "../components/ui";
 
 export default function Login() {
+  const nav = useNavigate();
   const { login, signup } = useAuth();
   const [mode, setMode] = useState<"login" | "signup">("login");
   const [orgMode, setOrgMode] = useState<"create" | "join">("create");
@@ -14,7 +16,7 @@ export default function Login() {
   const submit = async (e: FormEvent) => {
     e.preventDefault(); setErr(""); setBusy(true);
     try {
-      if (mode === "login") await login(form.email, form.password);
+      if (mode === "login") { await login(form.email, form.password); nav("/"); }
       else await signup({
         email: form.email, password: form.password,
         ...(orgMode === "create" ? { org_name: form.org_name } : { invite_code: form.invite_code }),
