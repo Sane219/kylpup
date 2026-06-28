@@ -70,7 +70,7 @@ Password: demo1234
 
 | Guide | Description |
 |-------|-------------|
-| [Architecture Guide](docs/architecture.md) | System diagrams, data flow, AI orchestration, embedding pipeline, tenant isolation |
+| [Architecture Guide](docs/ARCHITECTURE.md) | System diagrams, data flow, AI orchestration, embedding pipeline, tenant isolation |
 | [API Reference](docs/api-reference.md) | All endpoints, request/response schemas, error codes |
 | [Decision Log](docs/DECISIONS.md) | Architecture Decision Records and trade-off rationale |
 | [Contributing Guide](CONTRIBUTING.md) | Setup, workflow, conventions, CI/CD |
