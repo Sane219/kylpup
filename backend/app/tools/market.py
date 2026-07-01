@@ -45,6 +45,71 @@ def get_quotes(tickers: list[str]) -> list[dict]:
     return out
 
 
+def _df_records(df, cols_map: dict, limit: int) -> list[dict]:
+    """yfinance returns pandas DataFrames; make them JSON-safe records.
+    cols_map maps df column -> output key. Missing columns are skipped."""
+    if df is None or getattr(df, "empty", True):
+        return []
+    rows = []
+    for _, row in df.head(limit).iterrows():
+        rec = {}
+        for src, dst in cols_map.items():
+            if src in row:
+                v = row[src]
+                v = _safe_float(v) if isinstance(v, (int, float)) else (None if v != v else str(v))
+                rec[dst] = v
+        rows.append(rec)
+    return rows
+
+
+@ttl_cache(seconds=1800)
+def get_insider(ticker: str) -> dict:
+    """Insider (Form 3/4/5) transactions + analyst price targets + rating mix.
+    All from yfinance — no key, no scraping a third site."""
+    import yfinance as yf
+    t = yf.Ticker(ticker)
+    try:
+        pt = t.analyst_price_targets or {}
+    except Exception:
+        pt = {}
+    return {
+        "ticker": ticker.upper(),
+        "insider_transactions": _df_records(
+            _try(lambda: t.insider_transactions),
+            {"Insider": "insider", "Position": "position", "Transaction": "transaction",
+             "Shares": "shares", "Value": "value", "Start Date": "date", "Text": "text"},
+            10),
+        "insider_summary": _df_records(
+            _try(lambda: t.insider_purchases),
+            {"Insider Purchases Last 6m": "metric", "Shares": "shares", "Trans": "transactions"},
+            6),
+        "price_targets": {k: _safe_float(v) for k, v in pt.items()} if isinstance(pt, dict) else {},
+        "recommendations": _df_records(
+            _try(lambda: t.recommendations),
+            {"period": "period", "strongBuy": "strong_buy", "buy": "buy",
+             "hold": "hold", "sell": "sell", "strongSell": "strong_sell"},
+            4),
+        "source": SOURCE,
+    }
+
+
+def _try(fn):
+    try:
+        return fn()
+    except Exception:
+        return None
+
+
+def get_insider_multi(tickers: list[str]) -> dict[str, dict]:
+    out = {}
+    for tk in tickers:
+        try:
+            out[tk.upper()] = get_insider(tk)
+        except Exception as e:  # one bad ticker must not sink the batch
+            out[tk.upper()] = {"ticker": tk.upper(), "error": str(e), "source": SOURCE}
+    return out
+
+
 # Friendly tape symbols -> yfinance tickers (indices / rates / crypto).
 INDEX_MAP = {
     "SPX": "^GSPC", "NDX": "^NDX", "DJI": "^DJI",
@@ -108,4 +173,7 @@ if __name__ == "__main__":  # ponytail: smoke check, needs network
     assert q["ticker"] == "AAPL" and q["source"] == "yfinance"
     snap = snapshot(["AAPL", "SPX"])
     assert snap[0]["symbol"] == "AAPL" and "price" in snap[0]
-    print("ok", q["price"], snap[1])
+    ins = get_insider("AAPL")
+    assert ins["ticker"] == "AAPL" and ins["source"] == "yfinance"
+    assert isinstance(ins["insider_transactions"], list) and isinstance(ins["price_targets"], dict)
+    print("ok", q["price"], snap[1], len(ins["insider_transactions"]), "insider rows")

@@ -10,11 +10,12 @@ export type ResearchData = {
   comparison_table?: { columns: string[]; rows: string[][] };
   news_sentiment?: any[];
   filing_insights?: any[];
+  insider_activity?: any[];
   opportunities?: any[];
   risks?: any[];
   outlook?: string;
   sources_used?: string[];
-  _plan?: { tickers?: string[]; fetch_market?: boolean; fetch_news?: boolean; search_filings?: boolean };
+  _plan?: { tickers?: string[]; fetch_market?: boolean; fetch_news?: boolean; fetch_insider?: boolean; search_filings?: boolean };
   _review?: { issues?: string[]; revised?: boolean };
 };
 
@@ -52,6 +53,7 @@ export default function ResearchResult({ data }: { data: ResearchData }) {
           <span>Tools used</span>
           {data._plan.fetch_market && <Badge tone="accent">market</Badge>}
           {data._plan.fetch_news && <Badge tone="accent">news</Badge>}
+          {data._plan.fetch_insider && <Badge tone="accent">insider</Badge>}
           {data._plan.search_filings && <Badge tone="accent">filings</Badge>}
           {data._review?.revised && (
             <span className="ml-1 inline-flex items-center gap-1 text-muted">
@@ -179,6 +181,30 @@ export default function ResearchResult({ data }: { data: ResearchData }) {
               <li key={i} className="flex gap-2 leading-relaxed">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--accent)" }} />
                 <span>{f.ticker && <Num className="font-semibold text-text">{f.ticker}: </Num>}{f.insight}<Cite source={f.citation || f.source_ref} /></span>
+              </li>
+            ))}
+          </ul>
+        </Panel>
+      )}
+
+      {!!data.insider_activity?.length && (
+        <Panel className="p-5">
+          <SectionLabel>Insider &amp; analyst activity</SectionLabel>
+          <ul className="mt-3 space-y-2.5 text-sm text-text-2">
+            {data.insider_activity.map((a, i) => (
+              <li key={i} className="flex gap-2 leading-relaxed">
+                <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full" style={{ background: "var(--accent)" }} />
+                <span>
+                  {a.ticker && <Num className="font-semibold text-text">{a.ticker}: </Num>}{a.signal}
+                  {(a.target_mean != null || a.target_high != null || a.target_low != null) && (
+                    <span className="tnum text-muted">
+                      {" ·"}{a.target_low != null && ` low $${fmt(a.target_low)}`}
+                      {a.target_mean != null && ` · mean $${fmt(a.target_mean)}`}
+                      {a.target_high != null && ` · high $${fmt(a.target_high)}`}
+                    </span>
+                  )}
+                  <Cite source={a.citation} />
+                </span>
               </li>
             ))}
           </ul>

@@ -21,6 +21,7 @@ Output ONLY this JSON object:
   "companies": ["<TICKER>", ...],   // resolve names to tickers, e.g. Tesla->TSLA, Apple->AAPL
   "fetch_market": true|false,        // stock price / financial metrics
   "fetch_news": true|false,          // recent news + sentiment
+  "fetch_insider": true|false,       // insider (Form 3/4/5) trades + analyst price targets & ratings
   "search_filings": true|false,      // SEC filing / earnings / fundamentals lookup
   "filing_query": "<what to search filings for, or empty>",
   "reasoning": "<1-2 sentences: why these tickers and these tools for this query>"
@@ -60,6 +61,10 @@ Output ONLY this JSON object:
   "filing_insights": [
     {"ticker": "", "insight": "<a substantive point drawn from the filing text>", "citation": "<source_ref>"}
   ],
+  "insider_activity": [
+    {"ticker": "", "signal": "<what insider trades + analyst targets imply, e.g. 'net insider buying; mean target $210 (+12%)'>",
+     "target_mean": null, "target_high": null, "target_low": null, "citation": "yfinance"}
+  ],
   "opportunities": [{"ticker": "", "opportunity": "<a credible upside / catalyst grounded in the data>", "citation": "<source>"}],
   "risks": [{"ticker": "", "risk": "<a concrete, specific risk>", "citation": "<source>"}],
   "outlook": "<2-4 sentence forward-looking synthesis weighing the opportunities against the risks>",
@@ -86,7 +91,7 @@ draft is solid and well-grounded, return {"issues": [], "needs_revision": false}
 
 def _normalize_plan(plan: dict, query: str) -> dict:
     plan.setdefault("companies", [])
-    for k in ("fetch_market", "fetch_news", "search_filings"):
+    for k in ("fetch_market", "fetch_news", "fetch_insider", "search_filings"):
         plan.setdefault(k, False)
     plan.setdefault("filing_query", query)
     plan.setdefault("reasoning", "")
@@ -110,6 +115,9 @@ def _summary(key: str, r) -> str | None:
     if key == "filings" and isinstance(r, dict):
         n = sum(len(v or []) for v in r.values())
         return f"{n} passage{'s' if n != 1 else ''}"
+    if key == "insider" and isinstance(r, dict):
+        n = sum(len(v.get("insider_transactions", []) or []) for v in r.values() if isinstance(v, dict))
+        return f"{n} insider trade{'s' if n != 1 else ''}"
     if isinstance(r, list):
         return f"{len(r)} record{'s' if len(r) != 1 else ''}"
     if isinstance(r, dict):
@@ -143,6 +151,18 @@ def _preview(key: str, r) -> list[dict]:
             rows.append({"label": tk or "filings", "value": f"{len(hits)} passage{'s' if len(hits) != 1 else ''}",
                          "sub": (ref or "")[:90]})
         return rows[:6]
+    if key == "insider" and isinstance(r, dict):
+        rows = []
+        for tk, d in r.items():
+            if not isinstance(d, dict):
+                continue
+            trades = d.get("insider_transactions", []) or []
+            mean = (d.get("price_targets") or {}).get("mean")
+            val = f"target ${mean:,.0f}" if isinstance(mean, (int, float)) else f"{len(trades)} trade{'s' if len(trades) != 1 else ''}"
+            top = trades[0] if trades else None
+            sub = f"{top.get('insider','')} {top.get('transaction','')}".strip() if top else "no recent insider trades"
+            rows.append({"label": tk, "value": val, "sub": sub[:90]})
+        return rows[:6]
     return []
 
 
@@ -153,6 +173,8 @@ async def _gather_tools(plan: dict) -> dict:
         jobs.append(asyncio.to_thread(market.get_quotes, tickers)); keys.append("market")
     if plan.get("fetch_news") and tickers:
         jobs.append(asyncio.to_thread(news.get_news_multi, tickers)); keys.append("news")
+    if plan.get("fetch_insider") and tickers:
+        jobs.append(asyncio.to_thread(market.get_insider_multi, tickers)); keys.append("insider")
     if plan.get("search_filings"):
         fq = plan.get("filing_query") or "business overview and risk factors"
         async def _filings():
@@ -252,6 +274,8 @@ async def stream_research(query: str):
         coros["market"] = asyncio.to_thread(market.get_quotes, tickers)
     if plan.get("fetch_news") and tickers:
         coros["news"] = asyncio.to_thread(news.get_news_multi, tickers)
+    if plan.get("fetch_insider") and tickers:
+        coros["insider"] = asyncio.to_thread(market.get_insider_multi, tickers)
     if plan.get("search_filings"):
         fq = plan.get("filing_query") or "business overview and risk factors"
 

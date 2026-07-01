@@ -1,9 +1,13 @@
 """News + sentiment tool — DuckDuckGo news (no key, not IP-blocked on cloud
-like NewsAPI). Lexicon sentiment keeps it dependency-light.
-ponytail: swap _sentiment for VADER or an LLM pass if accuracy matters."""
+like NewsAPI). Sentiment is one batched LLM pass over all headlines (get_news_multi),
+with the lexicon as a keyless offline fallback so a dropped LLM call never nulls it."""
+import json
+import logging
 from datetime import datetime, timezone
 
 from app.core.cache import ttl_cache
+
+log = logging.getLogger("klypup")
 
 SOURCE = "duckduckgo-news"
 
@@ -46,8 +50,41 @@ def get_news(ticker: str, max_results: int = 6) -> list[dict]:
     return out
 
 
+_SENT_SYSTEM = """You label financial news headlines by sentiment toward the stock.
+You are given a JSON array of {"id", "text"}. Return ONLY:
+{"labels": [{"id": <int>, "sentiment": "positive|negative|neutral", "score": <float -1..1>}, ...]}
+score is signed confidence: strongly positive ~+0.8, mildly negative ~-0.3, neutral 0.
+Return one entry per input id, same ids."""
+
+
+def _llm_sentiment(articles: list[dict]) -> None:
+    """One batched Gemini call over every headline; overwrites sentiment in place.
+    On any failure the lexicon labels already set by get_news stay untouched."""
+    items = [{"id": i, "text": f"{a.get('title','')} {a.get('excerpt','')}"[:300]}
+             for i, a in enumerate(articles) if a.get("title")]
+    if not items:
+        return
+    try:
+        from app.services.llm import chat_json  # lazy: keeps tool importable without LLM env
+        out = chat_json(_SENT_SYSTEM, json.dumps(items))
+        for lab in out.get("labels", []):
+            i = lab.get("id")
+            if isinstance(i, int) and 0 <= i < len(articles) and lab.get("sentiment") in _LABELS:
+                articles[i]["sentiment"] = lab["sentiment"]
+                s = lab.get("score")
+                articles[i]["sentiment_score"] = round(float(s), 2) if isinstance(s, (int, float)) else 0.0
+    except Exception as e:  # keep lexicon fallback labels
+        log.warning("llm sentiment failed, keeping lexicon labels: %s", e)
+
+
+_LABELS = {"positive", "negative", "neutral"}
+
+
 def get_news_multi(tickers: list[str]) -> dict[str, list[dict]]:
-    return {tk.upper(): get_news(tk) for tk in tickers}
+    by_ticker = {tk.upper(): get_news(tk) for tk in tickers}
+    all_articles = [a for arts in by_ticker.values() for a in arts]
+    _llm_sentiment(all_articles)  # one call for the whole query
+    return by_ticker
 
 
 if __name__ == "__main__":  # ponytail: lexicon self-check, no network

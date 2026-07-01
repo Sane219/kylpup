@@ -1,0 +1,2162 @@
+{
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/command-metadata.json": {
+    "mtime": 1782539731.2100372,
+    "ast_hash": "883d1962f87b23b4a0f6229e1aadd484",
+    "semantic_hash": "883d1962f87b23b4a0f6229e1aadd484"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/context-signals.mjs": {
+    "mtime": 1782539731.2100372,
+    "ast_hash": "ed7a5fe15dbaebb1513d5e6db09cc32c",
+    "semantic_hash": "ed7a5fe15dbaebb1513d5e6db09cc32c"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/context.mjs": {
+    "mtime": 1782539731.2100372,
+    "ast_hash": "a50540ddca0d7ab788f6ad8ce018f6b5",
+    "semantic_hash": "a50540ddca0d7ab788f6ad8ce018f6b5"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/critique-storage.mjs": {
+    "mtime": 1782539731.2100372,
+    "ast_hash": "942bbd0169358eecab57d82ad9c29f18",
+    "semantic_hash": "942bbd0169358eecab57d82ad9c29f18"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detect-csp.mjs": {
+    "mtime": 1782539731.2100372,
+    "ast_hash": "02c5a9a8ad69f87d23af72bf580fd3f4",
+    "semantic_hash": "02c5a9a8ad69f87d23af72bf580fd3f4"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detect.mjs": {
+    "mtime": 1782539731.2100372,
+    "ast_hash": "11dbeb9341477d06d1a24c3ad1f37ac9",
+    "semantic_hash": "11dbeb9341477d06d1a24c3ad1f37ac9"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/browser/injected/index.mjs": {
+    "mtime": 1782539731.2110372,
+    "ast_hash": "debb68b8803d28963da5e428b02a36b6",
+    "semantic_hash": "debb68b8803d28963da5e428b02a36b6"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/cli/main.mjs": {
+    "mtime": 1782539731.2110372,
+    "ast_hash": "a6adc91f040378f8206f036a7cac01ab",
+    "semantic_hash": "a6adc91f040378f8206f036a7cac01ab"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/design-system.mjs": {
+    "mtime": 1782539731.2110372,
+    "ast_hash": "e783b3750787dcaf0d4e0d8925a7c17a",
+    "semantic_hash": "e783b3750787dcaf0d4e0d8925a7c17a"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/detect-antipatterns-browser.js": {
+    "mtime": 1782539731.2110372,
+    "ast_hash": "c4c41525b05aac0d2bf6f34a24bb4c3b",
+    "semantic_hash": "c4c41525b05aac0d2bf6f34a24bb4c3b"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/detect-antipatterns.mjs": {
+    "mtime": 1782539731.212037,
+    "ast_hash": "1153e262200605dcc367717e5cb9958e",
+    "semantic_hash": "1153e262200605dcc367717e5cb9958e"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/engines/browser/detect-url.mjs": {
+    "mtime": 1782539731.212037,
+    "ast_hash": "79bad2870a43795ad3827691393c02d6",
+    "semantic_hash": "79bad2870a43795ad3827691393c02d6"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/engines/regex/detect-text.mjs": {
+    "mtime": 1782539731.212037,
+    "ast_hash": "2541e2c63b3a84944287a5dd71eb3482",
+    "semantic_hash": "2541e2c63b3a84944287a5dd71eb3482"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/engines/static-html/css-cascade.mjs": {
+    "mtime": 1782539731.212037,
+    "ast_hash": "657919a4b2292ed8c5f7f400c94e7709",
+    "semantic_hash": "657919a4b2292ed8c5f7f400c94e7709"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/engines/static-html/detect-html.mjs": {
+    "mtime": 1782539731.212037,
+    "ast_hash": "c124c697ee3d2aab2f476e54559b1b18",
+    "semantic_hash": "c124c697ee3d2aab2f476e54559b1b18"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/engines/visual/screenshot-contrast.mjs": {
+    "mtime": 1782539731.213037,
+    "ast_hash": "6312c6dbc048c4445f50e69f167a297d",
+    "semantic_hash": "6312c6dbc048c4445f50e69f167a297d"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/findings.mjs": {
+    "mtime": 1782539731.213037,
+    "ast_hash": "f7f3de6f00121150c4762809df00df9f",
+    "semantic_hash": "f7f3de6f00121150c4762809df00df9f"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/node/file-system.mjs": {
+    "mtime": 1782539731.213037,
+    "ast_hash": "21d55d864c78f1a6c20794551e3901d5",
+    "semantic_hash": "21d55d864c78f1a6c20794551e3901d5"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/profile/profiler.mjs": {
+    "mtime": 1782539731.213037,
+    "ast_hash": "88c5d2027852842be578edf349a0f9c8",
+    "semantic_hash": "88c5d2027852842be578edf349a0f9c8"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/registry/antipatterns.mjs": {
+    "mtime": 1782539731.213037,
+    "ast_hash": "1897a8a19ecef77f02775f538ff919b6",
+    "semantic_hash": "1897a8a19ecef77f02775f538ff919b6"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/rules/checks.mjs": {
+    "mtime": 1782539731.213037,
+    "ast_hash": "f9c05f30fb5bac95ba4edd7512770836",
+    "semantic_hash": "f9c05f30fb5bac95ba4edd7512770836"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/shared/color.mjs": {
+    "mtime": 1782539731.2140372,
+    "ast_hash": "2363d500ccf490f9ff285119b613276d",
+    "semantic_hash": "2363d500ccf490f9ff285119b613276d"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/shared/constants.mjs": {
+    "mtime": 1782539731.2140372,
+    "ast_hash": "5700477c8a86d876b90de9d6eb63f191",
+    "semantic_hash": "5700477c8a86d876b90de9d6eb63f191"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/shared/inline-ignores.mjs": {
+    "mtime": 1782539731.2140372,
+    "ast_hash": "6e3e7e639661186078ea93a849f57c64",
+    "semantic_hash": "6e3e7e639661186078ea93a849f57c64"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/detector/shared/page.mjs": {
+    "mtime": 1782539731.2140372,
+    "ast_hash": "ab3a243b690b4f70c4ef639cdf970d82",
+    "semantic_hash": "ab3a243b690b4f70c4ef639cdf970d82"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/hook-admin.mjs": {
+    "mtime": 1782539731.2140372,
+    "ast_hash": "07dc4be8ab6cf4ca82e7e6b8570e540e",
+    "semantic_hash": "07dc4be8ab6cf4ca82e7e6b8570e540e"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/hook-before-edit.mjs": {
+    "mtime": 1782539731.2140372,
+    "ast_hash": "2cfaf154ba846c585f4ab80234c2f711",
+    "semantic_hash": "2cfaf154ba846c585f4ab80234c2f711"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/hook-lib.mjs": {
+    "mtime": 1782539731.2140372,
+    "ast_hash": "d68d10de50a82a49b4968e312ae7a8ba",
+    "semantic_hash": "d68d10de50a82a49b4968e312ae7a8ba"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/hook.mjs": {
+    "mtime": 1782539731.2140372,
+    "ast_hash": "b17a38c988ec5694067ec8b042813315",
+    "semantic_hash": "b17a38c988ec5694067ec8b042813315"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/lib/design-parser.mjs": {
+    "mtime": 1782539731.215037,
+    "ast_hash": "d158b9b1742ff7bf726431595a4bbfb1",
+    "semantic_hash": "d158b9b1742ff7bf726431595a4bbfb1"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/lib/impeccable-config.mjs": {
+    "mtime": 1782539731.215037,
+    "ast_hash": "4d8cfd9e0e92963ed8814180ee258b2c",
+    "semantic_hash": "4d8cfd9e0e92963ed8814180ee258b2c"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/lib/impeccable-paths.mjs": {
+    "mtime": 1782539731.215037,
+    "ast_hash": "0322682dc887b01e013633b0436a4811",
+    "semantic_hash": "0322682dc887b01e013633b0436a4811"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/lib/is-generated.mjs": {
+    "mtime": 1782539731.2160335,
+    "ast_hash": "edd718b1a4737edbf9631ff7f6f512ef",
+    "semantic_hash": "edd718b1a4737edbf9631ff7f6f512ef"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/lib/target-args.mjs": {
+    "mtime": 1782539731.2160335,
+    "ast_hash": "442e04a03b6ba43330a859a537a956b2",
+    "semantic_hash": "442e04a03b6ba43330a859a537a956b2"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-accept.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "63a98882c6e9cee6155ec14f0541cf6b",
+    "semantic_hash": "63a98882c6e9cee6155ec14f0541cf6b"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-browser-dom.js": {
+    "mtime": 1782539731.2170372,
+    "ast_hash": "b96db5b10874366237a40305c5dc72a1",
+    "semantic_hash": "b96db5b10874366237a40305c5dc72a1"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-browser-session.js": {
+    "mtime": 1782539731.2170372,
+    "ast_hash": "5dec3dae6158050d69762fb79facaf48",
+    "semantic_hash": "5dec3dae6158050d69762fb79facaf48"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-browser.js": {
+    "mtime": 1782539731.2170372,
+    "ast_hash": "6b2234d749d9afec5dcf31dd930d1bd4",
+    "semantic_hash": "6b2234d749d9afec5dcf31dd930d1bd4"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-commit-manual-edits.mjs": {
+    "mtime": 1782539731.2180371,
+    "ast_hash": "866079c1dea82be936f92cf11adf01d3",
+    "semantic_hash": "866079c1dea82be936f92cf11adf01d3"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-complete.mjs": {
+    "mtime": 1782539731.2180371,
+    "ast_hash": "18ddd6db2567d7d385291b813d310518",
+    "semantic_hash": "18ddd6db2567d7d385291b813d310518"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-copy-edit-agent.mjs": {
+    "mtime": 1782539731.2180371,
+    "ast_hash": "1c4926b56d5442775dab0138bf71a790",
+    "semantic_hash": "1c4926b56d5442775dab0138bf71a790"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-discard-manual-edits.mjs": {
+    "mtime": 1782539731.2180371,
+    "ast_hash": "bbd49a16f77178fc8e778759653dd4c5",
+    "semantic_hash": "bbd49a16f77178fc8e778759653dd4c5"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-inject.mjs": {
+    "mtime": 1782539731.2180371,
+    "ast_hash": "953ad604895fa47278b7a98c0195b4b7",
+    "semantic_hash": "953ad604895fa47278b7a98c0195b4b7"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-insert.mjs": {
+    "mtime": 1782539731.2180371,
+    "ast_hash": "a0ce4a29836987cc67cad70e630d5dcf",
+    "semantic_hash": "a0ce4a29836987cc67cad70e630d5dcf"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-manual-edit-evidence.mjs": {
+    "mtime": 1782539731.2180371,
+    "ast_hash": "aafd35ccb714ec883362d7dde83f61d1",
+    "semantic_hash": "aafd35ccb714ec883362d7dde83f61d1"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-poll.mjs": {
+    "mtime": 1782539731.2180371,
+    "ast_hash": "33b5ef512bb2f50016a4c9b819b7ec5a",
+    "semantic_hash": "33b5ef512bb2f50016a4c9b819b7ec5a"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-resume.mjs": {
+    "mtime": 1782539731.219037,
+    "ast_hash": "0791b79bb824ffc6b52fcec25c6982a7",
+    "semantic_hash": "0791b79bb824ffc6b52fcec25c6982a7"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-server.mjs": {
+    "mtime": 1782539731.219037,
+    "ast_hash": "23c56ff420df13777f0c1ec46c88351e",
+    "semantic_hash": "23c56ff420df13777f0c1ec46c88351e"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-status.mjs": {
+    "mtime": 1782539731.219037,
+    "ast_hash": "039529830229f091246f26baabaaa0dd",
+    "semantic_hash": "039529830229f091246f26baabaaa0dd"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-target.mjs": {
+    "mtime": 1782539731.219037,
+    "ast_hash": "7a25beda7cdc4c5a6eb2a7f135ec50fd",
+    "semantic_hash": "7a25beda7cdc4c5a6eb2a7f135ec50fd"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live-wrap.mjs": {
+    "mtime": 1782539731.219037,
+    "ast_hash": "fe8eb439e106eeeabab75941c62e6867",
+    "semantic_hash": "fe8eb439e106eeeabab75941c62e6867"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live.mjs": {
+    "mtime": 1782539731.219037,
+    "ast_hash": "cd3b7e1e4a35a37fbc651b6bb1f3f12f",
+    "semantic_hash": "cd3b7e1e4a35a37fbc651b6bb1f3f12f"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/browser-script-parts.mjs": {
+    "mtime": 1782539731.2160335,
+    "ast_hash": "f04f047fda5e9b2a3b1e510983da153d",
+    "semantic_hash": "f04f047fda5e9b2a3b1e510983da153d"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/completion.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "77185bc6cced6322e6892af8e05839f0",
+    "semantic_hash": "77185bc6cced6322e6892af8e05839f0"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/event-validation.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "97a304ab4b04080bcdbaf3816d3ee968",
+    "semantic_hash": "97a304ab4b04080bcdbaf3816d3ee968"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/insert-ui.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "b6c5c82e14218c0c1b1e66f0851bff3f",
+    "semantic_hash": "b6c5c82e14218c0c1b1e66f0851bff3f"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/manual-apply.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "043d0a1a7a4a373178648502bbe7da81",
+    "semantic_hash": "043d0a1a7a4a373178648502bbe7da81"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/manual-edit-routes.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "5f801f9370461d1faa9ae4cde85a96be",
+    "semantic_hash": "5f801f9370461d1faa9ae4cde85a96be"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/manual-edits-buffer.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "a36834f2a77dd6a81ee324ef4f6f8baa",
+    "semantic_hash": "a36834f2a77dd6a81ee324ef4f6f8baa"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/session-store.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "1f464fe28989247246d53927a1698265",
+    "semantic_hash": "1f464fe28989247246d53927a1698265"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/svelte-component.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "b23495379a1527dbb9c7c3171041819e",
+    "semantic_hash": "b23495379a1527dbb9c7c3171041819e"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/sveltekit-adapter.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "66e07d2c07827af6099ce81a442bd66e",
+    "semantic_hash": "66e07d2c07827af6099ce81a442bd66e"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/ui-core.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "fd7d2bdbdab291957cffacfce95a19d1",
+    "semantic_hash": "fd7d2bdbdab291957cffacfce95a19d1"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/live/vocabulary.mjs": {
+    "mtime": 1782539731.216382,
+    "ast_hash": "e7e5650764fceb61f2197769c7f5864e",
+    "semantic_hash": "e7e5650764fceb61f2197769c7f5864e"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/modern-screenshot.umd.js": {
+    "mtime": 1782539731.219037,
+    "ast_hash": "4fe5f9e490ab4f107afc707d7eafc819",
+    "semantic_hash": "4fe5f9e490ab4f107afc707d7eafc819"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/palette.mjs": {
+    "mtime": 1782539731.219037,
+    "ast_hash": "adbc82e1e9021b4948901b21563277a2",
+    "semantic_hash": "adbc82e1e9021b4948901b21563277a2"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/scripts/pin.mjs": {
+    "mtime": 1782539731.2200372,
+    "ast_hash": "867ca7fdded9987e84a128a3b4fb6bab",
+    "semantic_hash": "867ca7fdded9987e84a128a3b4fb6bab"
+  },
+  "/media/Data/VS Code/kylpup/.claude/settings.local.json": {
+    "mtime": 1782539790.694236,
+    "ast_hash": "51599712ca74bf34c6f0c4ff8e7f8c3c",
+    "semantic_hash": "51599712ca74bf34c6f0c4ff8e7f8c3c"
+  },
+  "/media/Data/VS Code/kylpup/.codex/hooks.json": {
+    "mtime": 1782539731.2490373,
+    "ast_hash": "f9d6ee8ebcb86195520de746702b1a0d",
+    "semantic_hash": "f9d6ee8ebcb86195520de746702b1a0d"
+  },
+  "/media/Data/VS Code/kylpup/.github/hooks/impeccable.json": {
+    "mtime": 1782539731.2490373,
+    "ast_hash": "f6a14667d8817e238e37e7ee4d46c042",
+    "semantic_hash": "f6a14667d8817e238e37e7ee4d46c042"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/command-metadata.json": {
+    "mtime": 1782539731.2230372,
+    "ast_hash": "883d1962f87b23b4a0f6229e1aadd484",
+    "semantic_hash": "883d1962f87b23b4a0f6229e1aadd484"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/context-signals.mjs": {
+    "mtime": 1782539731.2230372,
+    "ast_hash": "ed7a5fe15dbaebb1513d5e6db09cc32c",
+    "semantic_hash": "ed7a5fe15dbaebb1513d5e6db09cc32c"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/context.mjs": {
+    "mtime": 1782539731.2230372,
+    "ast_hash": "a50540ddca0d7ab788f6ad8ce018f6b5",
+    "semantic_hash": "a50540ddca0d7ab788f6ad8ce018f6b5"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/critique-storage.mjs": {
+    "mtime": 1782539731.2240372,
+    "ast_hash": "942bbd0169358eecab57d82ad9c29f18",
+    "semantic_hash": "942bbd0169358eecab57d82ad9c29f18"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detect-csp.mjs": {
+    "mtime": 1782539731.2240372,
+    "ast_hash": "02c5a9a8ad69f87d23af72bf580fd3f4",
+    "semantic_hash": "02c5a9a8ad69f87d23af72bf580fd3f4"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detect.mjs": {
+    "mtime": 1782539731.2240372,
+    "ast_hash": "11dbeb9341477d06d1a24c3ad1f37ac9",
+    "semantic_hash": "11dbeb9341477d06d1a24c3ad1f37ac9"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/browser/injected/index.mjs": {
+    "mtime": 1782539731.2240372,
+    "ast_hash": "debb68b8803d28963da5e428b02a36b6",
+    "semantic_hash": "debb68b8803d28963da5e428b02a36b6"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/cli/main.mjs": {
+    "mtime": 1782539731.2240372,
+    "ast_hash": "a6adc91f040378f8206f036a7cac01ab",
+    "semantic_hash": "a6adc91f040378f8206f036a7cac01ab"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/design-system.mjs": {
+    "mtime": 1782539731.225037,
+    "ast_hash": "e783b3750787dcaf0d4e0d8925a7c17a",
+    "semantic_hash": "e783b3750787dcaf0d4e0d8925a7c17a"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/detect-antipatterns-browser.js": {
+    "mtime": 1782539731.225037,
+    "ast_hash": "c4c41525b05aac0d2bf6f34a24bb4c3b",
+    "semantic_hash": "c4c41525b05aac0d2bf6f34a24bb4c3b"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/detect-antipatterns.mjs": {
+    "mtime": 1782539731.225037,
+    "ast_hash": "1153e262200605dcc367717e5cb9958e",
+    "semantic_hash": "1153e262200605dcc367717e5cb9958e"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/engines/browser/detect-url.mjs": {
+    "mtime": 1782539731.225037,
+    "ast_hash": "79bad2870a43795ad3827691393c02d6",
+    "semantic_hash": "79bad2870a43795ad3827691393c02d6"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/engines/regex/detect-text.mjs": {
+    "mtime": 1782539731.2260373,
+    "ast_hash": "2541e2c63b3a84944287a5dd71eb3482",
+    "semantic_hash": "2541e2c63b3a84944287a5dd71eb3482"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/engines/static-html/css-cascade.mjs": {
+    "mtime": 1782539731.2260373,
+    "ast_hash": "657919a4b2292ed8c5f7f400c94e7709",
+    "semantic_hash": "657919a4b2292ed8c5f7f400c94e7709"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/engines/static-html/detect-html.mjs": {
+    "mtime": 1782539731.2260373,
+    "ast_hash": "c124c697ee3d2aab2f476e54559b1b18",
+    "semantic_hash": "c124c697ee3d2aab2f476e54559b1b18"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/engines/visual/screenshot-contrast.mjs": {
+    "mtime": 1782539731.2260373,
+    "ast_hash": "6312c6dbc048c4445f50e69f167a297d",
+    "semantic_hash": "6312c6dbc048c4445f50e69f167a297d"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/findings.mjs": {
+    "mtime": 1782539731.2260373,
+    "ast_hash": "f7f3de6f00121150c4762809df00df9f",
+    "semantic_hash": "f7f3de6f00121150c4762809df00df9f"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/node/file-system.mjs": {
+    "mtime": 1782539731.2270372,
+    "ast_hash": "21d55d864c78f1a6c20794551e3901d5",
+    "semantic_hash": "21d55d864c78f1a6c20794551e3901d5"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/profile/profiler.mjs": {
+    "mtime": 1782539731.2270372,
+    "ast_hash": "88c5d2027852842be578edf349a0f9c8",
+    "semantic_hash": "88c5d2027852842be578edf349a0f9c8"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/registry/antipatterns.mjs": {
+    "mtime": 1782539731.2270372,
+    "ast_hash": "1897a8a19ecef77f02775f538ff919b6",
+    "semantic_hash": "1897a8a19ecef77f02775f538ff919b6"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/rules/checks.mjs": {
+    "mtime": 1782539731.2270372,
+    "ast_hash": "f9c05f30fb5bac95ba4edd7512770836",
+    "semantic_hash": "f9c05f30fb5bac95ba4edd7512770836"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/shared/color.mjs": {
+    "mtime": 1782539731.2270372,
+    "ast_hash": "2363d500ccf490f9ff285119b613276d",
+    "semantic_hash": "2363d500ccf490f9ff285119b613276d"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/shared/constants.mjs": {
+    "mtime": 1782539731.228037,
+    "ast_hash": "5700477c8a86d876b90de9d6eb63f191",
+    "semantic_hash": "5700477c8a86d876b90de9d6eb63f191"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/shared/inline-ignores.mjs": {
+    "mtime": 1782539731.228037,
+    "ast_hash": "6e3e7e639661186078ea93a849f57c64",
+    "semantic_hash": "6e3e7e639661186078ea93a849f57c64"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/detector/shared/page.mjs": {
+    "mtime": 1782539731.228037,
+    "ast_hash": "ab3a243b690b4f70c4ef639cdf970d82",
+    "semantic_hash": "ab3a243b690b4f70c4ef639cdf970d82"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/hook-admin.mjs": {
+    "mtime": 1782539731.228037,
+    "ast_hash": "07dc4be8ab6cf4ca82e7e6b8570e540e",
+    "semantic_hash": "07dc4be8ab6cf4ca82e7e6b8570e540e"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/hook-before-edit.mjs": {
+    "mtime": 1782539731.228037,
+    "ast_hash": "2cfaf154ba846c585f4ab80234c2f711",
+    "semantic_hash": "2cfaf154ba846c585f4ab80234c2f711"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/hook-lib.mjs": {
+    "mtime": 1782539731.228037,
+    "ast_hash": "d68d10de50a82a49b4968e312ae7a8ba",
+    "semantic_hash": "d68d10de50a82a49b4968e312ae7a8ba"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/hook.mjs": {
+    "mtime": 1782539731.228037,
+    "ast_hash": "b17a38c988ec5694067ec8b042813315",
+    "semantic_hash": "b17a38c988ec5694067ec8b042813315"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/lib/design-parser.mjs": {
+    "mtime": 1782539731.228037,
+    "ast_hash": "d158b9b1742ff7bf726431595a4bbfb1",
+    "semantic_hash": "d158b9b1742ff7bf726431595a4bbfb1"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/lib/impeccable-config.mjs": {
+    "mtime": 1782539731.2290373,
+    "ast_hash": "4d8cfd9e0e92963ed8814180ee258b2c",
+    "semantic_hash": "4d8cfd9e0e92963ed8814180ee258b2c"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/lib/impeccable-paths.mjs": {
+    "mtime": 1782539731.2290373,
+    "ast_hash": "0322682dc887b01e013633b0436a4811",
+    "semantic_hash": "0322682dc887b01e013633b0436a4811"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/lib/is-generated.mjs": {
+    "mtime": 1782539731.2290373,
+    "ast_hash": "edd718b1a4737edbf9631ff7f6f512ef",
+    "semantic_hash": "edd718b1a4737edbf9631ff7f6f512ef"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/lib/target-args.mjs": {
+    "mtime": 1782539731.2290373,
+    "ast_hash": "442e04a03b6ba43330a859a537a956b2",
+    "semantic_hash": "442e04a03b6ba43330a859a537a956b2"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-accept.mjs": {
+    "mtime": 1782539731.2300372,
+    "ast_hash": "63a98882c6e9cee6155ec14f0541cf6b",
+    "semantic_hash": "63a98882c6e9cee6155ec14f0541cf6b"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-browser-dom.js": {
+    "mtime": 1782539731.2300372,
+    "ast_hash": "b96db5b10874366237a40305c5dc72a1",
+    "semantic_hash": "b96db5b10874366237a40305c5dc72a1"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-browser-session.js": {
+    "mtime": 1782539731.2310371,
+    "ast_hash": "5dec3dae6158050d69762fb79facaf48",
+    "semantic_hash": "5dec3dae6158050d69762fb79facaf48"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-browser.js": {
+    "mtime": 1782539731.2310371,
+    "ast_hash": "6b2234d749d9afec5dcf31dd930d1bd4",
+    "semantic_hash": "6b2234d749d9afec5dcf31dd930d1bd4"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-commit-manual-edits.mjs": {
+    "mtime": 1782539731.2320373,
+    "ast_hash": "866079c1dea82be936f92cf11adf01d3",
+    "semantic_hash": "866079c1dea82be936f92cf11adf01d3"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-complete.mjs": {
+    "mtime": 1782539731.2320373,
+    "ast_hash": "18ddd6db2567d7d385291b813d310518",
+    "semantic_hash": "18ddd6db2567d7d385291b813d310518"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-copy-edit-agent.mjs": {
+    "mtime": 1782539731.2320373,
+    "ast_hash": "1c4926b56d5442775dab0138bf71a790",
+    "semantic_hash": "1c4926b56d5442775dab0138bf71a790"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-discard-manual-edits.mjs": {
+    "mtime": 1782539731.2320373,
+    "ast_hash": "bbd49a16f77178fc8e778759653dd4c5",
+    "semantic_hash": "bbd49a16f77178fc8e778759653dd4c5"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-inject.mjs": {
+    "mtime": 1782539731.2320373,
+    "ast_hash": "953ad604895fa47278b7a98c0195b4b7",
+    "semantic_hash": "953ad604895fa47278b7a98c0195b4b7"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-insert.mjs": {
+    "mtime": 1782539731.2320373,
+    "ast_hash": "a0ce4a29836987cc67cad70e630d5dcf",
+    "semantic_hash": "a0ce4a29836987cc67cad70e630d5dcf"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-manual-edit-evidence.mjs": {
+    "mtime": 1782539731.2320373,
+    "ast_hash": "aafd35ccb714ec883362d7dde83f61d1",
+    "semantic_hash": "aafd35ccb714ec883362d7dde83f61d1"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-poll.mjs": {
+    "mtime": 1782539731.2320373,
+    "ast_hash": "33b5ef512bb2f50016a4c9b819b7ec5a",
+    "semantic_hash": "33b5ef512bb2f50016a4c9b819b7ec5a"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-resume.mjs": {
+    "mtime": 1782539731.2330372,
+    "ast_hash": "0791b79bb824ffc6b52fcec25c6982a7",
+    "semantic_hash": "0791b79bb824ffc6b52fcec25c6982a7"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-server.mjs": {
+    "mtime": 1782539731.2330372,
+    "ast_hash": "23c56ff420df13777f0c1ec46c88351e",
+    "semantic_hash": "23c56ff420df13777f0c1ec46c88351e"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-status.mjs": {
+    "mtime": 1782539731.2330372,
+    "ast_hash": "039529830229f091246f26baabaaa0dd",
+    "semantic_hash": "039529830229f091246f26baabaaa0dd"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-target.mjs": {
+    "mtime": 1782539731.2330372,
+    "ast_hash": "7a25beda7cdc4c5a6eb2a7f135ec50fd",
+    "semantic_hash": "7a25beda7cdc4c5a6eb2a7f135ec50fd"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live-wrap.mjs": {
+    "mtime": 1782539731.2330372,
+    "ast_hash": "fe8eb439e106eeeabab75941c62e6867",
+    "semantic_hash": "fe8eb439e106eeeabab75941c62e6867"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live.mjs": {
+    "mtime": 1782539731.2330372,
+    "ast_hash": "cd3b7e1e4a35a37fbc651b6bb1f3f12f",
+    "semantic_hash": "cd3b7e1e4a35a37fbc651b6bb1f3f12f"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/browser-script-parts.mjs": {
+    "mtime": 1782539731.2290373,
+    "ast_hash": "f04f047fda5e9b2a3b1e510983da153d",
+    "semantic_hash": "f04f047fda5e9b2a3b1e510983da153d"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/completion.mjs": {
+    "mtime": 1782539731.2290373,
+    "ast_hash": "77185bc6cced6322e6892af8e05839f0",
+    "semantic_hash": "77185bc6cced6322e6892af8e05839f0"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/event-validation.mjs": {
+    "mtime": 1782539731.2290373,
+    "ast_hash": "97a304ab4b04080bcdbaf3816d3ee968",
+    "semantic_hash": "97a304ab4b04080bcdbaf3816d3ee968"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/insert-ui.mjs": {
+    "mtime": 1782539731.2290373,
+    "ast_hash": "b6c5c82e14218c0c1b1e66f0851bff3f",
+    "semantic_hash": "b6c5c82e14218c0c1b1e66f0851bff3f"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/manual-apply.mjs": {
+    "mtime": 1782539731.2290373,
+    "ast_hash": "043d0a1a7a4a373178648502bbe7da81",
+    "semantic_hash": "043d0a1a7a4a373178648502bbe7da81"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/manual-edit-routes.mjs": {
+    "mtime": 1782539731.2300372,
+    "ast_hash": "5f801f9370461d1faa9ae4cde85a96be",
+    "semantic_hash": "5f801f9370461d1faa9ae4cde85a96be"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/manual-edits-buffer.mjs": {
+    "mtime": 1782539731.2300372,
+    "ast_hash": "a36834f2a77dd6a81ee324ef4f6f8baa",
+    "semantic_hash": "a36834f2a77dd6a81ee324ef4f6f8baa"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/session-store.mjs": {
+    "mtime": 1782539731.2300372,
+    "ast_hash": "1f464fe28989247246d53927a1698265",
+    "semantic_hash": "1f464fe28989247246d53927a1698265"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/svelte-component.mjs": {
+    "mtime": 1782539731.2300372,
+    "ast_hash": "b23495379a1527dbb9c7c3171041819e",
+    "semantic_hash": "b23495379a1527dbb9c7c3171041819e"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/sveltekit-adapter.mjs": {
+    "mtime": 1782539731.2300372,
+    "ast_hash": "66e07d2c07827af6099ce81a442bd66e",
+    "semantic_hash": "66e07d2c07827af6099ce81a442bd66e"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/ui-core.mjs": {
+    "mtime": 1782539731.2300372,
+    "ast_hash": "fd7d2bdbdab291957cffacfce95a19d1",
+    "semantic_hash": "fd7d2bdbdab291957cffacfce95a19d1"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/live/vocabulary.mjs": {
+    "mtime": 1782539731.2300372,
+    "ast_hash": "e7e5650764fceb61f2197769c7f5864e",
+    "semantic_hash": "e7e5650764fceb61f2197769c7f5864e"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/modern-screenshot.umd.js": {
+    "mtime": 1782539731.2330372,
+    "ast_hash": "4fe5f9e490ab4f107afc707d7eafc819",
+    "semantic_hash": "4fe5f9e490ab4f107afc707d7eafc819"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/palette.mjs": {
+    "mtime": 1782539731.2340372,
+    "ast_hash": "adbc82e1e9021b4948901b21563277a2",
+    "semantic_hash": "adbc82e1e9021b4948901b21563277a2"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/scripts/pin.mjs": {
+    "mtime": 1782539731.2340372,
+    "ast_hash": "867ca7fdded9987e84a128a3b4fb6bab",
+    "semantic_hash": "867ca7fdded9987e84a128a3b4fb6bab"
+  },
+  "/media/Data/VS Code/kylpup/.impeccable/config.local.json": {
+    "mtime": 1782539729.07903,
+    "ast_hash": "d9242cdb0e8a2f25b7645e2a4ceead1c",
+    "semantic_hash": "d9242cdb0e8a2f25b7645e2a4ceead1c"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/package.json": {
+    "mtime": 1782580678.4959176,
+    "ast_hash": "8fa62426495140189acc97c5ff0bc457",
+    "semantic_hash": "8fa62426495140189acc97c5ff0bc457"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/command-metadata.json": {
+    "mtime": 1782539731.238037,
+    "ast_hash": "883d1962f87b23b4a0f6229e1aadd484",
+    "semantic_hash": "883d1962f87b23b4a0f6229e1aadd484"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/context-signals.mjs": {
+    "mtime": 1782539731.238037,
+    "ast_hash": "ed7a5fe15dbaebb1513d5e6db09cc32c",
+    "semantic_hash": "ed7a5fe15dbaebb1513d5e6db09cc32c"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/context.mjs": {
+    "mtime": 1782539731.238037,
+    "ast_hash": "a50540ddca0d7ab788f6ad8ce018f6b5",
+    "semantic_hash": "a50540ddca0d7ab788f6ad8ce018f6b5"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/critique-storage.mjs": {
+    "mtime": 1782539731.238037,
+    "ast_hash": "942bbd0169358eecab57d82ad9c29f18",
+    "semantic_hash": "942bbd0169358eecab57d82ad9c29f18"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detect-csp.mjs": {
+    "mtime": 1782539731.2390373,
+    "ast_hash": "02c5a9a8ad69f87d23af72bf580fd3f4",
+    "semantic_hash": "02c5a9a8ad69f87d23af72bf580fd3f4"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detect.mjs": {
+    "mtime": 1782539731.2390373,
+    "ast_hash": "11dbeb9341477d06d1a24c3ad1f37ac9",
+    "semantic_hash": "11dbeb9341477d06d1a24c3ad1f37ac9"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/browser/injected/index.mjs": {
+    "mtime": 1782539731.2390373,
+    "ast_hash": "debb68b8803d28963da5e428b02a36b6",
+    "semantic_hash": "debb68b8803d28963da5e428b02a36b6"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/cli/main.mjs": {
+    "mtime": 1782539731.2390373,
+    "ast_hash": "a6adc91f040378f8206f036a7cac01ab",
+    "semantic_hash": "a6adc91f040378f8206f036a7cac01ab"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/design-system.mjs": {
+    "mtime": 1782539731.2390373,
+    "ast_hash": "e783b3750787dcaf0d4e0d8925a7c17a",
+    "semantic_hash": "e783b3750787dcaf0d4e0d8925a7c17a"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/detect-antipatterns-browser.js": {
+    "mtime": 1782539731.2400372,
+    "ast_hash": "c4c41525b05aac0d2bf6f34a24bb4c3b",
+    "semantic_hash": "c4c41525b05aac0d2bf6f34a24bb4c3b"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/detect-antipatterns.mjs": {
+    "mtime": 1782539731.2400372,
+    "ast_hash": "1153e262200605dcc367717e5cb9958e",
+    "semantic_hash": "1153e262200605dcc367717e5cb9958e"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/engines/browser/detect-url.mjs": {
+    "mtime": 1782539731.2400372,
+    "ast_hash": "79bad2870a43795ad3827691393c02d6",
+    "semantic_hash": "79bad2870a43795ad3827691393c02d6"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/engines/regex/detect-text.mjs": {
+    "mtime": 1782539731.2400372,
+    "ast_hash": "2541e2c63b3a84944287a5dd71eb3482",
+    "semantic_hash": "2541e2c63b3a84944287a5dd71eb3482"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/engines/static-html/css-cascade.mjs": {
+    "mtime": 1782539731.2410371,
+    "ast_hash": "657919a4b2292ed8c5f7f400c94e7709",
+    "semantic_hash": "657919a4b2292ed8c5f7f400c94e7709"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/engines/static-html/detect-html.mjs": {
+    "mtime": 1782539731.2410371,
+    "ast_hash": "c124c697ee3d2aab2f476e54559b1b18",
+    "semantic_hash": "c124c697ee3d2aab2f476e54559b1b18"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/engines/visual/screenshot-contrast.mjs": {
+    "mtime": 1782539731.2410371,
+    "ast_hash": "6312c6dbc048c4445f50e69f167a297d",
+    "semantic_hash": "6312c6dbc048c4445f50e69f167a297d"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/findings.mjs": {
+    "mtime": 1782539731.2410371,
+    "ast_hash": "f7f3de6f00121150c4762809df00df9f",
+    "semantic_hash": "f7f3de6f00121150c4762809df00df9f"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/node/file-system.mjs": {
+    "mtime": 1782539731.2410371,
+    "ast_hash": "21d55d864c78f1a6c20794551e3901d5",
+    "semantic_hash": "21d55d864c78f1a6c20794551e3901d5"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/profile/profiler.mjs": {
+    "mtime": 1782539731.2410371,
+    "ast_hash": "88c5d2027852842be578edf349a0f9c8",
+    "semantic_hash": "88c5d2027852842be578edf349a0f9c8"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/registry/antipatterns.mjs": {
+    "mtime": 1782539731.2420373,
+    "ast_hash": "1897a8a19ecef77f02775f538ff919b6",
+    "semantic_hash": "1897a8a19ecef77f02775f538ff919b6"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/rules/checks.mjs": {
+    "mtime": 1782539731.2420373,
+    "ast_hash": "f9c05f30fb5bac95ba4edd7512770836",
+    "semantic_hash": "f9c05f30fb5bac95ba4edd7512770836"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/shared/color.mjs": {
+    "mtime": 1782539731.2420373,
+    "ast_hash": "2363d500ccf490f9ff285119b613276d",
+    "semantic_hash": "2363d500ccf490f9ff285119b613276d"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/shared/constants.mjs": {
+    "mtime": 1782539731.2420373,
+    "ast_hash": "5700477c8a86d876b90de9d6eb63f191",
+    "semantic_hash": "5700477c8a86d876b90de9d6eb63f191"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/shared/inline-ignores.mjs": {
+    "mtime": 1782539731.2420373,
+    "ast_hash": "6e3e7e639661186078ea93a849f57c64",
+    "semantic_hash": "6e3e7e639661186078ea93a849f57c64"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/detector/shared/page.mjs": {
+    "mtime": 1782539731.2420373,
+    "ast_hash": "ab3a243b690b4f70c4ef639cdf970d82",
+    "semantic_hash": "ab3a243b690b4f70c4ef639cdf970d82"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/hook-admin.mjs": {
+    "mtime": 1782539731.2430372,
+    "ast_hash": "07dc4be8ab6cf4ca82e7e6b8570e540e",
+    "semantic_hash": "07dc4be8ab6cf4ca82e7e6b8570e540e"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/hook-before-edit.mjs": {
+    "mtime": 1782539731.2430372,
+    "ast_hash": "2cfaf154ba846c585f4ab80234c2f711",
+    "semantic_hash": "2cfaf154ba846c585f4ab80234c2f711"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/hook-lib.mjs": {
+    "mtime": 1782539731.2430372,
+    "ast_hash": "d68d10de50a82a49b4968e312ae7a8ba",
+    "semantic_hash": "d68d10de50a82a49b4968e312ae7a8ba"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/hook.mjs": {
+    "mtime": 1782539731.2430372,
+    "ast_hash": "b17a38c988ec5694067ec8b042813315",
+    "semantic_hash": "b17a38c988ec5694067ec8b042813315"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/lib/design-parser.mjs": {
+    "mtime": 1782539731.2430372,
+    "ast_hash": "d158b9b1742ff7bf726431595a4bbfb1",
+    "semantic_hash": "d158b9b1742ff7bf726431595a4bbfb1"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/lib/impeccable-config.mjs": {
+    "mtime": 1782539731.2430372,
+    "ast_hash": "4d8cfd9e0e92963ed8814180ee258b2c",
+    "semantic_hash": "4d8cfd9e0e92963ed8814180ee258b2c"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/lib/impeccable-paths.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "0322682dc887b01e013633b0436a4811",
+    "semantic_hash": "0322682dc887b01e013633b0436a4811"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/lib/is-generated.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "edd718b1a4737edbf9631ff7f6f512ef",
+    "semantic_hash": "edd718b1a4737edbf9631ff7f6f512ef"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/lib/target-args.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "442e04a03b6ba43330a859a537a956b2",
+    "semantic_hash": "442e04a03b6ba43330a859a537a956b2"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-accept.mjs": {
+    "mtime": 1782539731.2450373,
+    "ast_hash": "63a98882c6e9cee6155ec14f0541cf6b",
+    "semantic_hash": "63a98882c6e9cee6155ec14f0541cf6b"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-browser-dom.js": {
+    "mtime": 1782539731.2450373,
+    "ast_hash": "b96db5b10874366237a40305c5dc72a1",
+    "semantic_hash": "b96db5b10874366237a40305c5dc72a1"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-browser-session.js": {
+    "mtime": 1782539731.2450373,
+    "ast_hash": "5dec3dae6158050d69762fb79facaf48",
+    "semantic_hash": "5dec3dae6158050d69762fb79facaf48"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-browser.js": {
+    "mtime": 1782539731.2460372,
+    "ast_hash": "6b2234d749d9afec5dcf31dd930d1bd4",
+    "semantic_hash": "6b2234d749d9afec5dcf31dd930d1bd4"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-commit-manual-edits.mjs": {
+    "mtime": 1782539731.2460372,
+    "ast_hash": "866079c1dea82be936f92cf11adf01d3",
+    "semantic_hash": "866079c1dea82be936f92cf11adf01d3"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-complete.mjs": {
+    "mtime": 1782539731.2460372,
+    "ast_hash": "18ddd6db2567d7d385291b813d310518",
+    "semantic_hash": "18ddd6db2567d7d385291b813d310518"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-copy-edit-agent.mjs": {
+    "mtime": 1782539731.2460372,
+    "ast_hash": "1c4926b56d5442775dab0138bf71a790",
+    "semantic_hash": "1c4926b56d5442775dab0138bf71a790"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-discard-manual-edits.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "bbd49a16f77178fc8e778759653dd4c5",
+    "semantic_hash": "bbd49a16f77178fc8e778759653dd4c5"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-inject.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "953ad604895fa47278b7a98c0195b4b7",
+    "semantic_hash": "953ad604895fa47278b7a98c0195b4b7"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-insert.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "a0ce4a29836987cc67cad70e630d5dcf",
+    "semantic_hash": "a0ce4a29836987cc67cad70e630d5dcf"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-manual-edit-evidence.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "aafd35ccb714ec883362d7dde83f61d1",
+    "semantic_hash": "aafd35ccb714ec883362d7dde83f61d1"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-poll.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "33b5ef512bb2f50016a4c9b819b7ec5a",
+    "semantic_hash": "33b5ef512bb2f50016a4c9b819b7ec5a"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-resume.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "0791b79bb824ffc6b52fcec25c6982a7",
+    "semantic_hash": "0791b79bb824ffc6b52fcec25c6982a7"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-server.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "23c56ff420df13777f0c1ec46c88351e",
+    "semantic_hash": "23c56ff420df13777f0c1ec46c88351e"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-status.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "039529830229f091246f26baabaaa0dd",
+    "semantic_hash": "039529830229f091246f26baabaaa0dd"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-target.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "7a25beda7cdc4c5a6eb2a7f135ec50fd",
+    "semantic_hash": "7a25beda7cdc4c5a6eb2a7f135ec50fd"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live-wrap.mjs": {
+    "mtime": 1782539731.2470372,
+    "ast_hash": "fe8eb439e106eeeabab75941c62e6867",
+    "semantic_hash": "fe8eb439e106eeeabab75941c62e6867"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live.mjs": {
+    "mtime": 1782539731.2480373,
+    "ast_hash": "cd3b7e1e4a35a37fbc651b6bb1f3f12f",
+    "semantic_hash": "cd3b7e1e4a35a37fbc651b6bb1f3f12f"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/browser-script-parts.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "f04f047fda5e9b2a3b1e510983da153d",
+    "semantic_hash": "f04f047fda5e9b2a3b1e510983da153d"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/completion.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "77185bc6cced6322e6892af8e05839f0",
+    "semantic_hash": "77185bc6cced6322e6892af8e05839f0"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/event-validation.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "97a304ab4b04080bcdbaf3816d3ee968",
+    "semantic_hash": "97a304ab4b04080bcdbaf3816d3ee968"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/insert-ui.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "b6c5c82e14218c0c1b1e66f0851bff3f",
+    "semantic_hash": "b6c5c82e14218c0c1b1e66f0851bff3f"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/manual-apply.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "043d0a1a7a4a373178648502bbe7da81",
+    "semantic_hash": "043d0a1a7a4a373178648502bbe7da81"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/manual-edit-routes.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "5f801f9370461d1faa9ae4cde85a96be",
+    "semantic_hash": "5f801f9370461d1faa9ae4cde85a96be"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/manual-edits-buffer.mjs": {
+    "mtime": 1782539731.2440372,
+    "ast_hash": "a36834f2a77dd6a81ee324ef4f6f8baa",
+    "semantic_hash": "a36834f2a77dd6a81ee324ef4f6f8baa"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/session-store.mjs": {
+    "mtime": 1782539731.2450373,
+    "ast_hash": "1f464fe28989247246d53927a1698265",
+    "semantic_hash": "1f464fe28989247246d53927a1698265"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/svelte-component.mjs": {
+    "mtime": 1782539731.2450373,
+    "ast_hash": "b23495379a1527dbb9c7c3171041819e",
+    "semantic_hash": "b23495379a1527dbb9c7c3171041819e"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/sveltekit-adapter.mjs": {
+    "mtime": 1782539731.2450373,
+    "ast_hash": "66e07d2c07827af6099ce81a442bd66e",
+    "semantic_hash": "66e07d2c07827af6099ce81a442bd66e"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/ui-core.mjs": {
+    "mtime": 1782539731.2450373,
+    "ast_hash": "fd7d2bdbdab291957cffacfce95a19d1",
+    "semantic_hash": "fd7d2bdbdab291957cffacfce95a19d1"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/live/vocabulary.mjs": {
+    "mtime": 1782539731.2450373,
+    "ast_hash": "e7e5650764fceb61f2197769c7f5864e",
+    "semantic_hash": "e7e5650764fceb61f2197769c7f5864e"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/modern-screenshot.umd.js": {
+    "mtime": 1782539731.2480373,
+    "ast_hash": "4fe5f9e490ab4f107afc707d7eafc819",
+    "semantic_hash": "4fe5f9e490ab4f107afc707d7eafc819"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/palette.mjs": {
+    "mtime": 1782539731.2480373,
+    "ast_hash": "adbc82e1e9021b4948901b21563277a2",
+    "semantic_hash": "adbc82e1e9021b4948901b21563277a2"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/scripts/pin.mjs": {
+    "mtime": 1782539731.2480373,
+    "ast_hash": "867ca7fdded9987e84a128a3b4fb6bab",
+    "semantic_hash": "867ca7fdded9987e84a128a3b4fb6bab"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/__init__.py": {
+    "mtime": 1782486569.677467,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/core/__init__.py": {
+    "mtime": 1782486569.677467,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/core/auth.py": {
+    "mtime": 1782537866.2665057,
+    "ast_hash": "8b5977134904e86e315dba835085622e",
+    "semantic_hash": "8b5977134904e86e315dba835085622e"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/core/cache.py": {
+    "mtime": 1782487308.0674326,
+    "ast_hash": "4b165b0c05c7e0f3a10c940bb6044f34",
+    "semantic_hash": "4b165b0c05c7e0f3a10c940bb6044f34"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/core/config.py": {
+    "mtime": 1782488188.3608701,
+    "ast_hash": "e5fd09cc73f22699d7114f904875a3cf",
+    "semantic_hash": "e5fd09cc73f22699d7114f904875a3cf"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/core/responses.py": {
+    "mtime": 1782487181.0021126,
+    "ast_hash": "b02f226d262df4ce8ca19bad680d1791",
+    "semantic_hash": "b02f226d262df4ce8ca19bad680d1791"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/main.py": {
+    "mtime": 1782543961.57625,
+    "ast_hash": "87d87357296c15d9f13e6f43ca719d98",
+    "semantic_hash": "87d87357296c15d9f13e6f43ca719d98"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/models/__init__.py": {
+    "mtime": 1782486569.677467,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/models/schemas.py": {
+    "mtime": 1782535348.8904562,
+    "ast_hash": "13a4d5bec57da618a685c5b33002fafb",
+    "semantic_hash": "13a4d5bec57da618a685c5b33002fafb"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/routes/__init__.py": {
+    "mtime": 1782486569.677467,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/routes/auth.py": {
+    "mtime": 1782545466.9481459,
+    "ast_hash": "6e855d0606677566b799f6758e6eb480",
+    "semantic_hash": "6e855d0606677566b799f6758e6eb480"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/routes/market.py": {
+    "mtime": 1782543951.03521,
+    "ast_hash": "5203c03e6a33fa4e8bc5153795a27ce9",
+    "semantic_hash": "5203c03e6a33fa4e8bc5153795a27ce9"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/routes/orgs.py": {
+    "mtime": 1782487207.5075948,
+    "ast_hash": "b10a5ac3d5641ff5e8de913a0a6cc0c0",
+    "semantic_hash": "b10a5ac3d5641ff5e8de913a0a6cc0c0"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/routes/research.py": {
+    "mtime": 1782541228.7319872,
+    "ast_hash": "4e390ad8691d33ac1a965b71b8519e21",
+    "semantic_hash": "4e390ad8691d33ac1a965b71b8519e21"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/routes/watchlist.py": {
+    "mtime": 1782487573.0293295,
+    "ast_hash": "0ea9649396e7bb71b2066c5d8de78c56",
+    "semantic_hash": "0ea9649396e7bb71b2066c5d8de78c56"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/services/__init__.py": {
+    "mtime": 1782486569.677467,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/services/agent.py": {
+    "mtime": 1782545641.6769211,
+    "ast_hash": "f67177572afa8d1bb3b47849befb6649",
+    "semantic_hash": "f67177572afa8d1bb3b47849befb6649"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/services/db.py": {
+    "mtime": 1782545460.5141172,
+    "ast_hash": "77694dacf9bea1191a7a10ba33913f4b",
+    "semantic_hash": "77694dacf9bea1191a7a10ba33913f4b"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/services/embeddings.py": {
+    "mtime": 1782534374.9433422,
+    "ast_hash": "ea6dd636fe431316f2722431bb76d77d",
+    "semantic_hash": "ea6dd636fe431316f2722431bb76d77d"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/services/llm.py": {
+    "mtime": 1782545566.9955902,
+    "ast_hash": "577aa338a51f5c4e37674f3dbb31d6ed",
+    "semantic_hash": "577aa338a51f5c4e37674f3dbb31d6ed"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/tools/__init__.py": {
+    "mtime": 1782486569.677467,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/tools/filings.py": {
+    "mtime": 1782487342.830071,
+    "ast_hash": "a9713879bfb99069a978ea1c06da7f49",
+    "semantic_hash": "a9713879bfb99069a978ea1c06da7f49"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/tools/market.py": {
+    "mtime": 1782582555.2104545,
+    "ast_hash": "5dca2ca66acae7af2307fba62d2195f0",
+    "semantic_hash": "5dca2ca66acae7af2307fba62d2195f0"
+  },
+  "/media/Data/VS Code/kylpup/backend/app/tools/news.py": {
+    "mtime": 1782488100.6162162,
+    "ast_hash": "fd8279a2925c2ebef6eeb861e76b0ee4",
+    "semantic_hash": "fd8279a2925c2ebef6eeb861e76b0ee4"
+  },
+  "/media/Data/VS Code/kylpup/backend/migrations/001_init.sql": {
+    "mtime": 1782531936.4001777,
+    "ast_hash": "4fac6bae3bbebd44d0f50b8e60b3c7ac",
+    "semantic_hash": "4fac6bae3bbebd44d0f50b8e60b3c7ac"
+  },
+  "/media/Data/VS Code/kylpup/backend/migrations/002_filings.sql": {
+    "mtime": 1782487299.7642803,
+    "ast_hash": "6c9f8cb1c78774b38c1f9d70c4fa25ee",
+    "semantic_hash": "6c9f8cb1c78774b38c1f9d70c4fa25ee"
+  },
+  "/media/Data/VS Code/kylpup/backend/scripts/ingest.py": {
+    "mtime": 1782487417.1754408,
+    "ast_hash": "0044f61316ad4ad20157bcb933634abe",
+    "semantic_hash": "0044f61316ad4ad20157bcb933634abe"
+  },
+  "/media/Data/VS Code/kylpup/backend/scripts/seed.py": {
+    "mtime": 1782540739.4134712,
+    "ast_hash": "a9e4fabf91e90fecd2792a771fd7d076",
+    "semantic_hash": "a9e4fabf91e90fecd2792a771fd7d076"
+  },
+  "/media/Data/VS Code/kylpup/backend/tests/conftest.py": {
+    "mtime": 1782488111.120414,
+    "ast_hash": "3e30dd12e254ad265b89203a5cde68b2",
+    "semantic_hash": "3e30dd12e254ad265b89203a5cde68b2"
+  },
+  "/media/Data/VS Code/kylpup/backend/tests/test_agent.py": {
+    "mtime": 1782488132.8058226,
+    "ast_hash": "fd63066f69fba427fe84d1eadc1d5561",
+    "semantic_hash": "fd63066f69fba427fe84d1eadc1d5561"
+  },
+  "/media/Data/VS Code/kylpup/backend/tests/test_chunker.py": {
+    "mtime": 1782488121.6996133,
+    "ast_hash": "6d63554033e4671d904dde29232e5410",
+    "semantic_hash": "6d63554033e4671d904dde29232e5410"
+  },
+  "/media/Data/VS Code/kylpup/backend/tests/test_sentiment.py": {
+    "mtime": 1782488116.20551,
+    "ast_hash": "7464cda0d8239c0ba461e23569add31b",
+    "semantic_hash": "7464cda0d8239c0ba461e23569add31b"
+  },
+  "/media/Data/VS Code/kylpup/backend/tests/test_tenant_scoping.py": {
+    "mtime": 1782488140.3069642,
+    "ast_hash": "0c7815318c8cdde5a64593db04422aeb",
+    "semantic_hash": "0c7815318c8cdde5a64593db04422aeb"
+  },
+  "/media/Data/VS Code/kylpup/frontend/package.json": {
+    "mtime": 1782490813.9695354,
+    "ast_hash": "18e56263c96418adbb3614af7212e015",
+    "semantic_hash": "18e56263c96418adbb3614af7212e015"
+  },
+  "/media/Data/VS Code/kylpup/frontend/postcss.config.js": {
+    "mtime": 1782486592.47684,
+    "ast_hash": "222a79a9879c7cd4d9980533b7639465",
+    "semantic_hash": "222a79a9879c7cd4d9980533b7639465"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/App.tsx": {
+    "mtime": 1782542438.6399949,
+    "ast_hash": "c7bae181cde20bf20aeacda294563644",
+    "semantic_hash": "c7bae181cde20bf20aeacda294563644"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/components/CommandPalette.tsx": {
+    "mtime": 1782542494.1617715,
+    "ast_hash": "989b326f1b4768af9102272048fc1a0a",
+    "semantic_hash": "989b326f1b4768af9102272048fc1a0a"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/components/Layout.tsx": {
+    "mtime": 1782544074.2886863,
+    "ast_hash": "366ee9330e7605245bd567416847e168",
+    "semantic_hash": "366ee9330e7605245bd567416847e168"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/components/Logo.tsx": {
+    "mtime": 1782540490.8044405,
+    "ast_hash": "6aea4db652f6e1afef0fe0a5e9a5c4f3",
+    "semantic_hash": "6aea4db652f6e1afef0fe0a5e9a5c4f3"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/components/ResearchAgentPlan.tsx": {
+    "mtime": 1782545743.15637,
+    "ast_hash": "5e89d4829e8d619c70e88afcc8f1c883",
+    "semantic_hash": "5e89d4829e8d619c70e88afcc8f1c883"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/components/ResearchResult.test.tsx": {
+    "mtime": 1782490887.9942179,
+    "ast_hash": "dac20af5e7513650d933a4fef6d87610",
+    "semantic_hash": "dac20af5e7513650d933a4fef6d87610"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/components/ResearchResult.tsx": {
+    "mtime": 1782545725.7102928,
+    "ast_hash": "7d7b7de70542be80def317a50a1c97ff",
+    "semantic_hash": "7d7b7de70542be80def317a50a1c97ff"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/components/TickerTape.tsx": {
+    "mtime": 1782541478.6009028,
+    "ast_hash": "5a9a0ee83392957763543d1360278631",
+    "semantic_hash": "5a9a0ee83392957763543d1360278631"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/components/market.tsx": {
+    "mtime": 1782542877.7472908,
+    "ast_hash": "3371c177b27aab4f88bc14b072b3a499",
+    "semantic_hash": "3371c177b27aab4f88bc14b072b3a499"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/components/ui.tsx": {
+    "mtime": 1782542326.351614,
+    "ast_hash": "68ba3c95fd2d0cac7dc93b129e9f0a36",
+    "semantic_hash": "68ba3c95fd2d0cac7dc93b129e9f0a36"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/lib/api.ts": {
+    "mtime": 1782541261.3902478,
+    "ast_hash": "13ae774e7b8501ff6f3f7c38cb001cff",
+    "semantic_hash": "13ae774e7b8501ff6f3f7c38cb001cff"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/lib/auth.tsx": {
+    "mtime": 1782538093.0234463,
+    "ast_hash": "cfe744b0ff88d3f382639b3c578051d9",
+    "semantic_hash": "cfe744b0ff88d3f382639b3c578051d9"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/lib/market.ts": {
+    "mtime": 1782544358.1500158,
+    "ast_hash": "c9f7ee139566cf015352434185485ccf",
+    "semantic_hash": "c9f7ee139566cf015352434185485ccf"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/lib/theme.test.tsx": {
+    "mtime": 1782490861.8363237,
+    "ast_hash": "ea2cc884e20c39c9862389d73b42d35b",
+    "semantic_hash": "ea2cc884e20c39c9862389d73b42d35b"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/lib/theme.tsx": {
+    "mtime": 1782490338.2294497,
+    "ast_hash": "0b5b6bd3415598b36ec66497d26b0941",
+    "semantic_hash": "0b5b6bd3415598b36ec66497d26b0941"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/main.tsx": {
+    "mtime": 1782486606.1800654,
+    "ast_hash": "a3310fe9f067b44e15c496f3dac8702b",
+    "semantic_hash": "a3310fe9f067b44e15c496f3dac8702b"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/Dashboard.tsx": {
+    "mtime": 1782543377.122241,
+    "ast_hash": "af0105cc3ea8545c9485316fdc69bed1",
+    "semantic_hash": "af0105cc3ea8545c9485316fdc69bed1"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/Login.tsx": {
+    "mtime": 1782543173.3347206,
+    "ast_hash": "17ec5960698a5ae6c89d3ddf559e89a8",
+    "semantic_hash": "17ec5960698a5ae6c89d3ddf559e89a8"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/Markets.tsx": {
+    "mtime": 1782544057.083619,
+    "ast_hash": "f5b38d6dc171ae55a9252e8cf29628b7",
+    "semantic_hash": "f5b38d6dc171ae55a9252e8cf29628b7"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/Members.tsx": {
+    "mtime": 1782543139.3836486,
+    "ast_hash": "485b594f1a909e10323117dae1ceb310",
+    "semantic_hash": "485b594f1a909e10323117dae1ceb310"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/ReportDetail.tsx": {
+    "mtime": 1782490644.845496,
+    "ast_hash": "d09b3091372a6ca3c910b6a496c2e42d",
+    "semantic_hash": "d09b3091372a6ca3c910b6a496c2e42d"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/Reports.tsx": {
+    "mtime": 1782543129.1406279,
+    "ast_hash": "410a88f7d0544dfa2bde2f438c769af1",
+    "semantic_hash": "410a88f7d0544dfa2bde2f438c769af1"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/Research.tsx": {
+    "mtime": 1782545686.420119,
+    "ast_hash": "baa8a7cd887a5189642f824fcdae374e",
+    "semantic_hash": "baa8a7cd887a5189642f824fcdae374e"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/Settings.tsx": {
+    "mtime": 1782543130.0876298,
+    "ast_hash": "6cb323ba262e47b4e030e17e215e7867",
+    "semantic_hash": "6cb323ba262e47b4e030e17e215e7867"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/StockDetail.tsx": {
+    "mtime": 1782544072.7776804,
+    "ast_hash": "a26ad492b5c309ccbc3bf49dbb937514",
+    "semantic_hash": "a26ad492b5c309ccbc3bf49dbb937514"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/Styleguide.tsx": {
+    "mtime": 1782490721.7960138,
+    "ast_hash": "b08d98e5bc1d0bd88ca798635042c7f0",
+    "semantic_hash": "b08d98e5bc1d0bd88ca798635042c7f0"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/pages/Watchlist.tsx": {
+    "mtime": 1782543127.9046254,
+    "ast_hash": "3f8fb345510613d577a90559df8b820c",
+    "semantic_hash": "3f8fb345510613d577a90559df8b820c"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/test/setup.ts": {
+    "mtime": 1782490906.151347,
+    "ast_hash": "9826eaadd354c66861c842d4912c1fa1",
+    "semantic_hash": "9826eaadd354c66861c842d4912c1fa1"
+  },
+  "/media/Data/VS Code/kylpup/frontend/src/vite-env.d.ts": {
+    "mtime": 1782487832.9471846,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": "0352474ba2918efe13895edbc3780d94"
+  },
+  "/media/Data/VS Code/kylpup/frontend/tailwind.config.js": {
+    "mtime": 1782542268.0110385,
+    "ast_hash": "3429a842fbb8a0af97c6a71bf31039f2",
+    "semantic_hash": "3429a842fbb8a0af97c6a71bf31039f2"
+  },
+  "/media/Data/VS Code/kylpup/frontend/tsconfig.json": {
+    "mtime": 1782490847.0503867,
+    "ast_hash": "5c06f0fd86da6055da57ae00a24a51ff",
+    "semantic_hash": "5c06f0fd86da6055da57ae00a24a51ff"
+  },
+  "/media/Data/VS Code/kylpup/frontend/vercel.json": {
+    "mtime": 1782487953.1114402,
+    "ast_hash": "a79ee3378f5950e65c507c612f695431",
+    "semantic_hash": "a79ee3378f5950e65c507c612f695431"
+  },
+  "/media/Data/VS Code/kylpup/frontend/vite.config.ts": {
+    "mtime": 1782490805.0305774,
+    "ast_hash": "01ea8a85a28ae43d5d16c130faaf3122",
+    "semantic_hash": "01ea8a85a28ae43d5d16c130faaf3122"
+  },
+  "/media/Data/VS Code/kylpup/skills-lock.json": {
+    "mtime": 1782538654.3869004,
+    "ast_hash": "e7ad5d25a50685fda47ce8564af09a8d",
+    "semantic_hash": "e7ad5d25a50685fda47ce8564af09a8d"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/SKILL.md": {
+    "mtime": 1782539731.206037,
+    "ast_hash": "fb09a069370f54cb8514c0801da81239",
+    "semantic_hash": "fb09a069370f54cb8514c0801da81239"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/agents/openai.yaml": {
+    "mtime": 1782539731.2072828,
+    "ast_hash": "f6a36117ebc5ff8f67efb518ad1fe775",
+    "semantic_hash": "f6a36117ebc5ff8f67efb518ad1fe775"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/adapt.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "d349a7700926a5d51c1f7de8d66965ef",
+    "semantic_hash": "d349a7700926a5d51c1f7de8d66965ef"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/animate.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "a81ce3c8c233b189a76b7b7e734308bc",
+    "semantic_hash": "a81ce3c8c233b189a76b7b7e734308bc"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/audit.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "6fcb6455f2051f6e40c61d3553295c62",
+    "semantic_hash": "6fcb6455f2051f6e40c61d3553295c62"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/bolder.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "68705d6f0c6a82691163fa9870c626d0",
+    "semantic_hash": "68705d6f0c6a82691163fa9870c626d0"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/brand.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "f70d1cd822ae916a55a2c26e775885aa",
+    "semantic_hash": "f70d1cd822ae916a55a2c26e775885aa"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/clarify.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "25946f47983871d36205f2e50b6a4519",
+    "semantic_hash": "25946f47983871d36205f2e50b6a4519"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/codex.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "4cf0b41300869b9b5e80bad1804ccdf3",
+    "semantic_hash": "4cf0b41300869b9b5e80bad1804ccdf3"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/colorize.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "bcaa5f7d07ee6a0548f6b1bc74e33e96",
+    "semantic_hash": "bcaa5f7d07ee6a0548f6b1bc74e33e96"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/craft.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "d49d10ec508c66cb95795231822c3dfb",
+    "semantic_hash": "d49d10ec508c66cb95795231822c3dfb"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/critique.md": {
+    "mtime": 1782539731.2075787,
+    "ast_hash": "8383aae6307ceac0912014c42f6e1af3",
+    "semantic_hash": "8383aae6307ceac0912014c42f6e1af3"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/delight.md": {
+    "mtime": 1782539731.2080371,
+    "ast_hash": "7b79555d08e21cd6acb5300eea797309",
+    "semantic_hash": "7b79555d08e21cd6acb5300eea797309"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/distill.md": {
+    "mtime": 1782539731.2080371,
+    "ast_hash": "03f5a189dfee0d929eed41e2428a3d16",
+    "semantic_hash": "03f5a189dfee0d929eed41e2428a3d16"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/document.md": {
+    "mtime": 1782539731.2080371,
+    "ast_hash": "7823c7d9f0fee4669e839f5845ed3cb3",
+    "semantic_hash": "7823c7d9f0fee4669e839f5845ed3cb3"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/extract.md": {
+    "mtime": 1782539731.2080371,
+    "ast_hash": "6f3be96d7d72a8f99d3d7a8219710cc7",
+    "semantic_hash": "6f3be96d7d72a8f99d3d7a8219710cc7"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/harden.md": {
+    "mtime": 1782539731.2080371,
+    "ast_hash": "d547667e282ba223077e496ef9df4c18",
+    "semantic_hash": "d547667e282ba223077e496ef9df4c18"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/hooks.md": {
+    "mtime": 1782539731.2080371,
+    "ast_hash": "f45244d1bde9f1a3b7ad823dda75865a",
+    "semantic_hash": "f45244d1bde9f1a3b7ad823dda75865a"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/init.md": {
+    "mtime": 1782539731.2080371,
+    "ast_hash": "fed2bf05470b81836bdc6585323e3064",
+    "semantic_hash": "fed2bf05470b81836bdc6585323e3064"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/interaction-design.md": {
+    "mtime": 1782539731.2080371,
+    "ast_hash": "1dd83bb8a96d7e250914064aa7389f8b",
+    "semantic_hash": "1dd83bb8a96d7e250914064aa7389f8b"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/layout.md": {
+    "mtime": 1782539731.209037,
+    "ast_hash": "d0e7cb7de94bac343cbe982cd81b12d2",
+    "semantic_hash": "d0e7cb7de94bac343cbe982cd81b12d2"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/live.md": {
+    "mtime": 1782539731.209037,
+    "ast_hash": "9f51cbfd5e050a2c41d3fe74a10a5467",
+    "semantic_hash": "9f51cbfd5e050a2c41d3fe74a10a5467"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/onboard.md": {
+    "mtime": 1782539731.209037,
+    "ast_hash": "e1439e7cb4d19ea29a8990f008aa60f2",
+    "semantic_hash": "e1439e7cb4d19ea29a8990f008aa60f2"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/optimize.md": {
+    "mtime": 1782539731.209037,
+    "ast_hash": "7355a3b5927b2b9b507def36f4b89b53",
+    "semantic_hash": "7355a3b5927b2b9b507def36f4b89b53"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/overdrive.md": {
+    "mtime": 1782539731.209037,
+    "ast_hash": "ff1a1fe7400aa845f65fca05ffc028d5",
+    "semantic_hash": "ff1a1fe7400aa845f65fca05ffc028d5"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/polish.md": {
+    "mtime": 1782539731.209037,
+    "ast_hash": "b70a3e30a38f00e6730ef1da472a0e84",
+    "semantic_hash": "b70a3e30a38f00e6730ef1da472a0e84"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/product.md": {
+    "mtime": 1782539731.209037,
+    "ast_hash": "6408a63ddbfe7003c732650381506860",
+    "semantic_hash": "6408a63ddbfe7003c732650381506860"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/quieter.md": {
+    "mtime": 1782539731.209037,
+    "ast_hash": "2eda6743707424e946e4e88874500986",
+    "semantic_hash": "2eda6743707424e946e4e88874500986"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/shape.md": {
+    "mtime": 1782539731.209037,
+    "ast_hash": "8cbc6f4bc6e66d60e009f8fb687f7c82",
+    "semantic_hash": "8cbc6f4bc6e66d60e009f8fb687f7c82"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/impeccable/reference/typeset.md": {
+    "mtime": 1782539731.2100372,
+    "ast_hash": "aa7076c91c2d1095ac405a80f30cc470",
+    "semantic_hash": "aa7076c91c2d1095ac405a80f30cc470"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/CHANGELOG.md": {
+    "mtime": 1782538654.3145158,
+    "ast_hash": "c2431bd02e1717ed5f6a728643953695",
+    "semantic_hash": "c2431bd02e1717ed5f6a728643953695"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/SKILL.md": {
+    "mtime": 1782538654.3145158,
+    "ast_hash": "0e31e4a19cccde79afd7fee73982a158",
+    "semantic_hash": "0e31e4a19cccde79afd7fee73982a158"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/_contributing.md": {
+    "mtime": 1782538654.317143,
+    "ast_hash": "19edd365b47667a9b81108cacfd75775",
+    "semantic_hash": "19edd365b47667a9b81108cacfd75775"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/_sections.md": {
+    "mtime": 1782538654.317143,
+    "ast_hash": "7cc4829a3718c745dfdbec554c30485f",
+    "semantic_hash": "7cc4829a3718c745dfdbec554c30485f"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/_template.md": {
+    "mtime": 1782538654.3173585,
+    "ast_hash": "384ee769a417d3001e81d81b139acbf6",
+    "semantic_hash": "384ee769a417d3001e81d81b139acbf6"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/advanced-full-text-search.md": {
+    "mtime": 1782538654.3171966,
+    "ast_hash": "f32a27eab306ad2a29db0a2a8a55b03c",
+    "semantic_hash": "f32a27eab306ad2a29db0a2a8a55b03c"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/advanced-jsonb-indexing.md": {
+    "mtime": 1782538654.3174143,
+    "ast_hash": "5b4fbcc451879892d366fa02194bb536",
+    "semantic_hash": "5b4fbcc451879892d366fa02194bb536"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/conn-idle-timeout.md": {
+    "mtime": 1782538654.3176126,
+    "ast_hash": "c73ea45eecdb007786cd3b3e08e31640",
+    "semantic_hash": "c73ea45eecdb007786cd3b3e08e31640"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/conn-limits.md": {
+    "mtime": 1782538654.317793,
+    "ast_hash": "59025fe12439048e81296f28feca4ce1",
+    "semantic_hash": "59025fe12439048e81296f28feca4ce1"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/conn-pooling.md": {
+    "mtime": 1782538654.3179922,
+    "ast_hash": "8561b805a5e0bdfa348840266861de66",
+    "semantic_hash": "8561b805a5e0bdfa348840266861de66"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/conn-prepared-statements.md": {
+    "mtime": 1782538654.318208,
+    "ast_hash": "fe941145678825d273baac1fe66d4dce",
+    "semantic_hash": "fe941145678825d273baac1fe66d4dce"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/data-batch-inserts.md": {
+    "mtime": 1782538654.3323126,
+    "ast_hash": "75a4e92f80b90818221fae51f8b994f1",
+    "semantic_hash": "75a4e92f80b90818221fae51f8b994f1"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/data-n-plus-one.md": {
+    "mtime": 1782538654.332474,
+    "ast_hash": "4fc111bb51121f5181910b3759061ada",
+    "semantic_hash": "4fc111bb51121f5181910b3759061ada"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/data-pagination.md": {
+    "mtime": 1782538654.3326285,
+    "ast_hash": "0e9b3211df99b3d35f7083c984b03ccb",
+    "semantic_hash": "0e9b3211df99b3d35f7083c984b03ccb"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/data-upsert.md": {
+    "mtime": 1782538654.3327718,
+    "ast_hash": "51a26138848f5fec547cd56b9bcb33d4",
+    "semantic_hash": "51a26138848f5fec547cd56b9bcb33d4"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/lock-advisory.md": {
+    "mtime": 1782538654.3328924,
+    "ast_hash": "3f3523b7b0a812a6906f92a6610a5a9b",
+    "semantic_hash": "3f3523b7b0a812a6906f92a6610a5a9b"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/lock-deadlock-prevention.md": {
+    "mtime": 1782538654.3330095,
+    "ast_hash": "07eae98867b47074d82528df59d2135e",
+    "semantic_hash": "07eae98867b47074d82528df59d2135e"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/lock-short-transactions.md": {
+    "mtime": 1782538654.333136,
+    "ast_hash": "aea973297ac14bba2586a2ff57fd8ff7",
+    "semantic_hash": "aea973297ac14bba2586a2ff57fd8ff7"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/lock-skip-locked.md": {
+    "mtime": 1782538654.3332512,
+    "ast_hash": "26e9bd402801299afce06ee506a9f864",
+    "semantic_hash": "26e9bd402801299afce06ee506a9f864"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/monitor-explain-analyze.md": {
+    "mtime": 1782538654.333364,
+    "ast_hash": "93d5998318098652ac380cd354718924",
+    "semantic_hash": "93d5998318098652ac380cd354718924"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/monitor-pg-stat-statements.md": {
+    "mtime": 1782538654.3334758,
+    "ast_hash": "ee51d9586cf18c848563799c14dcc638",
+    "semantic_hash": "ee51d9586cf18c848563799c14dcc638"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/monitor-vacuum-analyze.md": {
+    "mtime": 1782538654.3335874,
+    "ast_hash": "e3d1e4f8831a37bdb1c7f364b911f7a6",
+    "semantic_hash": "e3d1e4f8831a37bdb1c7f364b911f7a6"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/query-composite-indexes.md": {
+    "mtime": 1782538654.3337197,
+    "ast_hash": "bd959891036289cfaf3d54e49599b2d0",
+    "semantic_hash": "bd959891036289cfaf3d54e49599b2d0"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/query-covering-indexes.md": {
+    "mtime": 1782538654.3338575,
+    "ast_hash": "5e62afcfe9289405caec1f32f351dd29",
+    "semantic_hash": "5e62afcfe9289405caec1f32f351dd29"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/query-index-types.md": {
+    "mtime": 1782538654.3339725,
+    "ast_hash": "ef0d4ad9d1eb0466a0bde542ade59de2",
+    "semantic_hash": "ef0d4ad9d1eb0466a0bde542ade59de2"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/query-missing-indexes.md": {
+    "mtime": 1782538654.3340874,
+    "ast_hash": "1bd5f85a9c930219dd479825986bd6ad",
+    "semantic_hash": "1bd5f85a9c930219dd479825986bd6ad"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/query-partial-indexes.md": {
+    "mtime": 1782538654.3342028,
+    "ast_hash": "a6c64f9136f8a7880e53df3e259d90c9",
+    "semantic_hash": "a6c64f9136f8a7880e53df3e259d90c9"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/schema-constraints.md": {
+    "mtime": 1782538654.3343184,
+    "ast_hash": "e7362385f5b79c28f5e495d7c45a7a52",
+    "semantic_hash": "e7362385f5b79c28f5e495d7c45a7a52"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/schema-data-types.md": {
+    "mtime": 1782538654.3344328,
+    "ast_hash": "a10f1ec17bd499622d9201af3d00e0d4",
+    "semantic_hash": "a10f1ec17bd499622d9201af3d00e0d4"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/schema-foreign-key-indexes.md": {
+    "mtime": 1782538654.334543,
+    "ast_hash": "6bc02b38edd88e56c89bab863f5c789b",
+    "semantic_hash": "6bc02b38edd88e56c89bab863f5c789b"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/schema-lowercase-identifiers.md": {
+    "mtime": 1782538654.3346705,
+    "ast_hash": "1df2eae336d542d365f99abdfa968367",
+    "semantic_hash": "1df2eae336d542d365f99abdfa968367"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/schema-partitioning.md": {
+    "mtime": 1782538654.3347874,
+    "ast_hash": "e95568857288b614ba0d4b8cd1b4fb72",
+    "semantic_hash": "e95568857288b614ba0d4b8cd1b4fb72"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/schema-primary-keys.md": {
+    "mtime": 1782538654.334896,
+    "ast_hash": "63412819d632d8cbe39f14630e5de085",
+    "semantic_hash": "63412819d632d8cbe39f14630e5de085"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/security-privileges.md": {
+    "mtime": 1782538654.3350153,
+    "ast_hash": "212beb5d93e7c02cb61c95e117af3aaa",
+    "semantic_hash": "212beb5d93e7c02cb61c95e117af3aaa"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/security-rls-basics.md": {
+    "mtime": 1782538654.3351364,
+    "ast_hash": "2349e490ff266b1c2b81a2368c054baa",
+    "semantic_hash": "2349e490ff266b1c2b81a2368c054baa"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase-postgres-best-practices/references/security-rls-performance.md": {
+    "mtime": 1782538654.3352635,
+    "ast_hash": "6c87b7d050ba714a95a2b88eb0b6caf0",
+    "semantic_hash": "6c87b7d050ba714a95a2b88eb0b6caf0"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase/CHANGELOG.md": {
+    "mtime": 1782538653.134571,
+    "ast_hash": "bd88eabad50a89d284a0f737bda015af",
+    "semantic_hash": "bd88eabad50a89d284a0f737bda015af"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase/SKILL.md": {
+    "mtime": 1782538653.134571,
+    "ast_hash": "24a2e7ad2c7e071f98c021cd4c32bccf",
+    "semantic_hash": "24a2e7ad2c7e071f98c021cd4c32bccf"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase/assets/feedback-issue-template.md": {
+    "mtime": 1782538653.1347823,
+    "ast_hash": "a38bcf7c09794faf287d91a992830b47",
+    "semantic_hash": "a38bcf7c09794faf287d91a992830b47"
+  },
+  "/media/Data/VS Code/kylpup/.agents/skills/supabase/references/skill-feedback.md": {
+    "mtime": 1782538653.134817,
+    "ast_hash": "38a53e95ded880782190ddf2f2810317",
+    "semantic_hash": "38a53e95ded880782190ddf2f2810317"
+  },
+  "/media/Data/VS Code/kylpup/.github/ISSUE_TEMPLATE/bug_report.md": {
+    "mtime": 1782489307.0378478,
+    "ast_hash": "06efe0032edec03593bb00fd86d43543",
+    "semantic_hash": "06efe0032edec03593bb00fd86d43543"
+  },
+  "/media/Data/VS Code/kylpup/.github/ISSUE_TEMPLATE/feature_request.md": {
+    "mtime": 1782489309.5685866,
+    "ast_hash": "534c47e08f91eed297369d75ee77c104",
+    "semantic_hash": "534c47e08f91eed297369d75ee77c104"
+  },
+  "/media/Data/VS Code/kylpup/.github/PULL_REQUEST_TEMPLATE.md": {
+    "mtime": 1782489304.482113,
+    "ast_hash": "8455de7a526d9df43e86082c4a23becd",
+    "semantic_hash": "8455de7a526d9df43e86082c4a23becd"
+  },
+  "/media/Data/VS Code/kylpup/.github/SECURITY.md": {
+    "mtime": 1782489314.4610853,
+    "ast_hash": "aa45b902a1c009b0a6ffadf3bc55a4ba",
+    "semantic_hash": "aa45b902a1c009b0a6ffadf3bc55a4ba"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/SKILL.md": {
+    "mtime": 1782539731.2200372,
+    "ast_hash": "615afd0e9064e449cc1c77af45e222d0",
+    "semantic_hash": "615afd0e9064e449cc1c77af45e222d0"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/adapt.md": {
+    "mtime": 1782539731.2200372,
+    "ast_hash": "677c79a3dfdb092d711e5e59c46b41bb",
+    "semantic_hash": "677c79a3dfdb092d711e5e59c46b41bb"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/animate.md": {
+    "mtime": 1782539731.2200372,
+    "ast_hash": "225ce0e1461488f877d158f1b3ab900b",
+    "semantic_hash": "225ce0e1461488f877d158f1b3ab900b"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/audit.md": {
+    "mtime": 1782539731.2200372,
+    "ast_hash": "fb3a1ab9b014ecc9fe0d22075616702a",
+    "semantic_hash": "fb3a1ab9b014ecc9fe0d22075616702a"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/bolder.md": {
+    "mtime": 1782539731.2210371,
+    "ast_hash": "468510aff0c1b3429d03030e0ae4753d",
+    "semantic_hash": "468510aff0c1b3429d03030e0ae4753d"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/brand.md": {
+    "mtime": 1782539731.2210371,
+    "ast_hash": "f70d1cd822ae916a55a2c26e775885aa",
+    "semantic_hash": "f70d1cd822ae916a55a2c26e775885aa"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/clarify.md": {
+    "mtime": 1782539731.2210371,
+    "ast_hash": "59f37b001528ffa685aa9fc8b815ac0c",
+    "semantic_hash": "59f37b001528ffa685aa9fc8b815ac0c"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/codex.md": {
+    "mtime": 1782539731.2210371,
+    "ast_hash": "6d97d559484916f05fa74f6b74f3da07",
+    "semantic_hash": "6d97d559484916f05fa74f6b74f3da07"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/colorize.md": {
+    "mtime": 1782539731.2210371,
+    "ast_hash": "5387c26ecec10e9bead735997da67f99",
+    "semantic_hash": "5387c26ecec10e9bead735997da67f99"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/craft.md": {
+    "mtime": 1782539731.2210371,
+    "ast_hash": "30b636d36ebb80efb147c409fbd56ef0",
+    "semantic_hash": "30b636d36ebb80efb147c409fbd56ef0"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/critique.md": {
+    "mtime": 1782539731.2210371,
+    "ast_hash": "e4ce6749bdab5ab6fd81e51c96a5513f",
+    "semantic_hash": "e4ce6749bdab5ab6fd81e51c96a5513f"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/delight.md": {
+    "mtime": 1782539731.2210371,
+    "ast_hash": "2e70444af079164b12d970a619bd9ab9",
+    "semantic_hash": "2e70444af079164b12d970a619bd9ab9"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/distill.md": {
+    "mtime": 1782539731.2210371,
+    "ast_hash": "2220616f91ee154c78020eceff2a3f15",
+    "semantic_hash": "2220616f91ee154c78020eceff2a3f15"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/document.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "1994cb8d193a53238e37599c17fd143d",
+    "semantic_hash": "1994cb8d193a53238e37599c17fd143d"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/extract.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "29b884dd3d347d98c43bde900891673b",
+    "semantic_hash": "29b884dd3d347d98c43bde900891673b"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/harden.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "e87b0bff32be86e7825e7ff4c50157e3",
+    "semantic_hash": "e87b0bff32be86e7825e7ff4c50157e3"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/hooks.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "5a2ce7159cef28f30242f83c90d67429",
+    "semantic_hash": "5a2ce7159cef28f30242f83c90d67429"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/init.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "e909f5f774dc01e18f3dfabd3e6f5891",
+    "semantic_hash": "e909f5f774dc01e18f3dfabd3e6f5891"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/interaction-design.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "1dd83bb8a96d7e250914064aa7389f8b",
+    "semantic_hash": "1dd83bb8a96d7e250914064aa7389f8b"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/layout.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "0df4b2064cadee109afe865ce7d20d1e",
+    "semantic_hash": "0df4b2064cadee109afe865ce7d20d1e"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/live.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "37e5af3cf12855b00916d318a5304bd3",
+    "semantic_hash": "37e5af3cf12855b00916d318a5304bd3"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/onboard.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "7095aaea9e2994e37afb3cf1743bc092",
+    "semantic_hash": "7095aaea9e2994e37afb3cf1743bc092"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/optimize.md": {
+    "mtime": 1782539731.222037,
+    "ast_hash": "d01f252b7e5cb35b8443d57eaad40b58",
+    "semantic_hash": "d01f252b7e5cb35b8443d57eaad40b58"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/overdrive.md": {
+    "mtime": 1782539731.2230372,
+    "ast_hash": "05efa45c595b4f5ff78f8a9918fa7663",
+    "semantic_hash": "05efa45c595b4f5ff78f8a9918fa7663"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/polish.md": {
+    "mtime": 1782539731.2230372,
+    "ast_hash": "136a9e1fa67ebf1f31f32f6600827ffd",
+    "semantic_hash": "136a9e1fa67ebf1f31f32f6600827ffd"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/product.md": {
+    "mtime": 1782539731.2230372,
+    "ast_hash": "6408a63ddbfe7003c732650381506860",
+    "semantic_hash": "6408a63ddbfe7003c732650381506860"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/quieter.md": {
+    "mtime": 1782539731.2230372,
+    "ast_hash": "c7804c62d7951f12a213704d68e64938",
+    "semantic_hash": "c7804c62d7951f12a213704d68e64938"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/shape.md": {
+    "mtime": 1782539731.2230372,
+    "ast_hash": "ced5c539736c914392c10fd96d10e38a",
+    "semantic_hash": "ced5c539736c914392c10fd96d10e38a"
+  },
+  "/media/Data/VS Code/kylpup/.github/skills/impeccable/reference/typeset.md": {
+    "mtime": 1782539731.2230372,
+    "ast_hash": "8e8e3a58858713ff62de8ffa1a740cc6",
+    "semantic_hash": "8e8e3a58858713ff62de8ffa1a740cc6"
+  },
+  "/media/Data/VS Code/kylpup/.github/workflows/ci.yml": {
+    "mtime": 1782490925.443077,
+    "ast_hash": "ed157edc746cf21027b5280c797e944c",
+    "semantic_hash": "ed157edc746cf21027b5280c797e944c"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/SKILL.md": {
+    "mtime": 1782539731.235037,
+    "ast_hash": "1113cae4d20cca181b6361946d5b1923",
+    "semantic_hash": "1113cae4d20cca181b6361946d5b1923"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/adapt.md": {
+    "mtime": 1782539731.235037,
+    "ast_hash": "677c79a3dfdb092d711e5e59c46b41bb",
+    "semantic_hash": "677c79a3dfdb092d711e5e59c46b41bb"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/animate.md": {
+    "mtime": 1782539731.235037,
+    "ast_hash": "cf7947e99e23100c91c915a266c38254",
+    "semantic_hash": "cf7947e99e23100c91c915a266c38254"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/audit.md": {
+    "mtime": 1782539731.235037,
+    "ast_hash": "fb3a1ab9b014ecc9fe0d22075616702a",
+    "semantic_hash": "fb3a1ab9b014ecc9fe0d22075616702a"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/bolder.md": {
+    "mtime": 1782539731.235037,
+    "ast_hash": "1a5d39b2104c2258d1f168b2401628d6",
+    "semantic_hash": "1a5d39b2104c2258d1f168b2401628d6"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/brand.md": {
+    "mtime": 1782539731.235037,
+    "ast_hash": "f70d1cd822ae916a55a2c26e775885aa",
+    "semantic_hash": "f70d1cd822ae916a55a2c26e775885aa"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/clarify.md": {
+    "mtime": 1782539731.235037,
+    "ast_hash": "59f37b001528ffa685aa9fc8b815ac0c",
+    "semantic_hash": "59f37b001528ffa685aa9fc8b815ac0c"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/codex.md": {
+    "mtime": 1782539731.235037,
+    "ast_hash": "6d97d559484916f05fa74f6b74f3da07",
+    "semantic_hash": "6d97d559484916f05fa74f6b74f3da07"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/colorize.md": {
+    "mtime": 1782539731.2360373,
+    "ast_hash": "7df66c78cf1392345c719cc5ad570cb5",
+    "semantic_hash": "7df66c78cf1392345c719cc5ad570cb5"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/craft.md": {
+    "mtime": 1782539731.2360373,
+    "ast_hash": "30b636d36ebb80efb147c409fbd56ef0",
+    "semantic_hash": "30b636d36ebb80efb147c409fbd56ef0"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/critique.md": {
+    "mtime": 1782539731.2360373,
+    "ast_hash": "e0755e0d9d5bf45a05474c95a43afc8d",
+    "semantic_hash": "e0755e0d9d5bf45a05474c95a43afc8d"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/delight.md": {
+    "mtime": 1782539731.2360373,
+    "ast_hash": "e069c33b0c7e3c5fa5e1aee45fa0d877",
+    "semantic_hash": "e069c33b0c7e3c5fa5e1aee45fa0d877"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/distill.md": {
+    "mtime": 1782539731.2360373,
+    "ast_hash": "dcf4258d142a379bde3ca113ba1f7d67",
+    "semantic_hash": "dcf4258d142a379bde3ca113ba1f7d67"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/document.md": {
+    "mtime": 1782539731.2360373,
+    "ast_hash": "84d9934f575efc8187fdabfc45ae834d",
+    "semantic_hash": "84d9934f575efc8187fdabfc45ae834d"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/extract.md": {
+    "mtime": 1782539731.2360373,
+    "ast_hash": "11ea8ef9173668102ce4f48d5caa5557",
+    "semantic_hash": "11ea8ef9173668102ce4f48d5caa5557"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/harden.md": {
+    "mtime": 1782539731.2360373,
+    "ast_hash": "e87b0bff32be86e7825e7ff4c50157e3",
+    "semantic_hash": "e87b0bff32be86e7825e7ff4c50157e3"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/hooks.md": {
+    "mtime": 1782539731.2370372,
+    "ast_hash": "b107f2f40f4977d156566b79227b82af",
+    "semantic_hash": "b107f2f40f4977d156566b79227b82af"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/init.md": {
+    "mtime": 1782539731.2370372,
+    "ast_hash": "7a929c1c159a7f744e04b98c179ead33",
+    "semantic_hash": "7a929c1c159a7f744e04b98c179ead33"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/interaction-design.md": {
+    "mtime": 1782539731.2370372,
+    "ast_hash": "1dd83bb8a96d7e250914064aa7389f8b",
+    "semantic_hash": "1dd83bb8a96d7e250914064aa7389f8b"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/layout.md": {
+    "mtime": 1782539731.2370372,
+    "ast_hash": "0df4b2064cadee109afe865ce7d20d1e",
+    "semantic_hash": "0df4b2064cadee109afe865ce7d20d1e"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/live.md": {
+    "mtime": 1782539731.2370372,
+    "ast_hash": "0abb8e87dcb42966e3e6f3e96c78b105",
+    "semantic_hash": "0abb8e87dcb42966e3e6f3e96c78b105"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/onboard.md": {
+    "mtime": 1782539731.2370372,
+    "ast_hash": "7095aaea9e2994e37afb3cf1743bc092",
+    "semantic_hash": "7095aaea9e2994e37afb3cf1743bc092"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/optimize.md": {
+    "mtime": 1782539731.2370372,
+    "ast_hash": "d01f252b7e5cb35b8443d57eaad40b58",
+    "semantic_hash": "d01f252b7e5cb35b8443d57eaad40b58"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/overdrive.md": {
+    "mtime": 1782539731.2370372,
+    "ast_hash": "8f1470d56d69c6e050999d0fea1cd6c1",
+    "semantic_hash": "8f1470d56d69c6e050999d0fea1cd6c1"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/polish.md": {
+    "mtime": 1782539731.2370372,
+    "ast_hash": "f4f6d0c031ae0dda0514d672c22f7d35",
+    "semantic_hash": "f4f6d0c031ae0dda0514d672c22f7d35"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/product.md": {
+    "mtime": 1782539731.238037,
+    "ast_hash": "6408a63ddbfe7003c732650381506860",
+    "semantic_hash": "6408a63ddbfe7003c732650381506860"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/quieter.md": {
+    "mtime": 1782539731.238037,
+    "ast_hash": "c9bca30a1a8c9bbb507361b9defff216",
+    "semantic_hash": "c9bca30a1a8c9bbb507361b9defff216"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/shape.md": {
+    "mtime": 1782539731.238037,
+    "ast_hash": "f901f3aa9bc338efafa76d088217fa82",
+    "semantic_hash": "f901f3aa9bc338efafa76d088217fa82"
+  },
+  "/media/Data/VS Code/kylpup/.opencode/skills/impeccable/reference/typeset.md": {
+    "mtime": 1782539731.238037,
+    "ast_hash": "8e8e3a58858713ff62de8ffa1a740cc6",
+    "semantic_hash": "8e8e3a58858713ff62de8ffa1a740cc6"
+  },
+  "/media/Data/VS Code/kylpup/CLAUDE.md": {
+    "mtime": 1782923175.019651,
+    "ast_hash": "7c516ebfeac276f59f1a7739fc5ff160",
+    "semantic_hash": "7c516ebfeac276f59f1a7739fc5ff160"
+  },
+  "/media/Data/VS Code/kylpup/CODE_OF_CONDUCT.md": {
+    "mtime": 1782585280.5364807,
+    "ast_hash": "c78dac68d821675ab31ac1fd07569323",
+    "semantic_hash": "c78dac68d821675ab31ac1fd07569323"
+  },
+  "/media/Data/VS Code/kylpup/CONTRIBUTING.md": {
+    "mtime": 1782585279.8624942,
+    "ast_hash": "e819a2f983e3d8557cac9b26fa2bad7d",
+    "semantic_hash": "e819a2f983e3d8557cac9b26fa2bad7d"
+  },
+  "/media/Data/VS Code/kylpup/PRODUCT.md": {
+    "mtime": 1782539873.6555114,
+    "ast_hash": "2d396df7938d0b5c00ec9dbbf293dbb0",
+    "semantic_hash": "2d396df7938d0b5c00ec9dbbf293dbb0"
+  },
+  "/media/Data/VS Code/kylpup/README.md": {
+    "mtime": 1782618258.8149927,
+    "ast_hash": "3429141e2ab257edb699ab24f62bfb44",
+    "semantic_hash": "3429141e2ab257edb699ab24f62bfb44"
+  },
+  "/media/Data/VS Code/kylpup/backend/requirements.txt": {
+    "mtime": 1782534898.1790197,
+    "ast_hash": "fd97443442ffe81b87e9d9751b196a19",
+    "semantic_hash": "fd97443442ffe81b87e9d9751b196a19"
+  },
+  "/media/Data/VS Code/kylpup/backend/scripts/sample_filings/AAPL_10K_FY2023.txt": {
+    "mtime": 1782487373.9566438,
+    "ast_hash": "9a2e514468a0de355a1e68faf868472b",
+    "semantic_hash": "9a2e514468a0de355a1e68faf868472b"
+  },
+  "/media/Data/VS Code/kylpup/backend/scripts/sample_filings/JPM_10K_FY2023.txt": {
+    "mtime": 1782487405.0842175,
+    "ast_hash": "7ab9a7087cd09ea06cddba10cf665c83",
+    "semantic_hash": "7ab9a7087cd09ea06cddba10cf665c83"
+  },
+  "/media/Data/VS Code/kylpup/backend/scripts/sample_filings/NVDA_10K_FY2024.txt": {
+    "mtime": 1782487395.9160485,
+    "ast_hash": "40f61246cc64b4be71e92d8b0cfaaa49",
+    "semantic_hash": "40f61246cc64b4be71e92d8b0cfaaa49"
+  },
+  "/media/Data/VS Code/kylpup/backend/scripts/sample_filings/TSLA_10K_FY2023.txt": {
+    "mtime": 1782487385.8788636,
+    "ast_hash": "67bb50a921bddae9d39d1b73a607e463",
+    "semantic_hash": "67bb50a921bddae9d39d1b73a607e463"
+  },
+  "/media/Data/VS Code/kylpup/docker-compose.yml": {
+    "mtime": 1782486627.0044098,
+    "ast_hash": "57f1da7c6c408bc157869acb89cf0862",
+    "semantic_hash": "57f1da7c6c408bc157869acb89cf0862"
+  },
+  "/media/Data/VS Code/kylpup/docs/ARCHITECTURE.md": {
+    "mtime": 1782585228.9705696,
+    "ast_hash": "c24a8d5820b6968ca26090a7b09a52c9",
+    "semantic_hash": "c24a8d5820b6968ca26090a7b09a52c9"
+  },
+  "/media/Data/VS Code/kylpup/docs/DECISIONS.md": {
+    "mtime": 1782584475.912527,
+    "ast_hash": "a8f5bb0dbc539bb7c50e32b679f1140f",
+    "semantic_hash": "a8f5bb0dbc539bb7c50e32b679f1140f"
+  },
+  "/media/Data/VS Code/kylpup/docs/api-reference.md": {
+    "mtime": 1782585229.5455568,
+    "ast_hash": "d8f8f2f4fd63d85cd477d6cdd677f968",
+    "semantic_hash": "d8f8f2f4fd63d85cd477d6cdd677f968"
+  },
+  "/media/Data/VS Code/kylpup/frontend/index.html": {
+    "mtime": 1782539947.1697536,
+    "ast_hash": "a5d00bf1f119b7830d54f7d62353a55e",
+    "semantic_hash": "a5d00bf1f119b7830d54f7d62353a55e"
+  },
+  "/media/Data/VS Code/kylpup/goal.md": {
+    "mtime": 1782485771.5194654,
+    "ast_hash": "978d4e0dd8bde6387d6c9a07fec809bd",
+    "semantic_hash": "978d4e0dd8bde6387d6c9a07fec809bd"
+  },
+  "/media/Data/VS Code/kylpup/plan.md": {
+    "mtime": 1782487932.3615465,
+    "ast_hash": "1bccfe7613703fef7918e9b12c52ed8d",
+    "semantic_hash": "1bccfe7613703fef7918e9b12c52ed8d"
+  },
+  "/media/Data/VS Code/kylpup/plan_frontend.md": {
+    "mtime": 1782489216.9423363,
+    "ast_hash": "9b80b4cd31e85858d4da4e77cdccbeeb",
+    "semantic_hash": "9b80b4cd31e85858d4da4e77cdccbeeb"
+  },
+  "/media/Data/VS Code/kylpup/render.yaml": {
+    "mtime": 1782487949.1623662,
+    "ast_hash": "5cf43e64fdb675b80306ef58ae0b0036",
+    "semantic_hash": "5cf43e64fdb675b80306ef58ae0b0036"
+  },
+  "/media/Data/VS Code/kylpup/stack.md": {
+    "mtime": 1782489858.5241027,
+    "ast_hash": "70c981ad0c296cbfd1a24f65aa71c5ec",
+    "semantic_hash": "70c981ad0c296cbfd1a24f65aa71c5ec"
+  },
+  "/media/Data/VS Code/kylpup/walkthrough.md": {
+    "mtime": 1782489976.8924499,
+    "ast_hash": "35e2ff92c9b33706eb99f5242f595812",
+    "semantic_hash": "35e2ff92c9b33706eb99f5242f595812"
+  },
+  "/media/Data/VS Code/kylpup/LOGO.png": {
+    "mtime": 1782483451.2718444,
+    "ast_hash": "2cc4c673cc5924286880eb005fa80f37",
+    "semantic_hash": "2cc4c673cc5924286880eb005fa80f37"
+  },
+  "/media/Data/VS Code/kylpup/frontend/public/favicon.svg": {
+    "mtime": 1782540080.6221898,
+    "ast_hash": "7acff925d2d50cd87b59172e9b92f73a",
+    "semantic_hash": "7acff925d2d50cd87b59172e9b92f73a"
+  },
+  "/media/Data/VS Code/kylpup/frontend/public/logo.png": {
+    "mtime": 1782540049.6532967,
+    "ast_hash": "2cc4c673cc5924286880eb005fa80f37",
+    "semantic_hash": "2cc4c673cc5924286880eb005fa80f37"
+  }
+}
