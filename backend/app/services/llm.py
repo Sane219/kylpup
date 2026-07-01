@@ -1,6 +1,7 @@
-"""LLM provider abstraction. Gemini primary, Groq fallback. One entry point:
-chat_json(system, user) -> dict, using each provider's native JSON mode so we
-never parse free text. Retries, then fails over to the other provider."""
+"""LLM provider abstraction. Groq primary (gpt-oss-120b, biggest free tier +
+streamed reasoning), Gemini fallback. One entry point: chat_json(system, user) ->
+dict, using each provider's native JSON mode so we never parse free text. Retries,
+then fails over to the other provider."""
 import json
 import logging
 import time
@@ -15,6 +16,10 @@ GEMINI_MODEL = "gemini-2.5-flash"
 # tier — 200K tokens/day vs 100K for the rest. Gemini's thinking_budget maps to
 # Groq's reasoning_effort.
 GROQ_MODEL = "openai/gpt-oss-120b"
+# gpt-oss needs an explicit completion cap: without it, reasoning + a large JSON
+# schema (synth/refine) gets truncated and Groq rejects it as "Failed to validate
+# JSON". 8192 comfortably fits the biggest desk-note response plus its reasoning.
+GROQ_MAX_TOKENS = 8192
 
 
 def _active() -> str:
@@ -99,6 +104,7 @@ def _stream_groq(system: str, user: str, budget: int):
                   {"role": "user", "content": user}],
         response_format={"type": "json_object"},  # gpt-oss rejects reasoning_format alongside this; it streams delta.reasoning anyway
         reasoning_effort=_effort(budget),
+        max_completion_tokens=GROQ_MAX_TOKENS,
         temperature=0.2,
         stream=True,
     )
@@ -141,6 +147,7 @@ def _groq(system: str, user: str) -> str:
         messages=[{"role": "system", "content": system},
                   {"role": "user", "content": user}],
         response_format={"type": "json_object"},
+        max_completion_tokens=GROQ_MAX_TOKENS,
         temperature=0.2,
     )
     return res.choices[0].message.content
@@ -156,6 +163,7 @@ def _groq_thinking(system: str, user: str, budget: int) -> tuple[str, str]:
                   {"role": "user", "content": user}],
         response_format={"type": "json_object"},
         reasoning_effort=_effort(budget),
+        max_completion_tokens=GROQ_MAX_TOKENS,
         temperature=0.2,
     )
     msg = res.choices[0].message
