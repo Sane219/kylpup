@@ -26,7 +26,11 @@ Output ONLY this JSON object:
   "filing_query": "<what to search filings for, or empty>",
   "reasoning": "<1-2 sentences: why these tickers and these tools for this query>"
 }
-If the user asks only about news, set fetch_market and search_filings to false."""
+If the user asks only about news, set fetch_market and search_filings to false.
+Set fetch_insider=true whenever the query is directional or forward-looking about the
+price (e.g. "will it rise or fall", "is it a buy", "should I buy/sell", "upside",
+"price target", "what's it worth") or explicitly asks about insider buying/selling —
+analyst targets and insider trades are the core signal for those questions."""
 
 SYNTH_SYSTEM = """You are a senior financial research analyst writing a desk note
 for a portfolio manager. Using ONLY the tool data provided, produce a thorough,
@@ -68,7 +72,7 @@ Output ONLY this JSON object:
   "opportunities": [{"ticker": "", "opportunity": "<a credible upside / catalyst grounded in the data>", "citation": "<source>"}],
   "risks": [{"ticker": "", "risk": "<a concrete, specific risk>", "citation": "<source>"}],
   "outlook": "<2-4 sentence forward-looking synthesis weighing the opportunities against the risks>",
-  "sources_used": ["yfinance", "duckduckgo-news", "sec-filing-kb"]
+  "sources_used": ["yfinance", "yahoo-finance-news", "sec-filing-kb"]
 }
 Provide 3-6 key_takeaways. Write full sentences in thesis/outlook/insight/takeaway.
 Omit arrays that have no supporting data (use [])."""

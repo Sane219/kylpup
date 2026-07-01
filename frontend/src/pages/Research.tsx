@@ -8,6 +8,8 @@ import { ErrorBanner, Panel, PanelHeader } from "../components/ui";
 const EXAMPLES = [
   "Give me a full overview of Tesla: stock performance, recent news and sentiment, and key risks.",
   "Compare NVIDIA, AMD and Intel on revenue, valuation, and recent news sentiment.",
+  "Is NVIDIA likely to rise or fall? Weigh analyst price targets and recent insider trading.",
+  "Are insiders buying or selling Palantir, and what do analysts think the stock is worth?",
   "Compare the balance sheets of JPMorgan and Goldman Sachs. Which has the stronger capital position?",
   "What are the biggest risks facing Apple right now, citing recent filings and news?",
 ];
@@ -16,6 +18,7 @@ const EXAMPLES = [
 const TOOL_CATALOG = [
   { key: "market", title: "Market data", flag: "fetch_market", desc: "Live quotes, valuation multiples and price history." },
   { key: "news", title: "News & sentiment", flag: "fetch_news", desc: "Recent headlines scored for sentiment." },
+  { key: "insider", title: "Insider & analysts", flag: "fetch_insider", desc: "Insider (Form 3/4/5) trades plus analyst price targets and ratings." },
   { key: "filings", title: "SEC filings", flag: "search_filings", desc: "Vector search over 10-K / 10-Q passages." },
 ] as const;
 

@@ -11,7 +11,18 @@ log = logging.getLogger("klypup")
 
 # gemini-2.0-flash has 0 free-tier quota on current keys; 2.5-flash works.
 GEMINI_MODEL = "gemini-2.5-flash"
-GROQ_MODEL = "llama-3.3-70b-versatile"
+# gpt-oss-120b: a reasoning model (streams a thought trace) with the biggest free
+# tier — 200K tokens/day vs 100K for the rest. Gemini's thinking_budget maps to
+# Groq's reasoning_effort.
+GROQ_MODEL = "openai/gpt-oss-120b"
+
+
+def _active() -> str:
+    return settings.LLM_PROVIDER if settings.LLM_PROVIDER in _PROVIDERS else "gemini"
+
+
+def _effort(budget: int) -> str:
+    return "low" if budget <= 512 else "high" if budget >= 2048 else "medium"
 
 
 def _gemini(system: str, user: str) -> str:
@@ -54,11 +65,7 @@ def _gemini_thinking(system: str, user: str, budget: int) -> tuple[str, str]:
     return "".join(answer), "".join(thoughts)
 
 
-def stream_thinking(system: str, user: str, budget: int):
-    """Sync generator over a Gemini call, yielding ('thought', chunk) as the model
-    reasons and ('answer', chunk) as it writes the JSON. Caller concatenates the
-    'answer' chunks and json.loads them. Gemini-only; raises on failure so the
-    caller can fall back to chat_json_thinking."""
+def _stream_gemini(system: str, user: str, budget: int):
     from google import genai
     from google.genai import types
     client = genai.Client(api_key=settings.GEMINI_API_KEY)
@@ -81,16 +88,48 @@ def stream_thinking(system: str, user: str, budget: int):
             yield ("thought" if getattr(p, "thought", False) else "answer", p.text)
 
 
+def _stream_groq(system: str, user: str, budget: int):
+    """gpt-oss streams reasoning via delta.reasoning and the JSON via delta.content
+    when reasoning_format='parsed' (the only format allowed alongside JSON mode)."""
+    from groq import Groq
+    client = Groq(api_key=settings.GROQ_API_KEY)
+    stream = client.chat.completions.create(
+        model=GROQ_MODEL,
+        messages=[{"role": "system", "content": system},
+                  {"role": "user", "content": user}],
+        response_format={"type": "json_object"},  # gpt-oss rejects reasoning_format alongside this; it streams delta.reasoning anyway
+        reasoning_effort=_effort(budget),
+        temperature=0.2,
+        stream=True,
+    )
+    for chunk in stream:
+        d = chunk.choices[0].delta
+        if getattr(d, "reasoning", None):
+            yield ("thought", d.reasoning)
+        if d.content:
+            yield ("answer", d.content)
+
+
+def stream_thinking(system: str, user: str, budget: int):
+    """Sync generator yielding ('thought', chunk) as the model reasons and
+    ('answer', chunk) as it writes the JSON. Dispatches to the active provider;
+    raises on failure so the caller can fall back to chat_json_thinking."""
+    gen = _stream_groq if _active() == "groq" else _stream_gemini
+    yield from gen(system, user, budget)
+
+
 def chat_json_thinking(system: str, user: str, budget: int = 1024) -> tuple[dict, str]:
-    """Like chat_json but also returns the model's thought summary. Gemini-only;
-    on any failure (or a non-Gemini provider) falls back to chat_json with no
-    thoughts, so the run never depends on thinking being available."""
-    if (settings.LLM_PROVIDER if settings.LLM_PROVIDER in _PROVIDERS else "gemini") == "gemini":
-        try:
+    """Like chat_json but also returns the model's thought trace. Uses the active
+    provider's reasoning; on any failure falls back to chat_json with no thoughts,
+    so the run never depends on thinking being available."""
+    try:
+        if _active() == "groq":
+            txt, thoughts = _groq_thinking(system, user, budget)
+        else:
             txt, thoughts = _gemini_thinking(system, user, budget)
-            return json.loads(txt), thoughts
-        except Exception as e:
-            log.warning("gemini thinking failed, falling back: %s", e)
+        return json.loads(txt), thoughts
+    except Exception as e:
+        log.warning("thinking call failed, falling back: %s", e)
     return chat_json(system, user), ""
 
 
@@ -105,6 +144,22 @@ def _groq(system: str, user: str) -> str:
         temperature=0.2,
     )
     return res.choices[0].message.content
+
+
+def _groq_thinking(system: str, user: str, budget: int) -> tuple[str, str]:
+    """gpt-oss with parsed reasoning: content is the JSON, reasoning is the trace."""
+    from groq import Groq
+    client = Groq(api_key=settings.GROQ_API_KEY)
+    res = client.chat.completions.create(
+        model=GROQ_MODEL,
+        messages=[{"role": "system", "content": system},
+                  {"role": "user", "content": user}],
+        response_format={"type": "json_object"},
+        reasoning_effort=_effort(budget),
+        temperature=0.2,
+    )
+    msg = res.choices[0].message
+    return msg.content, (getattr(msg, "reasoning", None) or "")
 
 
 _PROVIDERS = {"gemini": _gemini, "groq": _groq}
