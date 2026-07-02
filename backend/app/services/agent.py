@@ -61,7 +61,7 @@ Output ONLY this JSON object:
     {"ticker": "", "title": "", "sentiment": "positive|negative|neutral",
      "takeaway": "<why this headline matters in one line>",
      "url": "", "citation": "<publisher>"}
-  ],
+  ],  // include EVERY article present in tool_data.news — one entry per headline, do not drop any
   "filing_insights": [
     {"ticker": "", "insight": "<a substantive point drawn from the filing text>", "citation": "<source_ref>"}
   ],
