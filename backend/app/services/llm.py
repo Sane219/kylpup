@@ -4,6 +4,7 @@ dict, using each provider's native JSON mode so we never parse free text. Retrie
 then fails over to the other provider."""
 import json
 import logging
+import re
 import time
 
 from app.core.config import settings
@@ -12,13 +13,14 @@ log = logging.getLogger("klypup")
 
 # gemini-2.0-flash has 0 free-tier quota on current keys; 2.5-flash works.
 GEMINI_MODEL = "gemini-2.5-flash"
-# gpt-oss-120b: a reasoning model (streams a thought trace) with the biggest free
-# tier — 200K tokens/day vs 100K for the rest. Gemini's thinking_budget maps to
-# Groq's reasoning_effort.
-GROQ_MODEL = "openai/gpt-oss-120b"
-# gpt-oss needs an explicit completion cap: without it, reasoning + a large JSON
-# schema (synth/refine) gets truncated and Groq rejects it as "Failed to validate
-# JSON". 8192 comfortably fits the biggest desk-note response plus its reasoning.
+# llama-3.3-70b-versatile: NOT a reasoning model, so it burns no reasoning tokens
+# and has a higher free-tier cap (12K TPM vs 8K for gpt-oss). gpt-oss-120b's live
+# thought trace blew the 8K TPM limit — a single synth call (~15K in + reasoning +
+# 8K out) exceeded it on its own, then failed over to an exhausted Gemini. This
+# model yields no thought trace (stream_thinking emits only 'answer' chunks).
+GROQ_MODEL = "llama-3.3-70b-versatile"
+# Explicit completion cap so a large synth/refine JSON isn't truncated. 8192 fits
+# the biggest desk-note response.
 GROQ_MAX_TOKENS = 8192
 
 
@@ -26,8 +28,16 @@ def _active() -> str:
     return settings.LLM_PROVIDER if settings.LLM_PROVIDER in _PROVIDERS else "gemini"
 
 
-def _effort(budget: int) -> str:
-    return "low" if budget <= 512 else "high" if budget >= 2048 else "medium"
+_RETRY_RE = re.compile(r"try again in ([\d.]+)s|retry in ([\d.]+)s|retryDelay['\": ]+([\d.]+)")
+
+
+def _retry_after(e: Exception) -> float | None:
+    """Seconds Groq/Gemini asked us to wait, parsed from the 429 message. None if
+    not a rate-limit error we should wait on."""
+    m = _RETRY_RE.search(str(e))
+    if not m:
+        return None
+    return float(next(g for g in m.groups() if g))
 
 
 def _gemini(system: str, user: str) -> str:
@@ -102,8 +112,7 @@ def _stream_groq(system: str, user: str, budget: int):
         model=GROQ_MODEL,
         messages=[{"role": "system", "content": system},
                   {"role": "user", "content": user}],
-        response_format={"type": "json_object"},  # gpt-oss rejects reasoning_format alongside this; it streams delta.reasoning anyway
-        reasoning_effort=_effort(budget),
+        response_format={"type": "json_object"},
         max_completion_tokens=GROQ_MAX_TOKENS,
         temperature=0.2,
         stream=True,
@@ -162,7 +171,6 @@ def _groq_thinking(system: str, user: str, budget: int) -> tuple[str, str]:
         messages=[{"role": "system", "content": system},
                   {"role": "user", "content": user}],
         response_format={"type": "json_object"},
-        reasoning_effort=_effort(budget),
         max_completion_tokens=GROQ_MAX_TOKENS,
         temperature=0.2,
     )
@@ -180,11 +188,18 @@ def chat_json(system: str, user: str) -> dict:
     order = [primary] + [p for p in _PROVIDERS if p != primary]
     last = None
     for name in order:
-        for attempt in range(2):
+        for attempt in range(3):
             try:
                 return json.loads(_PROVIDERS[name](system, user))
             except Exception as e:
                 last = e
                 log.warning("llm %s attempt %d failed: %s", name, attempt + 1, e)
-                time.sleep(0.5 * (attempt + 1))
+                # On a rate limit, wait out the window the provider asked for (capped
+                # at 30s) and retry the SAME provider — don't fail over to the other,
+                # which is likely also exhausted. Otherwise a short linear backoff.
+                wait = _retry_after(e)
+                if wait is not None and attempt < 2:
+                    time.sleep(min(wait + 0.5, 30))
+                else:
+                    time.sleep(0.5 * (attempt + 1))
     raise RuntimeError(f"all LLM providers failed: {last}")
